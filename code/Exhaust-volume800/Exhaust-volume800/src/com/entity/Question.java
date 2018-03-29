@@ -2,6 +2,7 @@ package com.entity;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,7 +17,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import org.hibernate.mapping.Set;
+
+
+
+
+
 
 @Entity
 @Table(name="question")
