@@ -18,7 +18,7 @@
 	<div class="main">
 		<div class="agileits_main_grid">
 			<div class="agileits_main_grid_left">
-				<h1>404 Error Page</h1>
+				<h1>404 Error Pages</h1>
 			</div>
 			<div class="agileits_main_grid_right">
 				<a href="index.jsp">back to home</a>
