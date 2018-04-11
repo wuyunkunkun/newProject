@@ -117,7 +117,7 @@ $('#btnCrop').on('click', function(){
 	var teacher = document.getElementsByName("teacher_id");
 	var teacherid = teacher[0].value;
 	var formData = new FormData($("upload-file")[0]);
-	formData.append("imgBase64",encodeURIComponent(img));//
+	formData.append("imgBase64",encodeURIComponent(img));
 	formData.append("fileFileName","photo.jpg");
 	formData.append("teacher_id",teacherid);
 	var loading = document.getElementsByName("loading");

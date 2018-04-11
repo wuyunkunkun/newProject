@@ -33,37 +33,38 @@ public class PhotoController {
 	 private PhotoService photoService;
 	 private String filename = "";
 	 
-	//ÉÏ´«Í¼Æ¬µ½·þÎñÆ÷
+	//ï¿½Ï´ï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	  @ResponseBody
 	  @RequestMapping(value="addPhoto", method=RequestMethod.POST,produces="application/json;charset=UTF-8")
 	  public String addPhoto(HttpServletResponse response,HttpServletRequest request){
-		  System.out.println("¹þ¹þ¹þ");
+		  System.out.println("è¿›å…¥addphoto");
 		  Map map = new HashMap();
 		  String content = null; 
 		  String fileFileName = request.getParameter("fileFileName");
 		  String imgBase64 = request.getParameter("imgBase64");
 		  String uploadPath= request.getSession().getServletContext()
 	              .getRealPath("/upload");
-	      String fileExt = fileFileName.substring(fileFileName.lastIndexOf(".") + 1).toLowerCase();//ÉÏ´«µÄÎÄ¼þµÄºó×º  
+	      String fileExt = fileFileName.substring(fileFileName.lastIndexOf(".") + 1).toLowerCase();//ï¿½Ï´ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Äºï¿½×º  
 	      String fileName = UUID.randomUUID().toString();
-	      String newFileName = fileName+ "." + fileExt;//ÉÏ´«ºóµÄÎÄ¼þÃû×Ö  
+	      String newFileName = fileName+ "." + fileExt;//ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½  
 	      this.filename = newFileName;
-	      String uploadPathName = uploadPath +"/"+ newFileName;//»ñÈ¡µ½ÉÏ´«ºóµÄÎÄ¼þÂ·¾¶+ÎÄ¼þÃû  
-	      System.out.println("ÎÄ¼þµÄÂ·¾¶ÊÇ£º"+uploadPathName);
-	      System.out.println("ÎÄ¼þÃû³ÆÊÇ£º"+filename);
+	      String uploadPathName = uploadPath +"\\"+ newFileName;
+	      System.out.println("uploadpathname"+uploadPathName);
+	      System.out.println("filename"+filename);
 	      BASE64Decoder decoder = new BASE64Decoder();  
 	      imgBase64 = imgBase64.substring(30);    
 	      try {  
 	          imgBase64 = URLDecoder.decode(imgBase64,"UTF-8");  
-	          byte[] decodedBytes = decoder.decodeBuffer(imgBase64);// ½«×Ö·û´®¸ñÊ½µÄimagedata×ªÎª¶þ½øÖÆÁ÷£¨biye[])µÄdecodedBytes  
+	          byte[] decodedBytes = decoder.decodeBuffer(imgBase64);// ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½imagedata×ªÎªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½biye[])ï¿½ï¿½decodedBytes  
 	          for(int i=0;i<decodedBytes.length;++i){    
 	              if(decodedBytes[i]<0) {  
-	                  //µ÷ÕûÒì³£Êý¾Ý    
+	                  //ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½ï¿½    
 	                  decodedBytes[i]+=256;    
 	              }    
 	          }  	
 	           
 	         File fis = new File(uploadPathName);
+	         System.out.println(uploadPathName);
 	         FileOutputStream fos = null;
 	         fos = new FileOutputStream (fis);
 	         fos.write(decodedBytes); 
@@ -71,13 +72,12 @@ public class PhotoController {
 	         e.printStackTrace();
 	      }  
 	      
-	      //½«ÀÏÊ¦µÄÍ·ÏñÐ´Èëµ½Êý¾Ý¿âÖÐ
 	      String teacher_id = request.getParameter("teacher_id");
 	      int t_id = new Integer(teacher_id);
 	     if(photoService.addPhoto(t_id,filename)){
-	    	map.put("success","Í·ÏñÉèÖÃ³É¹¦£¡");
+	    	map.put("success","Í·ï¿½ï¿½ï¿½ï¿½ï¿½Ã³É¹ï¿½ï¿½ï¿½");
 	     }else{
-	    	 map.put("error","Í·ÏñÉèÖÃÊ§°Ü£¡");
+	    	 map.put("error","Í·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½");
 	     }
 	     ObjectMapper mapper = new ObjectMapper();  
 	      try {
