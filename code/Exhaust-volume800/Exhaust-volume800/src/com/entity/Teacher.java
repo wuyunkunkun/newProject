@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -80,7 +81,6 @@ public class Teacher implements Serializable{
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
 	
 	
 	public String getPassword() {

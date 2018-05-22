@@ -37,7 +37,9 @@
 				<a href="${ctx }/exam/newExam?course_id=${cs.id}"
 					style="background-image:url(${ctx }/upload/${cs.coursePic} )">
 					${cs.name} </a>
+					aaaaaaaa
 			</c:if>
+			
 			<c:if test="${cs.coursePic==null || cs.coursePic==''}">
 				<a href="${ctx }/exam/newExam?course_id=${cs.id}"
 					style="background-image: url(../images/pic3.png )"> ${cs.name}

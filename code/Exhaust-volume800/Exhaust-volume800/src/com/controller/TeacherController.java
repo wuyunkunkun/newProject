@@ -85,19 +85,19 @@ public class TeacherController {
 		//获得密码之后也进行Md5加密，判断是否和数据库中加密之后存储的相同，如果相同，密码正确，否则错误
 		MessageDigest md;
 		String Md5Password = null;
-//		try {
-//			md = MessageDigest.getInstance("MD5");
-//			// 计算md5函数
-//			md.update(password.getBytes());
-//			Md5Password = new BigInteger(1, md.digest()).toString(16);
-//			System.out.println("登录页面加密之后的密码是："+Md5Password);
-//			
-//			
-//			
-//		} catch (NoSuchAlgorithmException e1) {
-//			e1.printStackTrace();
-//		}
-		Md5Password = password;
+		try {
+			md = MessageDigest.getInstance("MD5");
+			// 计算md5函数
+			md.update(password.getBytes());
+			Md5Password = new BigInteger(1, md.digest()).toString(16);
+			System.out.println("登录页面加密之后的密码是："+Md5Password);
+			System.out.println("登录密码："+password);
+			System.out.println("登录id："+sid);
+			
+			
+		} catch (NoSuchAlgorithmException e1) {
+			e1.printStackTrace();
+		}
 		String choice=request.getParameter("choice");
 		String code=request.getParameter("code");
 		JSONArray jsons = new JSONArray();
@@ -154,8 +154,6 @@ public class TeacherController {
 				}
 			}
 		}
-		
-		
 		
 		
 		response.setCharacterEncoding("utf-8");
@@ -268,7 +266,7 @@ public class TeacherController {
 		response.getWriter().print(jsons.toString()) ;
 	}
 	
-	// 锟斤拷锟斤拷锟斤拷围锟斤拷锟斤拷锟斤拷锟斤拷色
+
 	private Color getRandColor(int fc, int bc) {
 		Random random = new Random();
 		if (fc > 255)
