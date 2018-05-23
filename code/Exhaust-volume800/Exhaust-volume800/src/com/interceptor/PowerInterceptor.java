@@ -1,4 +1,4 @@
-package com.interceptor;
+﻿package com.interceptor;
 
 import java.util.List;
 import java.util.Set;
@@ -62,7 +62,7 @@ public class PowerInterceptor implements HandlerInterceptor {
 			arg1.sendRedirect(arg0.getContextPath() + "/teacher/toLogin");
 	        return false;
 		}
-		if(choice.equals("��ʦ")){
+		if(choice.equals("教师")){
 			for (String url : jiaoshiUrls) {	
 				if (requestUri.contains(url)) {
 		            return true;

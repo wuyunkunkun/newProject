@@ -27,13 +27,9 @@ public class TeacherDao {
 		query.setInteger(0, id);
 		Teacher t=(Teacher)query.uniqueResult();
 		if(t==null){
-			System.out.println("tæ˜¯null");
 			return null;
 		}
-		System.out.println("æ•°æ®åº“ä¸­å¯†ç ï¼š"+t.getPassword());
 		if(!(t.getPassword().equals(password))){
-			System.out.println("passsword:"+password);
-			System.out.println("tæ˜¯nullå•Š");
 			return null;
 		}
 		return t;
@@ -56,7 +52,7 @@ public class TeacherDao {
 	}
 	
 	/**
-	 * ï¿½Ş¸ï¿½ï¿½ï¿½ï¿½ë£¨md5ï¿½ï¿½ï¿½ï¿½Ğ¼ï¿½ï¿½Ü£ï¿½
+	 * ĞŞ¸ÄÃÜÂë£¨md5Âë½øĞĞ¼ÓÃÜ£©
 	 * @param id
 	 * @param jiumima
 	 * @param querenxinmima
@@ -68,37 +64,37 @@ public class TeacherDao {
 		query.setInteger(0,id);
 		Teacher teacher = (Teacher) query.uniqueResult();
 		String password = teacher.getPassword();
-		//ï¿½ï¿½ï¿½ï¿½Ç°Ì¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Md5ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ¿ï¿½ï¿½ĞµÄ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¥ï¿½ä£¬ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		//½«´ÓÇ°Ì¨»ñµÃÃÜÂë½øĞĞMd5¼ÓÃÜ£¬ºÍÊı¾İ¿âÖĞµÄ¾ÉÃÜÂë½øĞĞÆ¥Åä£¬Èç¹ûÏàµÈ£¬ÕıÈ·£¬·ñÔò¾ÉÃÜÂë´íÎó
 		 MessageDigest oldMd;
 		 String Md5OldPassword = null;
 		 try {
 			oldMd = MessageDigest.getInstance("MD5");
-			 // ï¿½ï¿½ï¿½ï¿½md5ï¿½ï¿½ï¿½ï¿½
+			 // ¼ÆËãmd5º¯Êı
 			 oldMd.update(jiumima.getBytes());
 			 Md5OldPassword = new BigInteger(1, oldMd.digest()).toString(16);
-			 System.out.println("ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½"+Md5OldPassword);
+			 System.out.println("¼ÓÃÜÖ®ºóµÄ¾ÉÃÜÂëÊÇ£º"+Md5OldPassword);
 		} catch (NoSuchAlgorithmException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		if(!(password.equals(Md5OldPassword))){
-			return "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
+			return "¾ÉÃÜÂë´íÎó";
 		}else{
 			 MessageDigest md;
 			 String Md5Password = null;
 			try {
 				md = MessageDigest.getInstance("MD5");
-			    // ï¿½ï¿½ï¿½ï¿½md5ï¿½ï¿½ï¿½ï¿½
+			    // ¼ÆËãmd5º¯Êı
 			    md.update(querenxinmima.getBytes());
 			    Md5Password = new BigInteger(1, md.digest()).toString(16);
-			    System.out.println("ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½"+Md5Password);
+			    System.out.println("¼ÓÃÜÖ®ºóµÄÃÜÂëÊÇ£º"+Md5Password);
 			} catch (NoSuchAlgorithmException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} 
 			teacher.setPassword(Md5Password);
 			session.update(teacher);
-			return "ï¿½Ş¸ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½";
+			return "ĞŞ¸ÄÃÜÂë³É¹¦£¡";
 		}
 	}
 }

@@ -28,19 +28,13 @@
             <div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="5px" data-color="#333333"> <!-- nav -->
               <nav class="nav-primary hidden-xs">
                 <ul class="nav">
-                  <li class="active"> <a href="index.html" class="active"> <i class="fa fa-dashboard icon"> <b class="bg-danger"></b> </i> <span>工作台</span> </a> </li>
+                  <li class="active"> <a href="${ctx }/index.jsp" class="active"> <i class="fa fa-dashboard icon"> <b class="bg-danger"></b> </i> <span>工作台</span> </a> </li>
                  <c:forEach items="${courses }" var="course">
                   <li><a href="#layout"><i class="fa fa-columns icon"><b class="bg-warning"></b></i><span class="pull-right"><i class="fa fa-angle-down text"></i><i class="fa fa-angle-up text-active"></i></span> <span>${course.name }</span> </a>
                     <ul class="nav lt">
                     <c:forEach items="${chapters }" var="chapter">
                     	<c:if test="${chapter.course.id==course.id }">
-                      		<li > 
-	                      		<%-- <a href="${ctx }/question/findQuestionByChapter/${chapter.id }" >  --%>
-	                      		<a href="${ctx }/question/findQuestionByChapter?chapter_id=${chapter.id }" >
-	                      			<i class="fa fa-angle-right"></i> <span>${chapter.name }</span> 
-	                      			${chapter.id}
-	                      		</a> 
-                      		</li>
+                      		<li > <a href="${ctx }/question/findQuestionByChapter/${chapter.id }" > <i class="fa fa-angle-right"></i> <span>${chapter.name }</span> </a> </li>
                     	</c:if>
                     </c:forEach>
                     </ul>

@@ -29,7 +29,33 @@
                 </property>
             </bean>
         </mvc:interceptor>
-        
+        <mvc:interceptor>
+            <mvc:mapping path="/**" />
+            <bean class="com.interceptor.PowerInterceptor">
+                <property name="jiaoshiUrls">
+                    <list>
+                    	<value>/question</value>
+                    	<value>/exam</value>
+                    	<value>/teacher</value>
+                    	<value>/choose</value>
+                    	<value>/test</value>
+                    	<value>/message</value>
+                    	<value>/Teachermanage</value>
+                    </list>
+                </property>
+                <property name="jiaowuUrls">
+                	<list>
+                		<value>/course</value>
+                		<value>/chapter</value>
+                		<value>/teacher</value>
+                		<value>/recorder</value>
+                		<value>/Teachermanage</value>
+                		<value>/exam</value>
+                		<value>/message</value>
+                	</list>
+                </property>
+            </bean>
+        </mvc:interceptor>
     
     
         

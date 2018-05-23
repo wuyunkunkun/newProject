@@ -286,13 +286,9 @@ public class QuestionController {
 		return "question/find";
 	}
 
-	@RequestMapping("findQuestionByChapter")
+	@RequestMapping("findQuestionByChapter/{chapter_id}")
 	public String findQuestionByChapter(@RequestParam(name = "pageNo", defaultValue = "1") int pageNo,
-			HttpServletResponse response,HttpServletRequest request,RedirectAttributes attr) {
-		
-		System.out.println("è¿›å…¥ questioncontrollerä¸­ ");
-		System.out.println(request.getParameter("chapter_id"));
-		int chapter_id =Integer.parseInt(request.getParameter("chapter_id"));
+			HttpServletResponse response,HttpServletRequest request, @PathVariable Integer chapter_id,RedirectAttributes attr) {
 		if(request.getAttribute("msg")!=null){
 			Integer s=(Integer) request.getAttribute("msg");
 			response.setCharacterEncoding("UTF-8");
@@ -301,7 +297,6 @@ public class QuestionController {
 			}
 		}
 		Integer ch_id = new Integer(chapter_id);
-		System.out.println("å‡†å¤‡è¿›å…¥serviceä¸­");
 		Page page = questionService.findQuestionByChapter(ch_id, pageNo - 1, pageSize);
 		if((String)attr.getFlashAttributes().get("prompt")=="false"){
 			request.setAttribute("prompt", "false");
@@ -349,7 +344,7 @@ public class QuestionController {
 
 	@RequestMapping("delete")
 	public String deleteQuestion(@RequestParam("id") String id, HttpServletRequest request) {
-		// É¾ï¿½ï¿½_ï¿½ï¿½Â¼
+		// É¾³ý_¼ÇÂ¼
 		String t_description = "";
 		String description = request.getParameter("description");
 		if (description != null && description != "") {
@@ -374,7 +369,7 @@ public class QuestionController {
 		boolean b = questionService.deleteQuestion(new Integer(id), t_description, t_id, o_id, o_time);
 		if (b == false) {
 			request.setAttribute("prompt", "false");
-			System.out.println("ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¾ï¿½ï¿½ï¿½ï¿½Ð¼ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½Ô¾ï¿½");
+			System.out.println("µ±Ç°ÊÔÌâÔÚÊÔ¾íµ±ÖÐÓÐ¼ÇÂ¼£¬ÇëÏÈÉ¾³ýÊÔ¾í£¡");
 		}
 
 		request.getSession().setAttribute("content", content);
@@ -418,7 +413,7 @@ public class QuestionController {
 			answer=answer.replace("&nbsp;", "");
 		}
 		
-		// ï¿½Þ¸ï¿½_ï¿½ï¿½Â¼
+		// ÐÞ¸Ä_¼ÇÂ¼
 		String t_description = "";
 		String description = request.getParameter("description");
 		if (description != null && description != "") {
@@ -482,7 +477,7 @@ public class QuestionController {
 			D=D.replace("&nbsp;","");
 		}
 		
-		// ï¿½Þ¸ï¿½_ï¿½ï¿½Â¼
+		// ÐÞ¸Ä_¼ÇÂ¼
 		String t_description = "";
 		String description = request.getParameter("description");
 		if (description != null && description != "") {
@@ -496,7 +491,7 @@ public class QuestionController {
 		}
 
 		String st_id = request.getParameter("teacher_id");
-		System.out.println("haha ï¿½ï¿½Ê¦ï¿½ï¿½idï¿½Ç£ï¿½" + st_id);
+		System.out.println("haha ÀÏÊ¦µÄidÊÇ£º" + st_id);
 		Integer t_id = new Integer(st_id);
 		Integer o_id = new Integer(2);
 		long l = System.currentTimeMillis();
