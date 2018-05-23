@@ -28,5 +28,4 @@ public class TeacherService {
 		String tishi = teacherDao.rePassword(tid,jiumima,querenxinmima);
 		return tishi;
 	}
-	
 }

@@ -16,7 +16,7 @@ window.choice="";
 window.checkOn=0;
 </script>
 
-<link rel="stylesheet" href="css/haha.css" media="screen" type="text/css" />
+<link rel="stylesheet" href="${ctx }/css/haha.css" media="screen" type="text/css" />
 
 </head>
 

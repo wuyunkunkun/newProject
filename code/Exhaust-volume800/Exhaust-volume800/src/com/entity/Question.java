@@ -19,10 +19,6 @@ import javax.persistence.Table;
 
 
 
-
-
-
-
 @Entity
 @Table(name="question")
 public class Question implements Serializable{

@@ -298,28 +298,33 @@ table
                        " type="text"  id="sum10"/><br/></td>
                      </tr>
                      </table>
+                     
                      <table class="insert-tab" width="100%">
+                     
                      <tr>
                      <td>
                       <div class="m-b-md">
-     						<h4 class="m-b-none">章节</h3>      
+     						<h4 class="m-b-none">章节</h4>      
  					  </div> 
  					  </td>
  					  </tr>
+ 					  
  					  <tr>
  					  	<td><input type="hidden" id="chapters" name="chapters" value=""/></td>
  					  </tr>
  					 
- 					  	<c:set var="i" value="${0 }"/>
+ 					  	
+ 					  <c:set var="i" value="${0 }"/>
  					  	<c:forEach items="${chapterList }" var="chapter">
- 					  		<c:if test="${i==0 }">
- 					  			<tr>
- 					  		</c:if>
- 					  		<c:set var="i" value="${i+1 }"/>
- 					  	<td class="fonts">
+ 					  		 <c:if test="${i==0 }">
+ 					  			 <tr>
+ 					  		 </c:if>
+ 					  		 <c:set var="i" value="${i+1 }"/>
  					  		
- 					  			${chapter.name }:
+ 					  	<td class="fonts">
+ 					  	${chapter.name }:
  					  	</td>
+ 					  	
  					  	<td class="fonts"><input type="text" name="chapter" value=""/>分
  					  	</td>
  					  		<c:if test="${i==3 }">
@@ -327,6 +332,8 @@ table
  					  			<c:set var="i" value="${0 }"/>
  					  		</c:if>
  					    </c:forEach>
+                     
+ 					  	
                      
                     </table>
                     <div  id="ch_sub" align="center"><input id="ch_put" type="submit" value="生成试卷" name="submit" />
