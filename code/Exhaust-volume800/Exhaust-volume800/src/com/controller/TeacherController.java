@@ -91,13 +91,12 @@ public class TeacherController {
 			md.update(password.getBytes());
 			Md5Password = new BigInteger(1, md.digest()).toString(16);
 			System.out.println("登录页面加密之后的密码是："+Md5Password);
-			
-			
+			System.out.println("id:"+sid);
+			System.out.println("输入密码："+password);
 			
 		} catch (NoSuchAlgorithmException e1) {
 			e1.printStackTrace();
 		}
-		Md5Password = password;
 		String choice=request.getParameter("choice");
 		String code=request.getParameter("code");
 		JSONArray jsons = new JSONArray();

@@ -62,7 +62,7 @@ public class PowerInterceptor implements HandlerInterceptor {
 			arg1.sendRedirect(arg0.getContextPath() + "/teacher/toLogin");
 	        return false;
 		}
-		if(choice.equals("½ÌÊ¦")){
+		if(choice.equals("ï¿½ï¿½Ê¦")){
 			for (String url : jiaoshiUrls) {	
 				if (requestUri.contains(url)) {
 		            return true;
