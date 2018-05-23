@@ -34,7 +34,13 @@
                     <ul class="nav lt">
                     <c:forEach items="${chapters }" var="chapter">
                     	<c:if test="${chapter.course.id==course.id }">
-                      		<li > <a href="${ctx }/question/findQuestionByChapter/${chapter.id }" > <i class="fa fa-angle-right"></i> <span>${chapter.name }</span> </a> </li>
+                      		<li > 
+	                      		<%-- <a href="${ctx }/question/findQuestionByChapter/${chapter.id }" >  --%>
+	                      		<a href="${ctx }/question/findQuestionByChapter?chapter_id=${chapter.id }" >
+	                      			<i class="fa fa-angle-right"></i> <span>${chapter.name }</span> 
+	                      			${chapter.id}
+	                      		</a> 
+                      		</li>
                     	</c:if>
                     </c:forEach>
                     </ul>

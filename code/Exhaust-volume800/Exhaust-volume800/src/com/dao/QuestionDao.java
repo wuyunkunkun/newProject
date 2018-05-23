@@ -72,7 +72,7 @@ public class QuestionDao {
 		
 		Page page = new Page();
         
-        //·ÖÒ³²éÑ¯½á¹û¼¯
+        //ï¿½ï¿½Ò³ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½
         List<Question> list = query.list(); 
 
         page.setPageNo(currentPage+1);
@@ -85,9 +85,10 @@ public class QuestionDao {
 	}
 	
 	/*
-	 * Í¨¹ıÕÂ½Ú²éÕÒËùÓĞÊÔÌâ
+	 * Í¨ï¿½ï¿½ï¿½Â½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * */
 	public Page findAllQuestionByChapter(int chapter_id,int currentPage, int pageSize){
+		System.out.println("è¿›å…¥question daoä¸­");
 		Session session =sessionFactory.getCurrentSession();
 		Query query=session.createQuery("from Question where chapter_id=?");
 		query.setInteger(0,chapter_id);
@@ -96,16 +97,16 @@ public class QuestionDao {
 		
 		
 		Page page = new Page();
-        //×Ü¼ÇÂ¼Êı
+		
         int allRow = this.getQuestionNumByChapter(chapter_id);
-        //·ÖÒ³²éÑ¯½á¹û¼¯
+        //
         List<Question> list = query.list(); 
 
         page.setPageNo(currentPage+1);
         page.setPageSize(pageSize);
         page.setTotalRecords(allRow);
         page.setList(list);
-        
+        System.out.println("è¿›å…¥questiondaoä¸­ å¹¶ä¸”å·²ç»æ’æ›²chapterid çš„é—®é¢˜ è¿”å›page");
         return page;
 	}
 	
@@ -117,7 +118,7 @@ public class QuestionDao {
 		return query.list().size();
 	}
 
-	//·ÖÒ³ÊµÏÖ¶ÔquestionµÄ²éÑ¯
+	//ï¿½ï¿½Ò³Êµï¿½Ö¶ï¿½questionï¿½Ä²ï¿½Ñ¯
 	public List<Question> findAllQuestion(int pageNum){
 		Session session=sessionFactory.getCurrentSession();
 		Query query=session.createQuery("from Question");
@@ -132,14 +133,14 @@ public class QuestionDao {
 		List<QuestionLevel> list=query.list();
 		return list;
 	}
-	//Ôö¼ÓÃ»ÓĞÑ¡ÏîµÄÌâ
+	//ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½
 		public int addQuestion(String content,int chapter,int type,int level,String answer,
 				String description,int t_id,int o_id,String o_time){
 			int repect=0;
 			 Session session=sessionFactory.getCurrentSession();
 			
-			 Teacher teacher = session.get(Teacher.class,t_id);     //ÀÏÊ¦
-			 Operation operation = session.get(Operation.class,o_id);    //²Ù×İ
+			 Teacher teacher = session.get(Teacher.class,t_id);     //ï¿½ï¿½Ê¦
+			 Operation operation = session.get(Operation.class,o_id);    //ï¿½ï¿½ï¿½ï¿½
 			
 			 Chapter ch=session.get(Chapter.class, chapter);
 			 QuestionType ty=session.get(QuestionType.class, type);
@@ -163,7 +164,7 @@ public class QuestionDao {
 			 question.setAnswer(ans);
 			 session.save(question);
 			 
-			//¼ÇÂ¼
+			//ï¿½ï¿½Â¼
 			 recorder.setDescription(description);
 			 recorder.setOperation(operation);
 			 recorder.setQuestion_id(question.getId());
@@ -177,9 +178,9 @@ public class QuestionDao {
 			 
 			 
 		}
-		//²éÖØ²»ÊÇÑ¡ÔñÌâµÄ
+		//ï¿½ï¿½ï¿½Ø²ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½
 		public float searchRepeat(String content,int chapter){
-			//Ìí¼ÓµÄÊÔÌâµÄÄÚÈİ
+			//ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			while(content.contains("<")){
 				String sub=content.substring(content.indexOf("<"), content.indexOf(">")+1);
 				content=content.replace(sub,"");
@@ -210,12 +211,12 @@ public class QuestionDao {
 				if(rate>=0.8){
 					return rate;
 				}
-			}//µÚÒ»¸öfor
-			System.out.println("±ÈÀı"+rate);
+			}//ï¿½ï¿½Ò»ï¿½ï¿½for
+			System.out.println("ï¿½ï¿½ï¿½ï¿½"+rate);
 			return rate;
 		}
 		/*
-		 * ²éÖØÊÇÑ¡ÔñÌâ
+		 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½
 		 */
 		
 		public float searchRepeat(String content,String A,String B,String C,String D,int chapter){
@@ -272,7 +273,7 @@ public class QuestionDao {
 				char[] quesc=quesC.toCharArray();
 				char[] quesd=quesD.toCharArray();
 				char[] ques=quescontent.toCharArray();
-				//content½üËÆ±È½Ï
+				//contentï¿½ï¿½ï¿½Æ±È½ï¿½
 				int l[][]=new int[ques.length+1][con.length+1];
 				for(int i=1;i<l.length;i++){
 					for(int j=1;j<l[i].length;j++){
@@ -287,7 +288,7 @@ public class QuestionDao {
 				ratecontent=(float)l[ques.length][con.length]/queslength;
 				System.out.println("ratecontent"+ratecontent);
 				
-				//Ñ¡ÏîA½øĞĞ±È½Ï
+				//Ñ¡ï¿½ï¿½Aï¿½ï¿½ï¿½Ğ±È½ï¿½
 				int lA[][]=new int[quesa.length+1][a.length+1];
 				for(int i=1;i<lA.length;i++){
 					for(int j=1;j<lA[i].length;j++){
@@ -302,7 +303,7 @@ public class QuestionDao {
 				rateA=(float)lA[quesa.length][a.length]/quesalength;
 				System.out.println("rateA"+rateA);
 				
-				//Ñ¡ÏîB½øĞĞ±È½Ï
+				//Ñ¡ï¿½ï¿½Bï¿½ï¿½ï¿½Ğ±È½ï¿½
 				int lB[][]=new int[quesb.length+1][b.length+1];
 				for(int i=1;i<lB.length;i++){
 					for(int j=1;j<lB[i].length;j++){
@@ -317,7 +318,7 @@ public class QuestionDao {
 				rateB=(float)lB[quesb.length][b.length]/quesblength;
 				System.out.println("rateB"+rateB);
 				
-				//Ñ¡ÏîC½øĞĞ±È½Ï
+				//Ñ¡ï¿½ï¿½Cï¿½ï¿½ï¿½Ğ±È½ï¿½
 				int lC[][]=new int[quesc.length+1][c.length+1];
 				for(int i=1;i<lC.length;i++){
 					for(int j=1;j<lC[i].length;j++){
@@ -332,7 +333,7 @@ public class QuestionDao {
 				rateC=(float)lC[quesc.length][c.length]/quesclength;
 				System.out.println("rateC"+rateC);
 				
-				//Ñ¡ÏîD½üËÆ²éÕÒ
+				//Ñ¡ï¿½ï¿½Dï¿½ï¿½ï¿½Æ²ï¿½ï¿½ï¿½
 				int lD[][]=new int[quesd.length+1][d.length+1];
 				for(int i=1;i<lD.length;i++){
 					for(int j=1;j<lD[i].length;j++){
@@ -350,12 +351,12 @@ public class QuestionDao {
 				if((ratecontent>=0.8)&&(rateA>=0.8)&&(rateB>=0.8)&&(rateC>=0.8)&&(rateD>=0.8)){
 					return ratecontent;
 				}
-			}//µÚÒ»¸öfor
+			}//ï¿½ï¿½Ò»ï¿½ï¿½for
 			return 0;
 		}
 			
 		/*
-		 * ÖØÔØaddQuestion·½·¨Ìí¼ÓÊÔÌâ
+		 * ï¿½ï¿½ï¿½ï¿½addQuestionï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		 * 
 		 * */
 		public int addQuestion(String content,int chapter,int type,int level,String answer,String a,String b,String c,String d,
@@ -404,7 +405,7 @@ public class QuestionDao {
 			 }
 		}
 	/*
-	 * Í¨¹ıÎÊÌâµÄidÉ¾³ıÊÔÌâ
+	 * Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½idÉ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * */
 	
 	public boolean ifQuestionContainsSort(int id){
@@ -419,8 +420,8 @@ public class QuestionDao {
 	
 	public boolean deleteQuestion(int id,String description,int t_id,int o_id,String o_time) {
 		Session session=sessionFactory.getCurrentSession();  
-		Teacher teacher = session.get(Teacher.class,t_id);      //ÀÏÊ¦
-		Operation operation = session.get(Operation.class,o_id);   //²Ù×÷
+		Teacher teacher = session.get(Teacher.class,t_id);      //ï¿½ï¿½Ê¦
+		Operation operation = session.get(Operation.class,o_id);   //ï¿½ï¿½ï¿½ï¿½
 		Question q=session.get(Question.class, id);    
 			
 		DeleteQuestion dq = new DeleteQuestion();
@@ -465,7 +466,7 @@ public class QuestionDao {
 		}
 	}
 	/*
-	 * Í¨¹ıÎÊÌâµÄid²éÕÒÎÊÌâ
+	 * Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½idï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * */
 	public Question findQuestionById(int id){
 		Session session =sessionFactory.getCurrentSession();
@@ -486,7 +487,7 @@ public class QuestionDao {
 		return list;
 	}
 	/**
-	 * Í¨¹ı²»ÍêÈ«²éÕÒÌâ¸É²éÑ¯ÊÔÌâ
+	 * Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É²ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
 	 * @param content
 	 * @return
 	 */
@@ -501,7 +502,7 @@ public class QuestionDao {
 		
 		
 		Page page = new Page();
-        //·ÖÒ³²éÑ¯½á¹û¼¯
+        //ï¿½ï¿½Ò³ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½
         List<Question> list = query.list(); 
         int allRow = questionNumByContent(content);
         page.setPageNo(currentPage+1);
@@ -519,7 +520,7 @@ public class QuestionDao {
 		return query.list().size();
 	}
 	/*
-	 * ¸üĞÂĞŞ¸ÄÎÊÌâ
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ş¸ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * */
 	
@@ -561,14 +562,14 @@ public class QuestionDao {
 		}
 	}
 	/*
-	 * ÖØÔØupdateQuestion·½·¨ÊµÏÖ¶ÔÑ¡ÔñÌâµÄĞŞ¸Ä
+	 * ï¿½ï¿½ï¿½ï¿½updateQuestionï¿½ï¿½ï¿½ï¿½Êµï¿½Ö¶ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ş¸ï¿½
 	 * */
 	public int updateQuestion(int id,String content,int chapter,int type,int level,String answer,String a,String b,String c,String d,
 			String t_description,int t_id,int o_id,String o_time){
 		Session session=sessionFactory.getCurrentSession();
 		Question question=session.get(Question.class, id);
 		
-		//ĞŞ¸ÄÊÔÌâ
+		//ï¿½Ş¸ï¿½ï¿½ï¿½ï¿½ï¿½
 	    if(searchRepeat(content,a,b,c,d,chapter)<0.8){
 		question.setContent(content);
 		QuestionType ty=session.get(QuestionType.class, type);
