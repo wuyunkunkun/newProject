@@ -90,15 +90,8 @@ public class TeacherController {
 			// 计算md5函数
 			md.update(password.getBytes());
 			Md5Password = new BigInteger(1, md.digest()).toString(16);
-<<<<<<< HEAD
-			System.out.println("登录页面加密之后的密码是："+Md5Password);
-			System.out.println("登录密码："+password);
-			System.out.println("登录id："+sid);
-			
-			
-=======
 			//System.out.println("登录页面加密之后的密码是："+Md5Password);
->>>>>>> fa49652ee3b4147765c38cd71c1b0a19050ba465
+
 		} catch (NoSuchAlgorithmException e1) {
 			e1.printStackTrace();
 		}
