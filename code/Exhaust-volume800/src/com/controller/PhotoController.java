@@ -33,10 +33,10 @@ public class PhotoController {
 	 private PhotoService photoService;
 	 private String filename = "";
 	 
-	//�ϴ�ͼƬ��������
 	  @ResponseBody
 	  @RequestMapping(value="addPhoto", method=RequestMethod.POST,produces="application/json;charset=UTF-8")
 	  public String addPhoto(HttpServletResponse response,HttpServletRequest request){
+		  System.out.println("enter the PhotoController's addPhoto");
 		  System.out.println("进入addphoto");
 		  Map map = new HashMap();
 		  String content = null; 
@@ -46,7 +46,7 @@ public class PhotoController {
 	              .getRealPath("/upload");
 	      String fileExt = fileFileName.substring(fileFileName.lastIndexOf(".") + 1).toLowerCase();//�ϴ����ļ��ĺ�׺  
 	      String fileName = UUID.randomUUID().toString();
-	      String newFileName = fileName+ "." + fileExt;//�ϴ�����ļ�����  
+	      String newFileName = fileName+ "." + fileExt;
 	      this.filename = newFileName;
 	      String uploadPathName = uploadPath +"\\"+ newFileName;
 	      System.out.println("uploadpathname"+uploadPathName);
@@ -55,10 +55,10 @@ public class PhotoController {
 	      imgBase64 = imgBase64.substring(30);    
 	      try {  
 	          imgBase64 = URLDecoder.decode(imgBase64,"UTF-8");  
-	          byte[] decodedBytes = decoder.decodeBuffer(imgBase64);// ���ַ�����ʽ��imagedataתΪ����������biye[])��decodedBytes  
+	          byte[] decodedBytes = decoder.decodeBuffer(imgBase64);
 	          for(int i=0;i<decodedBytes.length;++i){    
 	              if(decodedBytes[i]<0) {  
-	                  //�����쳣����    
+	                  
 	                  decodedBytes[i]+=256;    
 	              }    
 	          }  	

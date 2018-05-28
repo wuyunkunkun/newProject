@@ -21,13 +21,14 @@ public class OperationRecorderController {
 	private OperationRecorderService operationRecorderService;
 	
 	/**
-	 * ²éÕÒËùÓÐµÄ¼ÇÂ¼
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ¼ï¿½Â¼
 	 * @param reqeust
 	 * @param pageNum
 	 * @return
 	 */
 	@RequestMapping("findAllRecorder")
 	public String findAllRecorder(HttpServletRequest request,@RequestParam(name="pageNum", defaultValue="1") int pageNum){
+		System.out.println("enter the operationRecorderContorller's findAllRdcorder");
 		Page page = operationRecorderService.FindRecorderAllList(pageNum,5);
 		request.setAttribute("skipNum", pageNum);
 		request.setAttribute("page",page);
@@ -35,7 +36,7 @@ public class OperationRecorderController {
 		return "record/OperationRecorder";
 	}
 	/**
-	 * °´ÕÕÀÏÊ¦µÄid²éÕÒ 
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¦ï¿½ï¿½idï¿½ï¿½ï¿½ï¿½ 
 	 * @param request
 	 * @param pageNum
 	 * @param t_id
@@ -45,6 +46,7 @@ public class OperationRecorderController {
 	public String findRecorderByTeahcer(HttpServletRequest request,
 			@RequestParam(name="pageNum",defaultValue="1") int pageNum,
 			@RequestParam(name="t_id") String teacher_id){
+		System.out.println("enter the operationRecorderContorller's findRdcorderByTeacher");
 		Integer t_id = null;
 		try{
 			t_id = new Integer(teacher_id);
@@ -65,7 +67,7 @@ public class OperationRecorderController {
 	}
 	
 	/**
-	 * °´ÕÕ²Ù×÷µÄÀàÐÍ½øÐÐ²éÑ¯
+	 * ï¿½ï¿½ï¿½Õ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í½ï¿½ï¿½Ð²ï¿½Ñ¯
 	 * @param request
 	 * @param pageNum
 	 * @param operationName
@@ -76,12 +78,13 @@ public class OperationRecorderController {
 			@RequestParam(name="pageNum",defaultValue="1") int pageNum,
 			@RequestParam(name="operationName") String operationName){
 		try {
+			System.out.println("enter the operationRecorderContorller's findRecorderByoperationType");
 			operationName = new String(operationName.getBytes("iso-8859-1"), "utf-8");
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("²Ù×÷µÄÀàÐÍÊÇ£º"+operationName);
+		System.out.println("operationName"+operationName);
 		Page page = operationRecorderService.findRecorderByOperationType(pageNum,5,operationName);
 		request.setAttribute("choose","operationType");
 		request.setAttribute("operationName",operationName);
@@ -91,7 +94,7 @@ public class OperationRecorderController {
 	}
 
 	/**
-	 * °´ÕÕÀÏÊ¦µÄÐÕÃû½øÐÐ
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param request
 	 * @param pageNum
 	 * @param TeacherName
@@ -101,6 +104,7 @@ public class OperationRecorderController {
 	public String findRecorderByTeacherName(HttpServletRequest request,
 			@RequestParam(name="pageNum",defaultValue="1") int pageNum,
 			@RequestParam(name="TeacherName") String TeacherName){
+		System.out.println("enter the operationRecorderContorller's findRecorderByTeacherName");
 		System.out.println("zhixing lelelel");
 		Page page = operationRecorderService.findRecorderByTeacherName(pageNum,5,TeacherName);
 		request.setAttribute("choose","TeacherName");

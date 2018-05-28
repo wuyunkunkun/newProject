@@ -36,6 +36,7 @@ public class TeachermanageController {
   
   @RequestMapping("toAdd")
 	public String toAdd( Teacher c,HttpServletRequest request){
+	  System.out.println("enter the TeacherManageController's toAdd");
 	    List<Course> courses=new ArrayList<>();
 	    courses=teachermanageService.findCourse();
 		request.setAttribute("teac", c);
@@ -47,16 +48,17 @@ public class TeachermanageController {
   @RequestMapping(value="add", method=RequestMethod.POST)
   public String addTeacher(HttpServletRequest request, HttpServletResponse response,
           HttpSession httpSession) {
-	  
-    //将老师的信息保存到数据库中
-	System.out.println("add");
-    String photpname = filename; 
-    Teacher teacher = new Teacher();
-    String id = request.getParameter("id");
-    Integer t_id = new Integer(id);
-    String name = request.getParameter("name");
-    String password = request.getParameter("password");
-  //获得密码之后也进行Md5加密，判断是否和数据库中加密之后存储的相同，如果相同，密码正确，否则错误
+	  System.out.println("enter the TeacherManageController's addTeacher");
+
+	    //将老师的信息保存到数据库中
+		System.out.println("add");
+	    String photpname = filename; 
+	    Teacher teacher = new Teacher();
+	    String id = request.getParameter("id");
+	    Integer t_id = new Integer(id);
+	    String name = request.getParameter("name");
+	    String password = request.getParameter("password");
+	  //获得密码之后也进行Md5加密，判断是否和数据库中加密之后存储的相同，如果相同，密码正确，否则错误
   		MessageDigest md;
   		String Md5Password = null;
   		try {
@@ -121,6 +123,8 @@ public class TeachermanageController {
   @RequestMapping(value="edit",method=RequestMethod.GET)
 	public String toEdit(@RequestParam("id") int teacherId,
 			HttpServletRequest request){
+	  System.out.println("enter the TeacherManageController's toEdit");
+
 	    System.out.println("edit get"+teacherId);
 	    List<Course> courses=new ArrayList<>();
 	    courses=teachermanageService.findCourse();
@@ -139,6 +143,8 @@ public class TeachermanageController {
    */
   @RequestMapping(value="edit",method=RequestMethod.POST)
 	public String edit(Teacher t,HttpServletRequest request){
+	  System.out.println("enter the TeacherManageController's edit");
+
 	  System.out.println("edit post");
 	  if(t.getName()==null){
 	    	return "redirect:list";
@@ -178,7 +184,8 @@ public class TeachermanageController {
   @RequestMapping(value="del",method=RequestMethod.GET)
 	public String toDelete(@RequestParam("id") int teacherId,
 			HttpServletRequest request){
-	  
+	  System.out.println("enter the TeacherManageController's toDelete");
+
 		Teacher t=this.teachermanageService.getTeacher(teacherId);
 		this.teachermanageService.deleteTeacher(t);
 		return "redirect:list";
@@ -189,7 +196,8 @@ public class TeachermanageController {
   public String toDelete2(@RequestParam(name="pageNum", defaultValue="1") int pageNum,
 			@RequestParam(name="searchParam",defaultValue="") String searchParam,HttpServletRequest request,HttpSession session,
 			Model model){
-	 
+	  System.out.println("enter the TeacherManageController's toDelete2");
+
 		Page<Teacher> page;
 		if(searchParam==null || "".equals(searchParam)){
 			page=this.teachermanageService.listTeacher(pageNum,5,null);
@@ -206,7 +214,8 @@ public class TeachermanageController {
   public String edit2(@RequestParam(name="pageNum", defaultValue="1") int pageNum,
 			@RequestParam(name="searchParam",defaultValue="") String searchParam,HttpServletRequest request,HttpSession session,
 			Model model){
-	    System.out.println("edit2");
+	  System.out.println("enter the TeacherManageController's edit2");
+
 		Page<Teacher> page;
 		if(searchParam==null || "".equals(searchParam)){
 			page=this.teachermanageService.listTeacher(pageNum,5,null);
@@ -225,7 +234,7 @@ public class TeachermanageController {
 			@RequestParam(name="searchParam",defaultValue="") String searchParam,
 			HttpServletRequest request,HttpSession session,
 			Model model){
-		System.out.println("list");
+		System.out.println("enter the TeachermanageController's list");
 		Page<Teacher> page;
 		try {
 			searchParam = new String(searchParam.getBytes("iso-8859-1"), "utf-8");

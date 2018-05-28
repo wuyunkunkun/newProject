@@ -52,7 +52,7 @@ public class CourseController {
 	
 	@RequestMapping("toAdd")
 	public String toAdd( Course c,HttpServletRequest request){
-		//²éÑ¯³öËùÓĞµÄÀÏÊ¦
+		System.out.println("enter the CourController's toAdd");
 		List teacherList = new ArrayList();
 		teacherList = courseService.findAllTeacher();
 		request.setAttribute("teacherList",teacherList);
@@ -67,23 +67,23 @@ public class CourseController {
 			@RequestParam(value="file", required=false) MultipartFile file,
 			@RequestParam(name="checkboxnames") String []checkboxnames,
 			ModelMap model){
-		System.out.println("ÀîÓ±ÀîÓ±");
+		System.out.println("enter the CourController's add");
 		String content = null;
 		Map map = new HashMap();
-		//Ô­À´ÎÄ¼şµÄÃû³Æ
+
 		 String befileName = file.getOriginalFilename();  
-		 System.out.println("Ô­À´ÎÄ¼şµÄÃû³ÆÊÇ"+befileName);
-	    // »ñÈ¡ÉÏ´«ÎÄ¼şÀ©Õ¹Ãû  
+		 System.out.println("Ô­ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"+befileName);
+
 	     String fileExt = befileName.substring(befileName.lastIndexOf(".") + 1, befileName.length());  
-	    // ¶ÔÀ©Õ¹Ãû½øĞĞĞ¡Ğ´×ª»»  
+
 	     fileExt = fileExt.toLowerCase();
-	     long fileSize = file.getSize();   //ÎÄ¼şµÄ´óĞ¡
+	     long fileSize = file.getSize();   
 	     String uploadPath= request.getSession().getServletContext()
 	              .getRealPath("/upload");
 	     String fileName = UUID.randomUUID().toString();
-	     String newFileName = fileName+ "." + fileExt;//ÉÏ´«ºóµÄÎÄ¼şÃû×Ö 
-	     String uploadPathName = uploadPath +"/"+ newFileName;//»ñÈ¡µ½ÉÏ´«ºóµÄÎÄ¼şÂ·¾¶+ÎÄ¼şÃû  
-	     System.out.println("ÎÄ¼şµÄÂ·¾¶ÊÇ£º"+uploadPathName);
+	     String newFileName = fileName+ "." + fileExt;
+	     String uploadPathName = uploadPath +"/"+ newFileName;
+	     System.out.println("uploadPathName:"+uploadPathName);
 	     File tmpFile = null;
 	     tmpFile = new File(uploadPathName); 
 	     try {
@@ -115,28 +115,28 @@ public class CourseController {
          int imgWidth = sourceImg.getWidth();  
          int imgHeight = sourceImg.getHeight();  
          if(imgWidth < 250 && imgHeight<170){
-        	//½«¿Î³Ì·ÖÅä¸øÀÏÊ¦
+        	
 				Course c = new Course();
 				String cname = request.getParameter("name");
 				String courseTime = request.getParameter("courseTime");
 				int time = new Integer(courseTime);
 				String jieshao = request.getParameter("jieshao");
 				this.courseService.addCourse(cname,time,newFileName,jieshao,checkboxnames);
-				map.put("success","Ìí¼Ó¿Î³Ì³É¹¦£¡");
+				map.put("success","ï¿½ï¿½Ó¿Î³Ì³É¹ï¿½ï¿½ï¿½");
          }else{
         	 try {
-				fis.close();    //¹Ø±ÕÁ÷
+				fis.close();    
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-        	System.out.println("ÎÄ¼şÌ«´ó");
+        	System.out.println("ï¿½Ä¼ï¿½Ì«ï¿½ï¿½");
         	File deleteFile = new File(uploadPathName);
         	if(deleteFile.exists()){
         		deleteFile.delete();
-        		System.out.println("É¾³ıÎÄ¼ş³É¹¦£¡");
+        		System.out.println("É¾ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
         	}
-        	map.put("error","ÎÄ¼ş´óĞ¡²»ÄÜ³¬¹ı250*170£¡");
+        	map.put("error","ï¿½Ä¼ï¿½ï¿½ï¿½Ğ¡ï¿½ï¿½ï¿½Ü³ï¿½ï¿½ï¿½250*170ï¿½ï¿½");
         	 ObjectMapper mapper = new ObjectMapper();  
    	      try {
    			content = mapper.writeValueAsString(map);
@@ -151,6 +151,7 @@ public class CourseController {
 	@RequestMapping(value="edit",method=RequestMethod.GET)
 	public String toEdit(@RequestParam("id") int courseId,
 			HttpServletRequest request){
+		System.out.println("enter the CourController's toEdit");
 		List teacherList = new ArrayList();
 		teacherList = courseService.findAllTeacher();
 		request.setAttribute("teacherList",teacherList);
@@ -163,6 +164,7 @@ public class CourseController {
 	
 	@RequestMapping(value="toEdit")
 	public String toEditList(@RequestParam(name="pageNo",defaultValue="1") int pageNo,@RequestParam(name="searchparam",defaultValue="") String searchparam,HttpServletRequest request){
+		System.out.println("enter the CourController's toEdit");
 		request.setAttribute("action", "edit");
 		request.setAttribute("searchparam", searchparam);
 		System.out.println("toedit");
@@ -171,22 +173,22 @@ public class CourseController {
 	
 	@RequestMapping(value="edit",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
 	public String edit(Course c,HttpServletRequest request,@RequestParam(name="checkboxnames") String []checkboxnames,@RequestParam(value="file", required=false) MultipartFile file){
-		//System.out.println("checkboxnames:"+checkboxnames);
+		System.out.println("enter the CourController's edit");
 		Map map = new HashMap();
-		//Ô­À´ÎÄ¼şµÄÃû³Æ
+
 		 String befileName = file.getOriginalFilename();  
-		 System.out.println("Ô­À´ÎÄ¼şµÄÃû³ÆÊÇ"+befileName);
-	    // »ñÈ¡ÉÏ´«ÎÄ¼şÀ©Õ¹Ãû  
+		 System.out.println("Ô­ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"+befileName);
+
 	     String fileExt = befileName.substring(befileName.lastIndexOf(".") + 1, befileName.length());  
-	    // ¶ÔÀ©Õ¹Ãû½øĞĞĞ¡Ğ´×ª»»  
+ 
 	     fileExt = fileExt.toLowerCase();
-	     long fileSize = file.getSize();   //ÎÄ¼şµÄ´óĞ¡
+	     long fileSize = file.getSize();   
 	     String uploadPath= request.getSession().getServletContext()
 	              .getRealPath("/upload");
 	     String fileName = UUID.randomUUID().toString();
-	     String newFileName = fileName+ "." + fileExt;//ÉÏ´«ºóµÄÎÄ¼şÃû×Ö 
-	     String uploadPathName = uploadPath +"/"+ newFileName;//»ñÈ¡µ½ÉÏ´«ºóµÄÎÄ¼şÂ·¾¶+ÎÄ¼şÃû  
-	     System.out.println("ÎÄ¼şµÄÂ·¾¶ÊÇ£º"+uploadPathName);
+	     String newFileName = fileName+ "." + fileExt;
+	     String uploadPathName = uploadPath +"/"+ newFileName;
+	     System.out.println("uploadPathName"+uploadPathName);
 	     File tmpFile = null;
 	     tmpFile = new File(uploadPathName); 
 	     try {
@@ -226,6 +228,7 @@ public class CourseController {
 	
 	@RequestMapping(value="delete")
 	public String delete(@RequestParam("id") int courseId,@RequestParam(name="param",defaultValue="") String name,HttpServletRequest request){
+		System.out.println("enter the CourController's delete");
 		System.out.println("courseId:"+courseId);
 		if(!this.courseService.deleteCourse(courseId)){
 			System.out.println("1");
@@ -237,7 +240,7 @@ public class CourseController {
 	
 	@RequestMapping(value="allDelete")
 	public String allDelete(@RequestParam(name="idlists", defaultValue="") String str,HttpServletRequest request){
-		
+		System.out.println("enter the CourController's allDelete");
 		if(str!=""){
 			String[] strs = str.split(",");
 			for(int i=0;i<strs.length;i++){
@@ -254,12 +257,14 @@ public class CourseController {
 	
 	@RequestMapping(value="toDelete")
 	public String toDelete(@RequestParam(name="pageNo",defaultValue="1") int pageNo,@RequestParam(name="param",defaultValue="") String name,HttpServletRequest request){
+		System.out.println("enter the CourController's toDelete");
 		request.setAttribute("action", "delete");
 		return "forward:/course/list";
 	}
 	
 	@RequestMapping(value="list")
 	public String list(@RequestParam(name="pageNo", defaultValue="1") int pageNo,HttpServletRequest request){
+		System.out.println("enter the CourController's list");
 		String searchparam="";
 		try{
 			searchparam=request.getParameter("searchparam");
@@ -287,7 +292,7 @@ public class CourseController {
 		Page page=courseService.queryForPage(pageNo-1, PageSize,searchparam);
 		List <Course>list = page.getList();
 		List listContent = new ArrayList();   
-		//½«½ØÈ¡µÄ×Ö·û´®·Åµ½Ò»¸ö¼¯ºÏÖĞ
+		//ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Åµï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		for(int i=0;i<list.size();i++){
 			String content = list.get(i).getJieshao();
 			if(content.length()>=50){

@@ -49,6 +49,9 @@ public class AnswerWordController {
 	public void MakeWord(HttpServletRequest request,HttpServletResponse response,
 			HttpSession session){
 		 try {
+			 
+			 System.out.println("è¿›å…¥answerWordcontroller çš„ makeword");
+			 
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e2) {
 			// TODO Auto-generated catch block
@@ -81,7 +84,7 @@ public class AnswerWordController {
 		    	}
 		    }
 		    
-		    //¸ø¸÷ÀàÐÍµÄÌâÄ¿½øÐÐÅÅÐò
+		    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		    for (Integer key : lh.keySet()) {  
 		    	ArrayList list=new ArrayList();
 		    	
@@ -106,14 +109,14 @@ public class AnswerWordController {
 		    	  }
 		    	
 		    	String t=this.AnswerWordService.looktype(key);
-		    	System.out.println("ÌâÐÍ"+t);
+		    	System.out.println("ï¿½ï¿½ï¿½ï¿½"+t);
 		    	lhs.put(t, list);
 	        }
 		    
 //		    for(int mm=1;mm<11;mm++){
 //		    	lhs.put(mm,list);
 //		    }
-		    System.out.println("²âÊÔËÄÉ«µç»°µÄ½¾°Á·Å¼Ù°¢·É¹þ¹þ·¢");
+		    System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É«ï¿½ç»°ï¿½Ä½ï¿½ï¿½ï¿½ï¿½Å¼Ù°ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½");
 		    for (String key : lhs.keySet()) {  
 	            System.out.println("key = " + key + " and value = " + lhs.get(key));  
 	        }   	
@@ -122,17 +125,12 @@ public class AnswerWordController {
 		 	
 		 	
 		 	
-		 	
-		 
-		 	
-		 	
-		 // ÌáÊ¾£ºÔÚµ÷ÓÃ¹¤¾ßÀàÉú³ÉWordÎÄµµÖ®Ç°Ó¦µ±¼ì²éËùÓÐ×Ö¶ÎÊÇ·ñÍêÕû  
-	        // ·ñÔòFreemarkerµÄÄ£°åÒóÇÚÔÚ´¦ÀíÊ±¿ÉÄÜ»áÒòÎªÕÒ²»µ½Öµ¶ø±¨´í ÕâÀïÔÝÊ±ºöÂÔÕâ¸ö²½ÖèÁË  
+
 	        File file = null;  
 	        InputStream fin = null;  
 	        ServletOutputStream out = null;  
 	        try {  
-	            // µ÷ÓÃ¹¤¾ßÀàWordGeneratorµÄcreateDoc·½·¨Éú³ÉWordÎÄµµ  
+	            // ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½WordGeneratorï¿½ï¿½createDocï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Wordï¿½Äµï¿½  
 	            file = AnswerWordGenerator.createDoc(map, "resume");  
 	            try {
 					fin = new FileInputStream(file);
@@ -143,7 +141,7 @@ public class AnswerWordController {
 	              
 	            response.setCharacterEncoding("utf-8");  
 	            response.setContentType("application/msword");  
-	            // ÉèÖÃä¯ÀÀÆ÷ÒÔÏÂÔØµÄ·½Ê½´¦Àí¸ÃÎÄ¼þÄ¬ÈÏÃûÎªresume.doc  
+	           
 	            response.addHeader("Content-Disposition", "attachment;filename=resume.doc");  
 	            
 	            try {
@@ -152,9 +150,9 @@ public class AnswerWordController {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}  
-	            byte[] buffer = new byte[512];  // »º³åÇø  
+	            byte[] buffer = new byte[512];  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
 	            int bytesToRead = -1;  
-	            // Í¨¹ýÑ­»·½«¶ÁÈëµÄWordÎÄ¼þµÄÄÚÈÝÊä³öµ½ä¯ÀÀÆ÷ÖÐ  
+	            
 	            try {
 					while((bytesToRead = fin.read(buffer)) != -1) {  
 					    try {
@@ -183,7 +181,7 @@ public class AnswerWordController {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}  
-	            if(file != null) file.delete(); // É¾³ýÁÙÊ±ÎÄ¼þ  
+	            if(file != null) file.delete(); 
 	        }
 	    }  
 }

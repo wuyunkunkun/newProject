@@ -31,6 +31,7 @@ public class ChapterController {
 	
 	@RequestMapping("toAdd")
 	public String toAdd(Chapter ch,HttpServletRequest request){
+		System.out.println("enter the chaptercontroller's toadd ");
 		request.setAttribute("chapter", ch);
 		request.setAttribute("action", "add");
 		List<Course> courses=courseService.findAllCourses();
@@ -40,6 +41,7 @@ public class ChapterController {
 	
 	@RequestMapping(value="add",method=RequestMethod.POST)
 	public String add(Chapter ch,HttpServletRequest request){
+		System.out.println("enter the chaptercontroller's add");
 		Integer c_id=new Integer(request.getParameter("c_id"));
 		this.chapterService.addChapter(ch,c_id);
 		request.setAttribute("action", "select");
@@ -49,6 +51,7 @@ public class ChapterController {
 	@RequestMapping(value="edit",method=RequestMethod.GET)
 	public String toEdit(@RequestParam("id") int chapterId,
 			HttpServletRequest request){
+		System.out.println("enter the chaptercontroller's toedit");
 		Chapter ch=this.chapterService.getChapterId(chapterId);
 		List<Course> courses = courseService.findAllCourses();
 		request.setAttribute("chapter", ch);
@@ -60,6 +63,7 @@ public class ChapterController {
 	
 	@RequestMapping(value="toEdit")
 	public String editList(HttpServletRequest request){
+		System.out.println("enter the chaptercontroller's editlist");
 		List<Chapter> lists=new ArrayList<Chapter>();
 		request.setAttribute("action", "edit");
 		return "forward:/chapter/list";
@@ -67,6 +71,7 @@ public class ChapterController {
 	
 	@RequestMapping(value="toDelete")
 	public String toDelete(HttpServletRequest request,@RequestParam(name="searchParam",defaultValue="")String searchParam){
+		System.out.println("enter the chaptercontroller's todelete");
 		request.setAttribute("searchParam", searchParam);
 		request.setAttribute("action", "delete");		
 		return "forward:/chapter/list";
@@ -75,6 +80,7 @@ public class ChapterController {
 	
 	@RequestMapping(value="edit")
 	public String edit(HttpServletRequest request,@RequestParam(name="searchParam",defaultValue="")String searchParam){
+		System.out.println("enter the chaptercontroller's edit");
 		Integer id=new Integer(request.getParameter("id"));
 		String name=request.getParameter("name");
 		Integer chapterOrder =new Integer(request.getParameter("chapterOrder"));
@@ -96,6 +102,7 @@ public class ChapterController {
 	@RequestMapping(value="delete")
 	public String delete(@RequestParam("id") int chapterId,
 			HttpServletRequest request,@RequestParam(name="searchParam",defaultValue="")String searchParam){
+		System.out.println("enter the chaptercontroller's delete");
 		if(!this.chapterService.deleteChapter(chapterId)){
 			request.getSession().setAttribute("prompt", "false");
 		}
@@ -108,7 +115,7 @@ public class ChapterController {
 	
 	@RequestMapping(value="list")
 	public String list(@RequestParam(name="pageNo", defaultValue="1") int pageNo,HttpServletRequest request){
-		
+		System.out.println("enter the chaptercontroller's list");
 		String searchParam=request.getParameter("searchparam");
 		if(searchParam==null){
 			try{
@@ -139,6 +146,7 @@ public class ChapterController {
 //	
 	@RequestMapping(value="allDelete")
 	public String allDelete(@RequestParam(name="idlist", defaultValue="") String str,HttpServletRequest request){
+		System.out.println("enter the chaptercontroller's alldelete");
 		String[] strs = str.split(",");
 		for(int i=0;i<strs.length;i++){
 			this.chapterService.deleteChapter(new Integer(strs[i]));

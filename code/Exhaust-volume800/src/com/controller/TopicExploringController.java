@@ -42,6 +42,7 @@ public class TopicExploringController {
 	public void MakeWord(HttpServletRequest request,HttpServletResponse response,
 			HttpSession session){
 		 try {
+			 System.out.println("enter the TopicExploringController's MakeWord");
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e2) {
 			// TODO Auto-generated catch block
@@ -157,13 +158,13 @@ public class TopicExploringController {
 		 
 		 	
 		 	
-		 // 提示：在调用工具类生成Word文档之前应当检查所有字段是否完整  
-	        // 否则Freemarker的模板殷勤在处理时可能会因为找不到值而报错 这里暂时忽略这个步骤了  
+		 // Word
+	        //Freemarker
 	        File file = null;  
 	        InputStream fin = null;  
 	        ServletOutputStream out = null;  
 	        try {  
-	            // 调用工具类WordGenerator的createDoc方法生成Word文档  
+	            // WordGenerator createDocWord
 	            file =TopicExploringGenerator.createDoc(map, "resume");  
 	            try {
 					fin = new FileInputStream(file);
@@ -174,7 +175,7 @@ public class TopicExploringController {
 	              
 	            response.setCharacterEncoding("utf-8");  
 	            response.setContentType("application/msword");  
-	            // 设置浏览器以下载的方式处理该文件默认名为resume.doc  
+	            // resume.doc  
 	            response.addHeader("Content-Disposition", "attachment;filename=resume.doc");  
 	            
 	            try {
@@ -183,9 +184,9 @@ public class TopicExploringController {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}  
-	            byte[] buffer = new byte[512];  // 缓冲区  
+	            byte[] buffer = new byte[512];  //
 	            int bytesToRead = -1;  
-	            // 通过循环将读入的Word文件的内容输出到浏览器中  
+	            //Word
 	            try {
 					while((bytesToRead = fin.read(buffer)) != -1) {  
 					    try {
@@ -214,7 +215,7 @@ public class TopicExploringController {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}  
-	            if(file != null) file.delete(); // 删除临时文件  
+	            if(file != null) file.delete(); // 删锟斤拷锟斤拷时锟侥硷拷  
 	        }
 	    }  
 }
