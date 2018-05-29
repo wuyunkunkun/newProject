@@ -23,10 +23,11 @@ public class ChooseCourseController {
 	
 	@RequestMapping(value="course",method=RequestMethod.GET	)
 	public String trfindChapter(int id,HttpSession session,HttpServletRequest request,HttpServletResponse reponse){
+		System.out.println("enter the chooseCourseController");
 		List <Chapter> chapterList = new ArrayList<Chapter>();
 		chapterList = chooseCourseService.chaptersList(id);
 		for(int i=0;i<chapterList.size();i++){
-			System.out.println("²éÑ¯³öÀ´µÄÕÂ½ÚÊÇ£º"+chapterList.get(i).getName());
+			System.out.println("ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â½ï¿½ï¿½Ç£ï¿½"+chapterList.get(i).getName());
 		}
 		session.setAttribute("chapterList",chapterList);
 		return "exam/choose";

@@ -44,6 +44,7 @@ public class ExamController {
 	
 	@RequestMapping("toAddPointValue")
 	public String toAddHandChoosePointValue(HttpServletRequest request){
+		System.out.println("enter ExamController's toAddHandChoosePointValue");
 		List<QuestionType> types = questionService.findAllQuestionType();
 		request.getSession().setAttribute("types", types);
 		Exam exam=(Exam)request.getSession().getAttribute("exam");
@@ -54,7 +55,7 @@ public class ExamController {
 	
 	@RequestMapping("addPointValue")
 	public String addHandChoosePointValue(HttpServletRequest request){
-		
+		System.out.println("enter ExamController's addPointValue");
 		List<Integer> intList=new ArrayList<Integer>();
 		if(request.getParameter("score1")!=null&&request.getParameter("score1")!=""){
 			Integer score1=new Integer(request.getParameter("score1"));
@@ -127,6 +128,8 @@ public class ExamController {
 	@RequestMapping("newExam")
 	public String newExam(HttpServletRequest request,
 			@RequestParam(name = "course_id", defaultValue = "0") String course_id) {
+		System.out.println("enter ExamController's newExam");
+		
 		Teacher t = (Teacher) request.getSession().getAttribute("teacher");
 
 		Exam exam = examService.hand_NewExam(t);
@@ -139,6 +142,8 @@ public class ExamController {
 	@RequestMapping("removeQuestion")
 	@ResponseBody
 	public void removeQuestionToExam(HttpServletRequest request) {
+		System.out.println("enter ExamController's removeQuestionToExam");
+
 		Integer question_id = new Integer(request.getParameter("question_id").toString());
 		Exam exam = (Exam) request.getSession().getAttribute("exam");
 		examService.removeQuestion(exam, question_id);
@@ -147,6 +152,8 @@ public class ExamController {
 	@RequestMapping("addQuestion")
 	@ResponseBody
 	public void addQuestionToExam(HttpServletRequest request, HttpSession session) {
+		System.out.println("enter ExamController's addQuestionToExam");
+
 		Integer question_id = new Integer(request.getParameter("question_id").toString());
 		Exam exam = (Exam) session.getAttribute("exam");
 		examService.addQuestion(exam, question_id);
@@ -154,6 +161,8 @@ public class ExamController {
 
 	@RequestMapping("changeTitle")
 	public void saveTitle(HttpServletRequest request) {
+		System.out.println("enter ExamController's saveTitle");
+
 		String title = request.getParameter("title");
 		String examId = request.getParameter("examId");
 		examService.saveTitle(new Integer(examId), title);
@@ -161,6 +170,8 @@ public class ExamController {
 
 	@RequestMapping("changeQuestion")
 	public void changeExam(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("enter ExamController's changeExam");
+
 		String question_id_s = request.getParameter("questionid");
 		String e_id_s = request.getParameter("e_id");
 		Question q = examService.changeQuestion(new Integer(e_id_s), new Integer(question_id_s));
@@ -203,6 +214,8 @@ public class ExamController {
 
 	@RequestMapping("moveup")
 	public void moveup(HttpServletRequest request) {
+		System.out.println("enter ExamController's moveup");
+
 		String exam_need = request.getParameter("exam_need");
 		String e_id_s = request.getParameter("e_id");
 		String sequence_s = exam_need.substring(0, exam_need.indexOf(","));
@@ -212,6 +225,8 @@ public class ExamController {
 
 	@RequestMapping("movedn")
 	public void movedn(HttpServletRequest request) {
+		System.out.println("enter ExamController's movedn");
+
 		String exam_need = request.getParameter("exam_need");
 		String e_id_s = request.getParameter("e_id");
 		String sequence_s = exam_need.substring(0, exam_need.indexOf(","));
@@ -221,6 +236,8 @@ public class ExamController {
 
 	@RequestMapping("listExam")
 	public String listExam(HttpServletRequest request, HttpSession session) {
+		System.out.println("enter ExamController's listExam");
+
 		Teacher t = (Teacher) session.getAttribute("teacher");
 		List<Exam> examlist = examService.findExamsByTeacher(t.getId());
 		request.setAttribute("exams", examlist);
@@ -229,6 +246,8 @@ public class ExamController {
 
 	@RequestMapping("previewExam")
 	public String previewExam(@RequestParam("e_id") Integer e_id, HttpServletRequest request,HttpSession session) {
+		System.out.println("enter ExamController's previewExam");
+
 		Exam e = examService.selectExamById(e_id);
 		List<HashMap<QuestionType, Integer>> types = questionService.selectQuestionTypeByExam(e);
 		session.setAttribute("types", types);
@@ -238,6 +257,7 @@ public class ExamController {
 
 	@RequestMapping("deleteExamById")
 	public String deleteExam(@RequestParam("e_id") Integer id, HttpServletRequest request, HttpSession session) {
+		System.out.println("enter ExamController's deleteExam");
 		System.out.println(id);
 		examService.deleteExam(id);
 		Teacher t = (Teacher) session.getAttribute("teacher");
@@ -248,20 +268,18 @@ public class ExamController {
 
 	@RequestMapping(value = "createExam", method = RequestMethod.POST)
 	public String createExam(HttpServletRequest request,HttpSession session,HttpServletResponse response) {
-		
+		System.out.println("enter ExamController's createExam");
+
 		Teacher teacher=(Teacher)session.getAttribute("teacher");
 		
 
 		
-		/*
-		 * 获得各题型所占的分值
-		 */
+		
 		LinkedHashMap map1 = new LinkedHashMap();
 		String checkboxs = request.getParameter("splits");
 		String checkbox[] = checkboxs.split(",");
-		/*
-		 * 集合每个题型的分和每个题型的个数
-		 */
+		
+		
 		List list1=new ArrayList();
 		List list2=new ArrayList();
 		for(int i=1;i<11;i++){
@@ -298,12 +316,7 @@ public class ExamController {
 		for(int q=0;q<questionNum.length;q++){
 			System.out.println(questionNum[q]);
 		}
-		/*
-		 * 各难易程度所占的分值
-		 */
-		/*
-		 * 获得期望值
-		 */
+		
 		Double averageScore = Double.parseDouble(request.getParameter("averageScore"));
 		LinkedHashMap map2 = new LinkedHashMap();
 		NormalDistribution normalDistribution = new NormalDistribution(averageScore, 10);
@@ -318,9 +331,8 @@ public class ExamController {
 			d[j] = d[j] + (1 - sum) * (d[j] / sum);
 			sum2 += d[j];
 		}
-		/*
-		 * 各章节所获得的分值 这章节中个难易程度所占的分
-		 */
+		
+		
 		String chapters = request.getParameter("chapters");
 		String chapter[] = chapters.split(",");
 		Integer tchapter[] = new Integer[chapter.length + 1];
@@ -332,7 +344,7 @@ public class ExamController {
 				listNum.add(i+1);
 			}
 			
-//			System.out.println("不为0的章节"+listNum);
+//			System.out.println("listNum:"+listNum);
 			for (int j = 1; j < d.length; j++) {
 				DecimalFormat df = new DecimalFormat("#");
 				String tchapters = df.format(tchapter[i + 1] * d[j]);
@@ -342,9 +354,8 @@ public class ExamController {
 			}
 		}
 	
-		/*
-		 * 2.生成试卷
-		 */
+		
+		
 		int id = 0;
 		int ids = 0;
 		Iterator iter = map1.keySet().iterator();
@@ -355,7 +366,7 @@ public class ExamController {
 			t:while(val!=0){
 			x:for (int i = 1; i < a.length; i++) {
 				for (int j = 1; j < a[i].length; j++) {
-					//减分值得操作
+
 					String temppointValues = request.getParameter("pointValue" + key);
 					if (null != temppointValues && !"".equals(temppointValues)) {
 						if(Integer.parseInt(temppointValues)<=a[i][j]){
@@ -369,7 +380,7 @@ public class ExamController {
 								System.out.println(questionNum[key]);
 								list.add(id);
 							}else{
-								String panduan = "错误";
+								String panduan = "锟斤拷锟斤拷";
 								request.setAttribute("panduan",panduan);
 								return "forward:/exam/choose.jsp";
 							}
@@ -403,7 +414,7 @@ public class ExamController {
 					questionNum[m]--;
 					list.add(id);
 				}else{
-					String panduan = "错误";
+					String panduan = "锟斤拷锟斤拷";
 					request.setAttribute("panduan",panduan);
 					return "forward:/exam/choose.jsp";
 				}
@@ -415,17 +426,23 @@ public class ExamController {
 	}
 	@RequestMapping(value = "regulation")
 	public String regulation(HttpServletRequest request,HttpSession session){
+		System.out.println("enter ExamController's regulation");
+
 		int repeat=this.examService.getRegulation();
 		request.setAttribute("regulation",repeat);
 		return "forward:/exam/regulationlist.jsp";
 	}
 	@RequestMapping(value = "editregulation",method = RequestMethod.GET)
 	public String editregulation(@RequestParam("regulation") int regulation,HttpServletRequest request){
+		System.out.println("enter ExamController's editregulation");
+
 		request.setAttribute("regulation", regulation);
 		return "forward:/exam/regulationform.jsp";
 	}
 	@RequestMapping(value = "editregulation",method=RequestMethod.POST)
 	public String editregulation(@RequestParam("repeat") Integer repeat){
+		System.out.println("enter ExamController's editregulation");
+
 		this.examService.editregulation(repeat);
 		return "redirect:regulation";
 	}

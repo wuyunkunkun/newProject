@@ -1,4 +1,4 @@
-package com.controller;
+ï»¿package com.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -42,6 +42,7 @@ public class TestWordController {
 	public void MakeWord(HttpServletRequest request,HttpServletResponse response,
 			HttpSession session){
 		 try {
+			 System.out.println("enter the TestWordcontroller's MakeWord");
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e2) {
 			// TODO Auto-generated catch block
@@ -52,7 +53,7 @@ public class TestWordController {
 
 		 	Exam exam = (Exam)session.getAttribute("exam");
 	    	Set set = exam.getSorts();
-	    	//¸÷ÌâĞÍÃ¿Ğ¡ÌâµÄ·ÖÖµ
+	    	
 	    	List<Integer> listPointValues=new ArrayList();
 	    	for(int l=0;l<10;l++){
 	    		listPointValues.add(0);
@@ -66,14 +67,14 @@ public class TestWordController {
 	    		
 	    	}
 	    	
-	    	System.out.println("map2¼üÎª0µÄÖµÊÇ£º"+map2.get(0));
-	    	System.out.println("map2¼üÎª1µÄÖµÊÇ£º"+map2.get(2));
-	    	System.out.println("map2¼üÎª2µÄÖµÊÇ£º"+map2.get(2));
-	    	System.out.println("map2¼üÎª3µÄÖµÊÇ£º"+map2.get(3));
+	    	System.out.println("map2ï¿½ï¿½Îª0ï¿½ï¿½Öµï¿½Ç£ï¿½"+map2.get(0));
+	    	System.out.println("map2ï¿½ï¿½Îª1ï¿½ï¿½Öµï¿½Ç£ï¿½"+map2.get(2));
+	    	System.out.println("map2ï¿½ï¿½Îª2ï¿½ï¿½Öµï¿½Ç£ï¿½"+map2.get(2));
+	    	System.out.println("map2ï¿½ï¿½Îª3ï¿½ï¿½Öµï¿½Ç£ï¿½"+map2.get(3));
 	    	int sum=0;	    	
 	    	List listpointvalue = this.testService.getScore(map2,exam);
 
-	    	//¸÷ÌâĞÍµÄ¸öÊı
+	    	//ï¿½ï¿½ï¿½ï¿½ï¿½ÍµÄ¸ï¿½ï¿½ï¿½
 	    	List<Integer> listNum=new ArrayList();
 	    	for(int l=0;l<10;l++){
 	    		listNum.add(0);
@@ -87,7 +88,7 @@ public class TestWordController {
 	    	
 	    	
 	    	List<Integer> listSumValue=new ArrayList();
-	    	//¸÷ÌâĞÍµÄ×Ü·Ö
+	    	//ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½Ü·ï¿½
 	    	for(int l=0;l<10;l++){
 	    		listSumValue.add(0);
 	    	}
@@ -114,7 +115,7 @@ public class TestWordController {
 		 	Iterator iterator = sorts.iterator();
 		 	while(iterator.hasNext()){
 		 		Sort sort = (Sort)iterator.next();
-		 		//Èç¹ûÊÇÌâĞÍÒ»µÄÌâ£¬½«ÊÔÌâ°´ÕÕĞòºÅ·Åµ½list¼¯ºÏÖĞ
+		 		//
 		 		if(sort.getType().getId() == 1){
 		 			int size = listone.size();
 		 			int sequence = sort.getSequence();
@@ -480,7 +481,7 @@ public class TestWordController {
 		 			}
 		 		}else if(sort.getType().getId() == 8){
 		 			int size = listeight.size();
-		 			System.out.println("sizeµÄ´óĞ¡ÊÇ£º"+size);
+		 			System.out.println("sizeï¿½Ä´ï¿½Ğ¡ï¿½Ç£ï¿½"+size);
 		 			int sequence = sort.getSequence();
 		 			Question q = null;
 		 			if(size>=sequence){
@@ -595,13 +596,13 @@ public class TestWordController {
 		 	
 		 	
 		 	
-		 // ÌáÊ¾£ºÔÚµ÷ÓÃ¹¤¾ßÀàÉú³ÉWordÎÄµµÖ®Ç°Ó¦µ±¼ì²éËùÓĞ×Ö¶ÎÊÇ·ñÍêÕû  
-	        // ·ñÔòFreemarkerµÄÄ£°åÒóÇÚÔÚ´¦ÀíÊ±¿ÉÄÜ»áÒòÎªÕÒ²»µ½Öµ¶ø±¨´í ÕâÀïÔİÊ±ºöÂÔÕâ¸ö²½ÖèÁË  
+		 // 
+	        // ï¿½ï¿½ï¿½ï¿½Freemarkerï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ü»ï¿½ï¿½ï¿½Îªï¿½Ò²ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
 	        File file = null;  
 	        InputStream fin = null;  
 	        ServletOutputStream out = null;  
 	        try {  
-	            // µ÷ÓÃ¹¤¾ßÀàWordGeneratorµÄcreateDoc·½·¨Éú³ÉWordÎÄµµ  
+	            // ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½WordGeneratorï¿½ï¿½createDocï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Wordï¿½Äµï¿½  
 	            file = WordGenerator.createDoc(map, "resume");  
 	            try {
 					fin = new FileInputStream(file);
@@ -612,7 +613,7 @@ public class TestWordController {
 	              
 	            response.setCharacterEncoding("utf-8");  
 	            response.setContentType("application/msword");  
-	            // ÉèÖÃä¯ÀÀÆ÷ÒÔÏÂÔØµÄ·½Ê½´¦Àí¸ÃÎÄ¼şÄ¬ÈÏÃûÎªresume.doc  
+	            // Îªresume.doc  
 	            response.addHeader("Content-Disposition", "attachment;filename=resume.doc");  
 	            
 	            try {
@@ -621,9 +622,9 @@ public class TestWordController {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}  
-	            byte[] buffer = new byte[512];  // »º³åÇø  
+	            byte[] buffer = new byte[512];  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
 	            int bytesToRead = -1;  
-	            // Í¨¹ıÑ­»·½«¶ÁÈëµÄWordÎÄ¼şµÄÄÚÈİÊä³öµ½ä¯ÀÀÆ÷ÖĞ  
+	            // Í¨ï¿½Word
 	            try {
 					while((bytesToRead = fin.read(buffer)) != -1) {  
 					    try {
@@ -652,7 +653,7 @@ public class TestWordController {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}  
-	            if(file != null) file.delete(); // É¾³ıÁÙÊ±ÎÄ¼ş  
+	            if(file != null) file.delete(); // É¾ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Ä¼ï¿½  
 	        }
 	    }  
 }

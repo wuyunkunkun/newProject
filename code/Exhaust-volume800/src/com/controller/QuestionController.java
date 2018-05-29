@@ -46,6 +46,9 @@ public class QuestionController {
 
 	@RequestMapping("QuestionDetails")
 	public String questionDetail(HttpServletRequest request) {
+		System.out.println("enter the QuestionController's questionDetail");
+		
+		
 		String id = request.getParameter("id");
 		int q_id = new Integer(id);
 		Question q = questionService.findQuestionById(q_id);
@@ -63,7 +66,9 @@ public class QuestionController {
 
 	@RequestMapping("Forlist")
 	public String tolist(HttpServletRequest request) {
+		System.out.println("enter the QuestionController's tolist");
 
+		
 		List typelist = questionService.findAllType();
 		List levellist = questionService.findAllLevel();
 
@@ -74,6 +79,8 @@ public class QuestionController {
 
 	@RequestMapping(value = "allQuestion", method = RequestMethod.POST)
 	public String handchoosePost(HttpServletRequest request, HttpSession session) {
+		System.out.println("enter the QuestionController's handchoosePost");
+
 		String chapterCourse = request.getParameter("chapter_id");
 		String chapter_s = chapterCourse.substring(0, chapterCourse.indexOf(","));
 		String course_s = chapterCourse.substring(chapterCourse.indexOf(",") + 1);
@@ -118,6 +125,8 @@ public class QuestionController {
 			@RequestParam(name = "chapter_id", defaultValue = "0") Integer chapter_id,
 			@RequestParam(name = "type_id", defaultValue = "0") Integer type_id,
 			@RequestParam(name = "level_id", defaultValue = "0") Integer level_id) {
+		System.out.println("enter the QuestionController's handchooseGet  QequestionMapping = 'allQuestion' ");
+
 		Page page = questionService.manualFindQuestion(chapter_id, type_id, level_id, pageNo - 1, pageSize);
 		List chapterlist = courseService.findAllChapter(course_id);
 		List typelist = questionService.findAllType();
@@ -153,6 +162,7 @@ public class QuestionController {
 
 	@RequestMapping("toadd")
 	public String toaddQuestion(HttpServletRequest request) {
+		System.out.println("enter the QuestionController's toaddQuestion");
 
 		String schapter = request.getParameter("chapter");
 
@@ -171,6 +181,7 @@ public class QuestionController {
 
 	@RequestMapping("addUnChoose")
 	public String addQuestion(HttpServletRequest request) {
+		System.out.println("enter the QuestionController's addQuestion");
 
 		String schapter = request.getParameter("chapter");
 		Integer chapter = new Integer(schapter);
@@ -209,6 +220,8 @@ public class QuestionController {
 
 	@RequestMapping("addChoose")
 	public String addQuestionImp(HttpServletRequest request) {
+		System.out.println("enter the QuestionController's addQuestionImp");
+
 		
 		String schapter = request.getParameter("chapter");
 		Integer chapter = new Integer(schapter);
@@ -271,6 +284,8 @@ public class QuestionController {
 	@RequestMapping("IndistinctFindQuestion")
 	public String IndistinctFindQuestion(HttpServletRequest request,
 			@RequestParam(name = "pageNo", defaultValue = "1") int pageNo) {
+		System.out.println("enter the QuestionController's indistinctFindQuestion");
+
 		String content = null;
 		content = request.getParameter("indistinctname");
 		if (content == null) {
@@ -289,6 +304,8 @@ public class QuestionController {
 	@RequestMapping("findQuestionByChapter/{chapter_id}")
 	public String findQuestionByChapter(@RequestParam(name = "pageNo", defaultValue = "1") int pageNo,
 			HttpServletResponse response,HttpServletRequest request, @PathVariable Integer chapter_id,RedirectAttributes attr) {
+		System.out.println("enter the QuestionController's findQuestionByChapter");
+
 		if(request.getAttribute("msg")!=null){
 			Integer s=(Integer) request.getAttribute("msg");
 			response.setCharacterEncoding("UTF-8");
@@ -311,6 +328,8 @@ public class QuestionController {
 
 	@RequestMapping("deleteQuestionById")
 	public String deleteQuestionById(@RequestParam("id") String id, HttpServletRequest request,RedirectAttributes attr) {
+		System.out.println("enter the QuestionController's deleteQuestionById");
+
 		String t_description = "";
 		String description = request.getParameter("description");
 		if (description != null && description != "") {
@@ -344,7 +363,9 @@ public class QuestionController {
 
 	@RequestMapping("delete")
 	public String deleteQuestion(@RequestParam("id") String id, HttpServletRequest request) {
-		// É¾³ý_¼ÇÂ¼
+		System.out.println("enter the QuestionController's deleteQuestion");
+
+
 		String t_description = "";
 		String description = request.getParameter("description");
 		if (description != null && description != "") {
@@ -369,7 +390,7 @@ public class QuestionController {
 		boolean b = questionService.deleteQuestion(new Integer(id), t_description, t_id, o_id, o_time);
 		if (b == false) {
 			request.setAttribute("prompt", "false");
-			System.out.println("µ±Ç°ÊÔÌâÔÚÊÔ¾íµ±ÖÐÓÐ¼ÇÂ¼£¬ÇëÏÈÉ¾³ýÊÔ¾í£¡");
+			System.out.println("ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¾ï¿½ï¿½ï¿½ï¿½Ð¼ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½Ô¾ï¿½");
 		}
 
 		request.getSession().setAttribute("content", content);
@@ -378,6 +399,8 @@ public class QuestionController {
 
 	@RequestMapping("toUpdate")
 	public String toUpdate(@RequestParam("id") String id, HttpServletRequest request) {
+		System.out.println("enter the QuestionController's toUpdate");
+
 		Question question = questionService.findQuestionById(new Integer(id));
 		request.setAttribute("question", question);
 		System.out.print(id);
@@ -393,6 +416,8 @@ public class QuestionController {
 
 	@RequestMapping("updateQuestion")
 	public String updateQuestion(HttpServletRequest request) {
+
+		System.out.println("enter the QuestionController's updateQuestion");
 
 		String id = request.getParameter("id");
 		int q_id = new Integer(id);
@@ -413,7 +438,7 @@ public class QuestionController {
 			answer=answer.replace("&nbsp;", "");
 		}
 		
-		// ÐÞ¸Ä_¼ÇÂ¼
+
 		String t_description = "";
 		String description = request.getParameter("description");
 		if (description != null && description != "") {
@@ -442,6 +467,8 @@ public class QuestionController {
 
 	@RequestMapping("updateChooseQuestion")
 	public String updateChooseQuestion(HttpServletRequest request) {
+		System.out.println("enter the QuestionController's updateChooseQuestion");
+
 		String id = request.getParameter("id");
 		int q_id = new Integer(id);
 
@@ -477,7 +504,7 @@ public class QuestionController {
 			D=D.replace("&nbsp;","");
 		}
 		
-		// ÐÞ¸Ä_¼ÇÂ¼
+
 		String t_description = "";
 		String description = request.getParameter("description");
 		if (description != null && description != "") {
@@ -491,7 +518,7 @@ public class QuestionController {
 		}
 
 		String st_id = request.getParameter("teacher_id");
-		System.out.println("haha ÀÏÊ¦µÄidÊÇ£º" + st_id);
+		System.out.println("teacherId:" + st_id);
 		Integer t_id = new Integer(st_id);
 		Integer o_id = new Integer(2);
 		long l = System.currentTimeMillis();

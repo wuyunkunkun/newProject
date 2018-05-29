@@ -43,6 +43,7 @@ public class TestExcelController {
 	@RequestMapping("Excel")
 	public void MakeWord(HttpServletRequest request,HttpServletResponse response,
 			HttpSession session){
+		System.out.println("enter the TestExcelController's MakeWord");
 		String ed=request.getParameter("ed");
 		Integer id=Integer.parseInt(ed);
 		Exam es=examService.selectExamById(id);
@@ -59,7 +60,6 @@ public class TestExcelController {
 
 		 	Exam exam = (Exam)session.getAttribute("exam");
 	    	Set set = exam.getSorts();
-	    	//¸÷ÌâÐÍÃ¿Ð¡ÌâµÄ·ÖÖµ
 	    	List<Integer> listPointValues=new ArrayList();
 	    	for(int l=0;l<10;l++){
 	    		listPointValues.add(0);
@@ -73,17 +73,17 @@ public class TestExcelController {
 	    		
 	    	}
 	    	for(int k=0;k<10;k++){
-	    		System.out.println("¸÷ÌâÐÍÃ¿Ð¡ÌâµÄ·ÖÖµ"+listPointValues.get(k));
+	    		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿Ð¡ï¿½ï¿½Ä·ï¿½Öµ"+listPointValues.get(k));
 	    	}	
 	    	
-	    	System.out.println("map2¼üÎª0µÄÖµÊÇ£º"+map2.get(0));
-	    	System.out.println("map2¼üÎª1µÄÖµÊÇ£º"+map2.get(2));
-	    	System.out.println("map2¼üÎª2µÄÖµÊÇ£º"+map2.get(2));
-	    	System.out.println("map2¼üÎª3µÄÖµÊÇ£º"+map2.get(3));
+	    	System.out.println("map2ï¿½ï¿½Îª0ï¿½ï¿½Öµï¿½Ç£ï¿½"+map2.get(0));
+	    	System.out.println("map2ï¿½ï¿½Îª1ï¿½ï¿½Öµï¿½Ç£ï¿½"+map2.get(2));
+	    	System.out.println("map2ï¿½ï¿½Îª2ï¿½ï¿½Öµï¿½Ç£ï¿½"+map2.get(2));
+	    	System.out.println("map2ï¿½ï¿½Îª3ï¿½ï¿½Öµï¿½Ç£ï¿½"+map2.get(3));
 	    	int sum=0;	    	
 	    	List listpointvalue = this.testService.getScore(map2,exam);
 
-	    	//¸÷ÌâÐÍµÄ¸öÊý
+	    	
 	    	List<Integer> listNum=new ArrayList();
 	    	for(int l=0;l<10;l++){
 	    		listNum.add(0);
@@ -96,10 +96,10 @@ public class TestExcelController {
 	    	}
 	    	
 	    	for(int k=0;k<10;k++){
-	    		System.out.println("¹þ¹þ¹þ¹þ¸÷ÌâÐÍµÄ¸öÊý"+listNum.get(k));
+	    		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÍµÄ¸ï¿½ï¿½ï¿½"+listNum.get(k));
 	    	}
 	    	List<Integer> listSumValue=new ArrayList();
-	    	//¸÷ÌâÐÍµÄ×Ü·Ö
+	    	//ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½Ü·ï¿½
 	    	for(int l=0;l<10;l++){
 	    		listSumValue.add(0);
 	    	}
@@ -107,12 +107,12 @@ public class TestExcelController {
 	    		listSumValue.set(l, listNum.get(l)*listPointValues.get(l));
 	    	}
 	    	for(int k=0;k<10;k++){
-	    		System.out.println("¹þ¹þ¹þ¹þ¸÷ÌâÐÍ×Ü·Ö"+listSumValue.get(k));
+	    		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü·ï¿½"+listSumValue.get(k));
 	    	}
 		
 //		 	List <QuestionType>questionList = (List<QuestionType>) session.getAttribute("types");
 		 	List<HashMap<QuestionType,Integer>> types = (List<HashMap<QuestionType, Integer>>) session.getAttribute("types");
-//		 	System.out.println("ÊÔ¾íµÄÌâÄ¿ÊÇ£º"+exam.getTitle());
+//		 	System.out.println("ï¿½Ô¾ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½Ç£ï¿½"+exam.getTitle());
 		 	Map<String, Object> map = new HashMap<String, Object>(); 
 		 	List <Question>listone = new ArrayList();
 		 	List <Question>listtow = new ArrayList();
@@ -125,23 +125,23 @@ public class TestExcelController {
 		 	List <Question>listnine = new ArrayList();
 		 	List <Question>listten = new ArrayList();
 		 	Set<Sort>sorts = exam.getSorts();
-		 	System.out.println("ÊÔ¾íÖÐµÄÊÔÌâÊýÁ¿ÊÇ£º"+sorts.size());
+		 	System.out.println("ï¿½Ô¾ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½"+sorts.size());
 		 	Iterator iterator = sorts.iterator();
 		 	while(iterator.hasNext()){
 		 		Sort sort = (Sort)iterator.next();
-		 		//Èç¹ûÊÇÌâÐÍÒ»µÄÌâ£¬½«ÊÔÌâ°´ÕÕÐòºÅ·Åµ½list¼¯ºÏÖÐ
+		 	
 		 		if(sort.getType().getId() == 1){
 		 			int size = listone.size();
-		 			System.out.println("sizeµÄ´óÐ¡ÊÇ£º"+size);
+		 			System.out.println("sizeï¿½Ä´ï¿½Ð¡ï¿½Ç£ï¿½"+size);
 		 			int sequence = sort.getSequence();
-		 			System.out.println("ÌâµÄÐòºÅÊÇ£º"+sequence);
+		 			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½"+sequence);
 		 			Question q = null;
 		 			if(size>=sequence){
 		 				listone.set(sequence-1,sort.getQuestion());
 		 			}else{
 		 				while(size<sequence-1){
 			 				listone.add(q);
-			 				System.out.println("ÀîÓ¯£ºsizeµÄ´óÐ¡ÊÇ£º"+listone.size());
+			 				System.out.println("ï¿½ï¿½Ó¯ï¿½ï¿½sizeï¿½Ä´ï¿½Ð¡ï¿½Ç£ï¿½"+listone.size());
 			 				size = size+1;
 		 				}
 		 				listone.add(sort.getQuestion());
@@ -149,9 +149,9 @@ public class TestExcelController {
 //		 			listone.set(sequence,sort.getQuestion());
 		 		}else if(sort.getType().getId() == 2){
 		 			int size = listtow.size();
-		 			System.out.println("sizeµÄ´óÐ¡ÊÇ£º"+size);
+		 			System.out.println("sizeï¿½Ä´ï¿½Ð¡ï¿½Ç£ï¿½"+size);
 		 			int sequence = sort.getSequence();
-		 			System.out.println("ÌâµÄÐòºÅÊÇ£º"+sequence);
+		 			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½"+sequence);
 		 			Question q = null;
 		 			if(size>=sequence){
 		 				listtow.set(sequence-1,sort.getQuestion());
@@ -165,9 +165,9 @@ public class TestExcelController {
 //		 			listtow.set(sequence,sort.getQuestion());
 		 		}else if(sort.getType().getId() == 3){
 		 			int size = listthree.size();
-		 			System.out.println("sizeµÄ´óÐ¡ÊÇ£º"+size);
+		 			System.out.println("sizeï¿½Ä´ï¿½Ð¡ï¿½Ç£ï¿½"+size);
 		 			int sequence = sort.getSequence();
-		 			System.out.println("ÌâµÄÐòºÅÊÇ£º"+sequence);
+		 			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½"+sequence);
 		 			Question q = null;
 		 			if(size>=sequence){
 		 				listthree.set(sequence-1,sort.getQuestion());
@@ -181,9 +181,9 @@ public class TestExcelController {
 //		 			listthree.set(sequence,sort.getQuestion());
 		 		}else if(sort.getType().getId() == 4){
 		 			int size = listfour.size();
-		 			System.out.println("sizeµÄ´óÐ¡ÊÇ£º"+size);
+		 			System.out.println("sizeï¿½Ä´ï¿½Ð¡ï¿½Ç£ï¿½"+size);
 		 			int sequence = sort.getSequence();
-		 			System.out.println("ÌâµÄÐòºÅÊÇ£º"+sequence);
+		 			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½"+sequence);
 		 			Question q = null;
 		 			if(size>=sequence){
 		 				listfour.set(sequence-1,sort.getQuestion());
@@ -197,9 +197,9 @@ public class TestExcelController {
 //		 			listfour.set(sequence,sort.getQuestion());
 		 		}else if(sort.getType().getId() == 5){
 		 			int size = listfive.size();
-		 			System.out.println("sizeµÄ´óÐ¡ÊÇ£º"+size);
+		 			System.out.println("sizeï¿½Ä´ï¿½Ð¡ï¿½Ç£ï¿½"+size);
 		 			int sequence = sort.getSequence();
-		 			System.out.println("ÌâµÄÐòºÅÊÇ£º"+sequence);
+		 			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½"+sequence);
 		 			Question q = null;
 		 			if(size>=sequence){
 		 				listfive.set(sequence-1,sort.getQuestion());
@@ -213,9 +213,9 @@ public class TestExcelController {
 //		 			listfive.set(sequence,sort.getQuestion());
 		 		}else if(sort.getType().getId() == 6){
 		 			int size = listsix.size();
-		 			System.out.println("sizeµÄ´óÐ¡ÊÇ£º"+size);
+		 			System.out.println("sizeï¿½Ä´ï¿½Ð¡ï¿½Ç£ï¿½"+size);
 		 			int sequence = sort.getSequence();
-		 			System.out.println("ÌâµÄÐòºÅÊÇ£º"+sequence);
+		 			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½"+sequence);
 		 			Question q = null;
 		 			if(size>=sequence){
 		 				listsix.set(sequence-1,sort.getQuestion());
@@ -229,9 +229,9 @@ public class TestExcelController {
 //		 			listsix.set(sequence,sort.getQuestion());
 		 		}else if(sort.getType().getId() == 7){
 		 			int size = listserve.size();
-		 			System.out.println("sizeµÄ´óÐ¡ÊÇ£º"+size);
+		 			System.out.println("sizeï¿½Ä´ï¿½Ð¡ï¿½Ç£ï¿½"+size);
 		 			int sequence = sort.getSequence();
-		 			System.out.println("ÌâµÄÐòºÅÊÇ£º"+sequence);
+		 			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½"+sequence);
 		 			Question q = null;
 		 			if(size>=sequence){
 		 				listserve.set(sequence-1,sort.getQuestion());
@@ -245,9 +245,9 @@ public class TestExcelController {
 //		 			listserve.set(sequence,sort.getQuestion());
 		 		}else if(sort.getType().getId() == 8){
 		 			int size = listeight.size();
-		 			System.out.println("sizeµÄ´óÐ¡ÊÇ£º"+size);
+		 			System.out.println("size:"+size);
 		 			int sequence = sort.getSequence();
-		 			System.out.println("ÌâµÄÐòºÅÊÇ£º"+sequence);
+		 			System.out.println("sequence:"+sequence);
 		 			Question q = null;
 		 			if(size>=sequence){
 		 				listeight.set(sequence-1,sort.getQuestion());
@@ -261,9 +261,9 @@ public class TestExcelController {
 //		 			listeight.set(sequence,sort.getQuestion());
 		 		}else if(sort.getType().getId() == 9){
 		 			int size = listnine.size();
-		 			System.out.println("sizeµÄ´óÐ¡ÊÇ£º"+size);
+		 			System.out.println("size"+size);
 		 			int sequence = sort.getSequence();
-		 			System.out.println("ÌâµÄÐòºÅÊÇ£º"+sequence);
+		 			System.out.println("sequence"+sequence);
 		 			Question q = null;
 		 			if(size>=sequence){
 		 				listnine.set(sequence-1,sort.getQuestion());
@@ -277,9 +277,9 @@ public class TestExcelController {
 //		 			listeight.set(sequence,sort.getQuestion());
 		 		}else{
 		 			int size = listten.size();
-		 			System.out.println("sizeµÄ´óÐ¡ÊÇ£º"+size);
+		 			System.out.println("size"+size);
 		 			int sequence = sort.getSequence();
-		 			System.out.println("ÌâµÄÐòºÅÊÇ£º"+sequence);
+		 			System.out.println("sequence"+sequence);
 		 			Question q = null;
 		 			if(size>=sequence){
 		 				listten.set(sequence-1,sort.getQuestion());
@@ -309,8 +309,8 @@ public class TestExcelController {
 		 	map.put("listten",listeight);
 		 
 		 	for(int k=0;k<10;k++){
-		 		System.out.println("¸÷ÌâÐÍµÄ×Ü·Ö"+listSumValue.get(k));
-		 		System.out.println("¸÷ÌâÐÍµÄ¸öÊý"+listNum.get(k));
+		 		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½Ü·ï¿½"+listSumValue.get(k));
+		 		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ÍµÄ¸ï¿½ï¿½ï¿½"+listNum.get(k));
 		 	}
 		 	map.put("listvalue",listpointvalue);
 		 	map.put("listSumValue",listSumValue);
@@ -320,13 +320,12 @@ public class TestExcelController {
 		 	
 		 	
 		 	
-		 // ÌáÊ¾£ºÔÚµ÷ÓÃ¹¤¾ßÀàÉú³ÉWordÎÄµµÖ®Ç°Ó¦µ±¼ì²éËùÓÐ×Ö¶ÎÊÇ·ñÍêÕû  
-	        // ·ñÔòFreemarkerµÄÄ£°åÒóÇÚÔÚ´¦ÀíÊ±¿ÉÄÜ»áÒòÎªÕÒ²»µ½Öµ¶ø±¨´í ÕâÀïÔÝÊ±ºöÂÔÕâ¸ö²½ÖèÁË  
+		
 	        File file = null;  
 	        InputStream fin = null;  
 	        ServletOutputStream out = null;  
 	        try {  
-	            // µ÷ÓÃ¹¤¾ßÀàWordGeneratorµÄcreateDoc·½·¨Éú³ÉWordÎÄµµ  
+	           
 	            file = ExcelGenerator.createDoc(map, "resume");  
 	            try {
 					fin = new FileInputStream(file);
@@ -337,7 +336,7 @@ public class TestExcelController {
 	              
 	            response.setCharacterEncoding("utf-8");  
 	            response.setContentType("application/msword");  
-	            // ÉèÖÃä¯ÀÀÆ÷ÒÔÏÂÔØµÄ·½Ê½´¦Àí¸ÃÎÄ¼þÄ¬ÈÏÃûÎªresume.doc  
+	           
 	            response.addHeader("Content-Disposition", "attachment;filename=resume.xls");  
 	            
 	            try {
@@ -346,9 +345,9 @@ public class TestExcelController {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}  
-	            byte[] buffer = new byte[512];  // »º³åÇø  
+	            byte[] buffer = new byte[512];  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
 	            int bytesToRead = -1;  
-	            // Í¨¹ýÑ­»·½«¶ÁÈëµÄWordÎÄ¼þµÄÄÚÈÝÊä³öµ½ä¯ÀÀÆ÷ÖÐ  
+	            
 	            try {
 					while((bytesToRead = fin.read(buffer)) != -1) {  
 					    try {
@@ -377,7 +376,7 @@ public class TestExcelController {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}  
-	            if(file != null) file.delete(); // É¾³ýÁÙÊ±ÎÄ¼þ  
+	            if(file != null) file.delete(); // É¾ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Ä¼ï¿½  
 	        }
 	    }  
 }
