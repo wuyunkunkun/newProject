@@ -81,27 +81,40 @@ function num(){
 	var pointValue1=document.getElementsByName("pointValue1");
 	if(isNaN(parseInt(num1[0].value))||isNaN(parseInt(pointValue1[0].value))){
 		document.getElementById("sum1").value="0";
+		document.getElementById("num1").checked = false;
 	}else{
 		var sum1 = parseInt(num1[0].value)*parseInt(pointValue1[0].value);
 		document.getElementById("sum1").value=sum1;
+
+		document.getElementById("num1").checked = true;
+
 	}
 	
 	var num2=document.getElementsByName("num2");
 	var pointValue2=document.getElementsByName("pointValue2");
 	if(isNaN(parseInt(num2[0].value))||isNaN(parseInt(pointValue2[0].value))){
 		document.getElementById("sum2").value="0";
+		document.getElementById("num2").checked = false;
 	}else{
 		var sum2 = parseInt(num2[0].value)*parseInt(pointValue2[0].value);
 		document.getElementById("sum2").value=sum2;
+
+		document.getElementById("num2").checked = true;
+		
 	}
 	
 	var num3=document.getElementsByName("num3");
 	var pointValue3=document.getElementsByName("pointValue3");
 	if(isNaN(parseInt(num3[0].value))||isNaN(parseInt(pointValue3[0].value))){
 		document.getElementById("sum3").value="0";
+		document.getElementById("num3").checked = false;
 	}else{
 		var sum3 = parseInt(num3[0].value)*parseInt(pointValue3[0].value);
 		document.getElementById("sum3").value=sum3;
+		
+
+		document.getElementById("num3").checked = true;
+		
 
 	}
 	
@@ -109,9 +122,13 @@ function num(){
 	var pointValue4=document.getElementsByName("pointValue4");
 	if(isNaN(parseInt(num4[0].value))||isNaN(parseInt(pointValue4[0].value))){
 		document.getElementById("sum4").value="0";
+		document.getElementById("num4").checked = false;
 	}else{
 		var sum4 = parseInt(num4[0].value)*parseInt(pointValue4[0].value);
 		document.getElementById("sum4").value=sum4;
+		
+		document.getElementById("num4").checked = true;
+		
 
 	}
 	
@@ -119,9 +136,13 @@ function num(){
 	var pointValue5=document.getElementsByName("pointValue5");
 	if(isNaN(parseInt(num5[0].value))||isNaN(parseInt(pointValue5[0].value))){
 		document.getElementById("sum5").value="0";
+		document.getElementById("num5").checked = false;
 	}else{
 		var sum5 = parseInt(num5[0].value)*parseInt(pointValue5[0].value);
 		document.getElementById("sum5").value=sum5;
+	
+		document.getElementById("num5").checked = true;
+		
 
 	}
 	
@@ -129,9 +150,13 @@ function num(){
 	var pointValue6=document.getElementsByName("pointValue6");
 	if(isNaN(parseInt(num6[0].value))||isNaN(parseInt(pointValue6[0].value))){
 		document.getElementById("sum6").value="0";
+		document.getElementById("num6").checked = false;
 	}else{
 		var sum6 = parseInt(num6[0].value)*parseInt(pointValue6[0].value);
 		document.getElementById("sum6").value=sum6;
+		
+		document.getElementById("num6").checked = true;
+		
 
 	}
 	
@@ -139,9 +164,13 @@ function num(){
 	var pointValue7=document.getElementsByName("pointValue7");
 	if(isNaN(parseInt(num7[0].value))||isNaN(parseInt(pointValue7[0].value))){
 		document.getElementById("sum7").value="0";
+		document.getElementById("num7").checked = false;
 	}else{
 		var sum7 = parseInt(num7[0].value)*parseInt(pointValue7[0].value);
 		document.getElementById("sum7").value=sum7;
+	
+		document.getElementById("num7").checked = true;
+		
 
 	}
 	
@@ -150,9 +179,13 @@ function num(){
 	var pointValue8=document.getElementsByName("pointValue8");
 	if(isNaN(parseInt(num8[0].value))||isNaN(parseInt(pointValue8[0].value))){
 		document.getElementById("sum8").value="0";
+		document.getElementById("num8").checked = false;
 	}else{
 		var sum8 = parseInt(num8[0].value)*parseInt(pointValue8[0].value);
 		document.getElementById("sum8").value=sum8;
+		
+		document.getElementById("num8").checked = true;
+
 
 	}
 	
@@ -161,9 +194,13 @@ function num(){
 	var pointValue9=document.getElementsByName("pointValue9");
 	if(isNaN(parseInt(num9[0].value))||isNaN(parseInt(pointValue9[0].value))){
 		document.getElementById("sum9").value="0";
+		document.getElementById("num9").checked = false;
 	}else{
 		var sum9 = parseInt(num9[0].value)*parseInt(pointValue9[0].value);
 		document.getElementById("sum9").value=sum9;
+		
+		document.getElementById("num9").checked = true;
+		
 
 	}
 	
@@ -172,9 +209,13 @@ function num(){
 	var pointValue10=document.getElementsByName("pointValue10");
 	if(isNaN(parseInt(num10[0].value))||isNaN(parseInt(pointValue10[0].value))){
 		document.getElementById("sum10").value="0";
+		document.getElementById("num10").checked = false;
 	}else{
 		var sum10 = parseInt(num10[0].value)*parseInt(pointValue10[0].value);
 		document.getElementById("sum10").value=sum10;
+		
+		document.getElementById("num10").checked = true;
+		
 
 	}
 	
@@ -232,10 +273,10 @@ table
                      </tr>
                     
                      <tr>
-                       <td class="fonts"><input type="checkbox"  class="checkboxs" name="checkboxs" />单项选择：</td><td>个数：<input type="text" name="num1" value="4" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue1" value="10" onblur ="num()"/>分</td><td>总分：<input width="5px" style="border:0px
+                       <td class="fonts"><input type="checkbox"  class="checkboxs" name="checkboxs" id = "num1"/>单项选择：</td><td>个数：<input type="text" name="num1" value="" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue1" value="" onblur ="num()"/>分</td><td>总分：<input width="5px" style="border:0px
                        " type="text" id="sum1"/><br/></td>
                      </tr><tr>
-                        <td class="fonts"><input type="checkbox" class="checkboxs" name="checkboxs"/>多项选择: </td><td>个数：<input type="text" name="num2" value="6" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue2" value="10" onblur ="num()"/>分</td><td>总分：<input style="border:0px
+                        <td class="fonts"><input type="checkbox" class="checkboxs" name="checkboxs" id = "num2"/>多项选择: </td><td>个数：<input type="text" name="num2" value="" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue2" value="" onblur ="num()"/>分</td><td>总分：<input style="border:0px
                        " type="text" id="sum2"/><br/></td>
                      </tr> 
                      <tr>
@@ -267,34 +308,34 @@ table
 
                      </tr>
                      <tr>
-                       <td class="fonts"><input type="checkbox" class="checkboxs" name="checkboxs" />填空: </td><td>个数：<input type="text" value="2" name="num3" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue3" value="9" onblur ="num()"/>分</td><td>总分：<input style="border:0px
+                       <td class="fonts"><input type="checkbox" class="checkboxs" name="checkboxs" id = "num3"/>填空: </td><td>个数：<input type="text" value="" name="num3" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue3" value="" onblur ="num()"/>分</td><td>总分：<input style="border:0px
                        " type="text"  id="sum3"/><br/></td>
                        </tr><tr>
-                       <td class="fonts"><input type="checkbox" class="checkboxs" name="checkboxs"/>判断: </td><td>个数：<input type="text" name="num4" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue4" onblur ="num()"/>分</td><td>总分：<input style="border:0px
+                       <td class="fonts"><input type="checkbox" class="checkboxs" name="checkboxs" id = "num4"/>判断: </td><td>个数：<input type="text" name="num4" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue4" onblur ="num()"/>分</td><td>总分：<input style="border:0px
                        " type="text"  id="sum4"/><br/></td>
                      </tr>      
                       
                      <tr>
-                       <td class="fonts"><input type="checkbox" class="checkboxs" name="checkboxs" />解释概念: </td><td>个数：<input type="text" name="num5" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue5" onblur ="num()"/>分</td><td>总分：<input style="border:0px
+                       <td class="fonts"><input type="checkbox" class="checkboxs" name="checkboxs" id = "num5"/>解释概念: </td><td>个数：<input type="text" name="num5" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue5" onblur ="num()"/>分</td><td>总分：<input style="border:0px
                        " type="text"  id="sum5"/><br/></td>
                        </tr><tr>
-                       <td class="fonts"><input type="checkbox" class="checkboxs" name="checkboxs"/>简答：</td><td>个数：<input type="text" name="num6" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue6" onblur ="num()"/>分</td><td>总分：<input style="border:0px
+                       <td class="fonts"><input type="checkbox" class="checkboxs" name="checkboxs" id = "num6"/>简答：</td><td>个数：<input type="text" name="num6" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue6" onblur ="num()"/>分</td><td>总分：<input style="border:0px
                        " type="text"  id="sum6"/><br/></td>
                      </tr>
                  	 
                      <tr>
-                       <td class="fonts"><input type="checkbox" class="checkboxs" name="checkboxs"/>论述:</td><td>个数：<input type="text" name="num7" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue7" onblur ="num()"/>分</td><td>总分：<input style="border:0px
+                       <td class="fonts"><input type="checkbox" class="checkboxs" name="checkboxs" id = "num7"/>论述:</td><td>个数：<input type="text" name="num7" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue7" onblur ="num()"/>分</td><td>总分：<input style="border:0px
                        " type="text"  id="sum7"/><br/></td>
                        </tr><tr>
-                        <td class="fonts"><input type="checkbox" class="checkboxs" name="checkboxs"/>计算:</td><td>个数：<input type="text" name="num8" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue8" onblur ="num()"/>分</td><td>总分：<input style="border:0px
+                        <td class="fonts"><input type="checkbox" class="checkboxs" name="checkboxs" id = "num8"/>计算:</td><td>个数：<input type="text" name="num8" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue8" onblur ="num()"/>分</td><td>总分：<input style="border:0px
                        " type="text"  id="sum8"/><br/></td>
                      </tr>
                      
                      <tr>
-                       <td class="fonts"><input type="checkbox" class="checkboxs"  name="checkboxs" />证明：</td><td>个数：<input type="text" name="num9" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue9" onblur ="num()"/>分</td><td>总分：<input style="border:0px
+                       <td class="fonts"><input type="checkbox" class="checkboxs"  name="checkboxs" id = "num9"/>证明：</td><td>个数：<input type="text" name="num9" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue9" onblur ="num()"/>分</td><td>总分：<input style="border:0px
                        " type="text"  id="sum9"/><br/></td>
                        </tr><tr>
-                       <td class="fonts"><input type="checkbox" class="checkboxs" name="checkboxs"/>其他:</td><td>个数：<input type="text" name="num10" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue10" onblur ="num()"/>分</td><td>总分：<input style="border:0px
+                       <td class="fonts"><input type="checkbox" class="checkboxs" name="checkboxs" id = "num10"/>其他:</td><td>个数：<input type="text" name="num10" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue10" onblur ="num()"/>分</td><td>总分：<input style="border:0px
                        " type="text"  id="sum10"/><br/></td>
                      </tr>
                      </table>

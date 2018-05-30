@@ -53,7 +53,7 @@ public class TestWordController {
 
 		 	Exam exam = (Exam)session.getAttribute("exam");
 	    	Set set = exam.getSorts();
-	    	ֵ
+	   
 	    	List<Integer> listPointValues=new ArrayList();
 	    	for(int l=0;l<10;l++){
 	    		listPointValues.add(0);
