@@ -72,7 +72,7 @@ public class CourseController {
 		Map map = new HashMap();
 
 		 String befileName = file.getOriginalFilename();  
-		 System.out.println("ԭ���ļ���������"+befileName);
+		 System.out.println("原来文件的名称是"+befileName);
 
 	     String fileExt = befileName.substring(befileName.lastIndexOf(".") + 1, befileName.length());  
 
@@ -122,7 +122,7 @@ public class CourseController {
 				int time = new Integer(courseTime);
 				String jieshao = request.getParameter("jieshao");
 				this.courseService.addCourse(cname,time,newFileName,jieshao,checkboxnames);
-				map.put("success","��ӿγ̳ɹ���");
+				map.put("success","添加课程成功！");
          }else{
         	 try {
 				fis.close();    
@@ -130,13 +130,13 @@ public class CourseController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-        	System.out.println("�ļ�̫��");
+        	System.out.println("文件太大");
         	File deleteFile = new File(uploadPathName);
         	if(deleteFile.exists()){
         		deleteFile.delete();
-        		System.out.println("ɾ���ļ��ɹ���");
+        		System.out.println("删除文件成功！");
         	}
-        	map.put("error","�ļ���С���ܳ���250*170��");
+        	map.put("error","文件大小不能超过250*170！");
         	 ObjectMapper mapper = new ObjectMapper();  
    	      try {
    			content = mapper.writeValueAsString(map);
@@ -177,7 +177,7 @@ public class CourseController {
 		Map map = new HashMap();
 
 		 String befileName = file.getOriginalFilename();  
-		 System.out.println("ԭ���ļ���������"+befileName);
+		 System.out.println("原来文件的名称是"+befileName);
 
 	     String fileExt = befileName.substring(befileName.lastIndexOf(".") + 1, befileName.length());  
  

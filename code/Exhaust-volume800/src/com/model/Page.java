@@ -3,30 +3,30 @@ package com.model;
 import java.util.List;
 
 public class Page<E> {
-    // ½á¹û¼¯
+	// ç»“æœé›†
     private List<E> list;
 
-    // ²éÑ¯¼ÇÂ¼×ÜÊı
+    // æŸ¥è¯¢è®°å½•æ€»æ•°
     private int totalRecords;
 
-    // Ã¿Ò³¶àÉÙÌõ¼ÇÂ¼
+    // æ¯é¡µå¤šå°‘æ¡è®°å½•
     private int pageSize;
 
-    // µÚ¼¸Ò³
+    // ç¬¬å‡ é¡µ
     private int pageNo;
     
     /**
-     * @return ×ÜÒ³Êı
+     * @return æ€»é¡µæ•°
      * */
     public int getTotalPages(){
         return (totalRecords+pageSize-1)/pageSize;
     }
     
     /**
-     * ¼ÆËãµ±Ç°Ò³¿ªÊ¼¼ÇÂ¼
-     * @param pageSize Ã¿Ò³¼ÇÂ¼Êı
-     * @param currentPage µ±Ç°µÚ¼¸Ò³
-     * @return µ±Ç°Ò³¿ªÊ¼¼ÇÂ¼ºÅ
+     * è®¡ç®—å½“å‰é¡µå¼€å§‹è®°å½•
+     * @param pageSize æ¯é¡µè®°å½•æ•°
+     * @param currentPage å½“å‰ç¬¬å‡ é¡µ
+     * @return å½“å‰é¡µå¼€å§‹è®°å½•å·
      */
     public int countOffset(int currentPage,int pageSize){
         int offset = pageSize*(currentPage-1);
@@ -34,14 +34,14 @@ public class Page<E> {
     }
     
     /**
-     * @return Ê×Ò³
+     * @return é¦–é¡µ
      * */
     public int getTopPageNo(){
         return 1;
     }
     
     /**
-     * @return ÉÏÒ»Ò³
+     * @return ä¸Šä¸€é¡µ
      * */
     public int getPreviousPageNo(){
         if(pageNo<=1){
@@ -51,7 +51,7 @@ public class Page<E> {
     }
     
     /**
-     * @return ÏÂÒ»Ò³
+     * @return ä¸‹ä¸€é¡µ
      * */
     public int getNextPageNo(){
         if(pageNo>=getBottomPageNo()){
@@ -61,7 +61,7 @@ public class Page<E> {
     }
     
     /**
-     * @return Î²Ò³
+     * @return å°¾é¡µ
      * */
     public int getBottomPageNo(){
         return getTotalPages();

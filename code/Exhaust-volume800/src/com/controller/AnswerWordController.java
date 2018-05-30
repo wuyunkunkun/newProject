@@ -84,7 +84,7 @@ public class AnswerWordController {
 		    	}
 		    }
 		    
-		    //�������͵���Ŀ��������
+		    //给各类型的题目进行排序
 		    for (Integer key : lh.keySet()) {  
 		    	ArrayList list=new ArrayList();
 		    	
@@ -109,7 +109,7 @@ public class AnswerWordController {
 		    	  }
 		    	
 		    	String t=this.AnswerWordService.looktype(key);
-		    	System.out.println("����"+t);
+		    	System.out.println("题型"+t);
 		    	lhs.put(t, list);
 	        }
 		    
@@ -130,7 +130,7 @@ public class AnswerWordController {
 	        InputStream fin = null;  
 	        ServletOutputStream out = null;  
 	        try {  
-	            // ���ù�����WordGenerator��createDoc��������Word�ĵ�  
+	        	// 调用工具类WordGenerator的createDoc方法生成Word文档  
 	            file = AnswerWordGenerator.createDoc(map, "resume");  
 	            try {
 					fin = new FileInputStream(file);
@@ -141,7 +141,7 @@ public class AnswerWordController {
 	              
 	            response.setCharacterEncoding("utf-8");  
 	            response.setContentType("application/msword");  
-	           
+	         // 设置浏览器以下载的方式处理该文件默认名为resume.doc
 	            response.addHeader("Content-Disposition", "attachment;filename=resume.doc");  
 	            
 	            try {
@@ -152,7 +152,7 @@ public class AnswerWordController {
 				}  
 	            byte[] buffer = new byte[512];  // ������  
 	            int bytesToRead = -1;  
-	            
+	            // 通过循环将读入的Word文件的内容输出到浏览器中
 	            try {
 					while((bytesToRead = fin.read(buffer)) != -1) {  
 					    try {
