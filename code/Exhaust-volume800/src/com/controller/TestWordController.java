@@ -1,4 +1,4 @@
-package com.controller;
+﻿package com.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -53,7 +53,11 @@ public class TestWordController {
 
 		 	Exam exam = (Exam)session.getAttribute("exam");
 	    	Set set = exam.getSorts();
+<<<<<<< HEAD
 	   
+=======
+	    	
+>>>>>>> 5e6c42d45275169e1f477f5bcff046db3c2d2139
 	    	List<Integer> listPointValues=new ArrayList();
 	    	for(int l=0;l<10;l++){
 	    		listPointValues.add(0);
