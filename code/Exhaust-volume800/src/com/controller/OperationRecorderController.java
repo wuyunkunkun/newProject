@@ -21,7 +21,7 @@ public class OperationRecorderController {
 	private OperationRecorderService operationRecorderService;
 	
 	/**
-	 * �������еļ�¼
+	 * 查找所有的记录
 	 * @param reqeust
 	 * @param pageNum
 	 * @return
@@ -36,7 +36,7 @@ public class OperationRecorderController {
 		return "record/OperationRecorder";
 	}
 	/**
-	 * ������ʦ��id���� 
+	 * 按照老师的id查找 
 	 * @param request
 	 * @param pageNum
 	 * @param t_id
@@ -67,7 +67,7 @@ public class OperationRecorderController {
 	}
 	
 	/**
-	 * ���ղ��������ͽ��в�ѯ
+	 * 按照操作的类型进行查询
 	 * @param request
 	 * @param pageNum
 	 * @param operationName
@@ -94,7 +94,7 @@ public class OperationRecorderController {
 	}
 
 	/**
-	 * ������ʦ����������
+	 * 按照老师的姓名进行
 	 * @param request
 	 * @param pageNum
 	 * @param TeacherName

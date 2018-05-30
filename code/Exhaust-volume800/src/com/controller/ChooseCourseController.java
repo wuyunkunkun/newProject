@@ -27,7 +27,7 @@ public class ChooseCourseController {
 		List <Chapter> chapterList = new ArrayList<Chapter>();
 		chapterList = chooseCourseService.chaptersList(id);
 		for(int i=0;i<chapterList.size();i++){
-			System.out.println("��ѯ�������½��ǣ�"+chapterList.get(i).getName());
+			System.out.println("查询出来的章节是："+chapterList.get(i).getName());
 		}
 		session.setAttribute("chapterList",chapterList);
 		return "exam/choose";

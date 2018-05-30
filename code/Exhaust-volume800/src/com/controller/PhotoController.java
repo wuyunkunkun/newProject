@@ -75,9 +75,9 @@ public class PhotoController {
 	      String teacher_id = request.getParameter("teacher_id");
 	      int t_id = new Integer(teacher_id);
 	     if(photoService.addPhoto(t_id,filename)){
-	    	map.put("success","ͷ�����óɹ���");
+	    	map.put("success","头像设置成功！");
 	     }else{
-	    	 map.put("error","ͷ������ʧ�ܣ�");
+	    	 map.put("error","头像设置失败！");
 	     }
 	     ObjectMapper mapper = new ObjectMapper();  
 	      try {
