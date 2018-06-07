@@ -380,7 +380,7 @@ public class ExamController {
 								System.out.println(questionNum[key]);
 								list.add(id);
 							}else{
-								String panduan = "����";
+								String panduan = "错误";
 								request.setAttribute("panduan",panduan);
 								return "forward:/exam/choose.jsp";
 							}
@@ -414,7 +414,7 @@ public class ExamController {
 					questionNum[m]--;
 					list.add(id);
 				}else{
-					String panduan = "����";
+					String panduan = "错误";
 					request.setAttribute("panduan",panduan);
 					return "forward:/exam/choose.jsp";
 				}

@@ -110,7 +110,7 @@ public class ExamDao {
 		String now=dateFormat.format(date);
 		e.setE_time(now);
 		e.setDesired(averageScore);
-		e.setTitle("йт╬М"+now);
+		e.setTitle("Х╞∙Е█╥"+now);
 		t.getExams().add(e);
 		e.setTeacher(t);
 		session.save(e);
@@ -134,7 +134,7 @@ public class ExamDao {
 		String now=dateFormat.format(date);
 		e.setE_time(now);
 		e.setDesired(0);
-		e.setTitle("йт╬М"+now);
+		e.setTitle("Х╞∙Е█╥"+now);
 		t.getExams().add(e);
 		e.setTeacher(t);
 		session.save(e);
