@@ -48,8 +48,6 @@ public class TestWordController {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}  
-		
-		 
 
 		 	Exam exam = (Exam)session.getAttribute("exam");
 	    	Set set = exam.getSorts();
