@@ -24,10 +24,11 @@
 			}
 			count = parseInt(count) + temp;
 		}
-
-		document.getElementsByName("count"+first)[0].value = count;
-
+		
+		document.getElementsByName("count" + first)[0].value = count;
+		
 	}
+	
 	
 	
 	
@@ -43,26 +44,26 @@
 	}
 	
 	
-function createDiv(name){
+function createDiv(name,chapter,number){
 		
 		var div = document.getElementById("dididi");
 		div1 = document.createElement("div");
 		div1.id = name;
 		var questionType;
-		if(numberhh == "1"){
+		if(number == "1"){
 			questionType = "选择题";
 			
-		}else if(numberhh == "2"){
+		}else if(number == "2"){
 			questionType = "简答";
 		}
-		var num = document.getElementsByName("input" + chapterhh + numberhh)[0].value;
+		var num = document.getElementsByName("input" + chapter + number)[0].value;
 		for(var i = 1; i <= num; i++){
 			var p = document.createElement("p");
 			p.innerHTML = questionType + i + "的分值是:"
 			var input = document.createElement("input");
-			
-			input.value = "0";
-			input.name = "divInput" + chapterhh + numberhh;
+			var questionScore = document.getElementsByName("questionScore" + number)[0].value;
+			input.value = questionScore;
+			input.name = "divInput" + chapter + number;
 			p.appendChild(input);
 			div1.appendChild(p);
 		}
@@ -70,7 +71,7 @@ function createDiv(name){
 		button.setAttribute("type","button");
 		button.setAttribute("value","确定");
 		button.onclick = function(){
-			hideDivhh();
+			hideDivhh(chapter,number);
 		}
 		div1.appendChild(button);
 		div.appendChild(div1);
@@ -84,17 +85,25 @@ function createDiv(name){
 		
 		var div1 = document.getElementById(name);
 		if(div1 == null){
-			createDiv(name);
+			createDiv(name,chapter,number);
 		}
 
 		showDiv("dididi");
 		showDiv(name);
 	}
 	
-	
-	function hideDivhh(){
+	function deleteNode(chapter,number){
+		var node = document.getElementById("div" + chapter + number);
+		if(node != null){
+			node.parentNode.removeChild(node);
+		}
 		
-		var nodes = document.getElementsByName("divInput" + chapterhh + numberhh);
+	}
+	
+	
+	function hideDivhh(chapter,number){
+		
+		var nodes = document.getElementsByName("divInput" + chapter + number);
 		var count = 0;
 		for(var i = 0; i < nodes.length; i++){
 			if(isNaN(nodes[i].value)){
@@ -102,25 +111,54 @@ function createDiv(name){
 			}
 			count = parseInt(count) + parseInt(nodes[i].value);
 		}
-		document.getElementsByName("everyScore" + chapterhh + numberhh)[0].value = count;
-		changeScore();
+		document.getElementsByName("everyScore" + chapter + number)[0].value = count;
+		changeScore(chapter);
 		
 		hideDiv("dididi");
-		hideDiv("div"+ chapterhh + numberhh);
+		hideDiv("div"+ chapter + number);
+		
+		
+		
 	}
-	function changeScore(){
+	function changeScore(chapter){
 		
 		var count = 0;
-		for(var i = 1; i <= 2; i++){
-			
-			count = parseInt(count) + parseInt(document.getElementsByName("everyScore"+chapterhh+i)[0].value);
+		for(var i = 1; i <= 10; i++){
+			count = parseInt(count) + parseInt(document.getElementsByName("everyScore"+chapter+i)[0].value);
 			
 		}
-		document.getElementsByName("score"+ chapterhh)[0].value = count;
+		document.getElementsByName("score"+ chapter)[0].value = count;
+		
+	}
+	
+	function changeEveryScore(chapter,number){
+		var questionScore = document.getElementsByName("questionScore" + number)[0].value;
+		var count = document.getElementsByName("input" + chapter + number)[0].value;
+		var score = parseInt(count) * parseInt(questionScore);
+		document.getElementsByName("everyScore" + chapter + number)[0].value = score;
+		changeScore(chapter);
 		
 	}
 	
 	
+	
+function change(chapter,number){
+		
+		countNumber(chapter,10);
+		changeEveryScore(chapter,number);
+		deleteNode(chapter,number);
+		
+	}
+
+function changeQuestionScore(number){
+	
+	for(var i = 1; i <= 9; i++){
+		changeEveryScore(i,number);
+	}
+	
+}
+
+
 </script>
 
 
@@ -132,6 +170,9 @@ function createDiv(name){
     	buttom:400px;   		
 		background-color:#ff3300;
  }
+ 	input{
+ 		width:20px;
+ 	}
 
 </style>
 
@@ -146,28 +187,45 @@ function createDiv(name){
 	<table>
 		<tr>
 			<th>	</th>
-			<th>单项选择</th>
-			<th>简答题</th>
+			<th>难度等级</th>
+			<th>单项选择 分值:<input type = "text" value = "2" name = "questionScore1" onchange = "changeQuestionScore(1)"></th>
+			<th>多项选择 分值:<input type = "text" value = "1" name = "questionScore2" onchange = "changeQuestionScore(2)"></th>
+			<th>填空 分值:<input type = "text" value = "1" name = "questionScore2" onchange = "changeQuestionScore(3)"></th>
+			<th>判断 分值:<input type = "text" value = "1" name = "questionScore2" onchange = "changeQuestionScore(4)"></th>
+			<th>解释概念 分值:<input type = "text" value = "1" name = "questionScore2" onchange = "changeQuestionScore(5)"></th>
+			<th>简答 分值:<input type = "text" value = "1" name = "questionScore2" onchange = "changeQuestionScore(6)"></th>
+			<th>论述 分值:<input type = "text" value = "1" name = "questionScore2" onchange = "changeQuestionScore(7)"></th>
+			<th>计算 分值:<input type = "text" value = "1" name = "questionScore2" onchange = "changeQuestionScore(8)"></th>
+			<th>证明 分值:<input type = "text" value = "1" name = "questionScore2" onchange = "changeQuestionScore(9)"></th>
+			<th>其他 分值:<input type = "text" value = "1" name = "questionScore2" onchange = "changeQuestionScore(10)"></th>
 			<th>总数</th>
 			<th>总分</th>
 		</tr>
 
 			
 			
-			<c:forEach var = "chapter" begin = "1" end = "10">
+			<c:forEach var = "chapter" items = "${chapterList}">
 				<tr>
 				
 					<td>
-						第<c:out value = "${chapter }"/>章
+						${chapter.name}
+					</td>
+					
+					<td>
+						<select>
+							<option value = "记忆">记忆</option>
+							<option value = "理解">理解</option>
+							<option value = "简单应用">简单应用</option>
+							<option value = "综合应用">综合应用</option>
+							<option value = "混合" checked = "checked">混合</option>
+						</select>
 					</td>
 					
 					
-					
-					<c:forEach var = "number" begin = "1" end = "2">
+					<c:forEach var = "number" begin = "1" end = "10">
 						<td>
-							
 							<c:set var="classNum" value="input${chapter}${number}"/>
-							<input type = "text" value = "0" name = "${classNum }"  onchange = "countNumber(${chapter},2)"/>
+							<input type = "text" value = "0" name = "${classNum }"  onchange = "change(${chapter},${number})"/>
 							<button onclick = "showDivhh(${chapter},${number})" >alter</button>	
 							<input type = "text" value = "0" style = "display:none;" name = "everyScore${chapter}${number}"/>
 						</td>
@@ -185,7 +243,7 @@ function createDiv(name){
 				
 				</tr>
 				
-			</c:forEach>
+		</c:forEach>
 			
 
 			

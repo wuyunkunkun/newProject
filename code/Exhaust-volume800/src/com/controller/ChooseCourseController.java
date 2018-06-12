@@ -30,6 +30,6 @@ public class ChooseCourseController {
 			System.out.println("查询出来的章节是："+chapterList.get(i).getName());
 		}
 		session.setAttribute("chapterList",chapterList);
-		return "exam/choose";
+		return "exam/chooseNew";
 	}
 }
