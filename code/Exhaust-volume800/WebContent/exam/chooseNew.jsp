@@ -190,14 +190,14 @@ function changeQuestionScore(number){
 			<th>难度等级</th>
 			<th>单项选择 分值:<input type = "text" value = "2" name = "questionScore1" onchange = "changeQuestionScore(1)"></th>
 			<th>多项选择 分值:<input type = "text" value = "1" name = "questionScore2" onchange = "changeQuestionScore(2)"></th>
-			<th>填空 分值:<input type = "text" value = "1" name = "questionScore2" onchange = "changeQuestionScore(3)"></th>
-			<th>判断 分值:<input type = "text" value = "1" name = "questionScore2" onchange = "changeQuestionScore(4)"></th>
-			<th>解释概念 分值:<input type = "text" value = "1" name = "questionScore2" onchange = "changeQuestionScore(5)"></th>
-			<th>简答 分值:<input type = "text" value = "1" name = "questionScore2" onchange = "changeQuestionScore(6)"></th>
-			<th>论述 分值:<input type = "text" value = "1" name = "questionScore2" onchange = "changeQuestionScore(7)"></th>
-			<th>计算 分值:<input type = "text" value = "1" name = "questionScore2" onchange = "changeQuestionScore(8)"></th>
-			<th>证明 分值:<input type = "text" value = "1" name = "questionScore2" onchange = "changeQuestionScore(9)"></th>
-			<th>其他 分值:<input type = "text" value = "1" name = "questionScore2" onchange = "changeQuestionScore(10)"></th>
+			<th>填空 分值:<input type = "text" value = "1" name = "questionScore3" onchange = "changeQuestionScore(3)"></th>
+			<th>判断 分值:<input type = "text" value = "1" name = "questionScore4" onchange = "changeQuestionScore(4)"></th>
+			<th>解释概念 分值:<input type = "text" value = "1" name = "questionScore5" onchange = "changeQuestionScore(5)"></th>
+			<th>简答 分值:<input type = "text" value = "1" name = "questionScore6" onchange = "changeQuestionScore(6)"></th>
+			<th>论述 分值:<input type = "text" value = "1" name = "questionScore7" onchange = "changeQuestionScore(7)"></th>
+			<th>计算 分值:<input type = "text" value = "1" name = "questionScore8" onchange = "changeQuestionScore(8)"></th>
+			<th>证明 分值:<input type = "text" value = "1" name = "questionScore9" onchange = "changeQuestionScore(9)"></th>
+			<th>其他 分值:<input type = "text" value = "1" name = "questionScore10" onchange = "changeQuestionScore(10)"></th>
 			<th>总数</th>
 			<th>总分</th>
 		</tr>
@@ -225,18 +225,18 @@ function changeQuestionScore(number){
 					<c:forEach var = "number" begin = "1" end = "10">
 						<td>
 							<c:set var="classNum" value="input${chapter}${number}"/>
-							<input type = "text" value = "0" name = "${classNum }"  onchange = "change(${chapter},${number})"/>
+							<input type = "text" value = "0" name = "${classNum }"  onchange = "change(${chapter.id},${number})"/>
 							<button onclick = "showDivhh(${chapter},${number})" >alter</button>	
-							<input type = "text" value = "0" style = "display:none;" name = "everyScore${chapter}${number}"/>
+							<input type = "text" value = "0" style = "display:none;" name = "everyScore${chapter.id}${number}"/>
 						</td>
 					</c:forEach>
 									
 					<td>
-						<input type = "text" value = "0" name = "count${chapter}"/>
+						<input type = "text" value = "0" name = "count${chapter.id}"/>
 						
 					</td>
 					<td>
-						<input type = "text" value = "0" name = "score${chapter}"> 
+						<input type = "text" value = "0" name = "score${chapter.id}"> 
 					</td>
 				<td>
 				
@@ -244,12 +244,29 @@ function changeQuestionScore(number){
 				</tr>
 				
 		</c:forEach>
-			
+		<tr>
+			<td>合计</td>
+			<td></td>
+			<td><input type = "text"/></td>
+			<td><input type = "text"/></td>
+			<td><input type = "text"/></td>
+			<td><input type = "text"/></td>
+			<td><input type = "text"/></td>
+			<td><input type = "text"/></td>
+			<td><input type = "text"/></td>
+			<td><input type = "text"/></td>
+			<td><input type = "text"/></td>
+			<td><input type = "text"/></td>
+			<td><input type = "text"/></td>
+			<td><input type = "text"/></td>
+		</tr>
 
 			
 	</table>
 	<div id = "dididi">
-
+	
+	
+	
 	</div>
 </body>
 </html>

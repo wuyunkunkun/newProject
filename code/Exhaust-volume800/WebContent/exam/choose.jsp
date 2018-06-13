@@ -358,7 +358,6 @@ table
  					  		</c:if>
  					  		<c:set var="i" value="${i+1 }"/>
  					  	<td class="fonts">
- 					  		
  					  			${chapter.name }:
  					  	</td>
  					  	<td class="fonts"><input type="text" name="chapter" value=""/>分
