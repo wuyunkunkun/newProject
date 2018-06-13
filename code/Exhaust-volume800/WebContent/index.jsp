@@ -29,7 +29,7 @@
         	<section class="vbox">
           		<section class="scrollable padder">
             		<ul class="breadcrumb no-border no-radius b-b b-light pull-in">
-              			<li><a href="${ctx }/exam/zujuan_kecheng.jsp"><i class="fa fa-home"></i> 组卷系统</a></li>
+              			<li><a href="${ctx } /exam/zujuan_kecheng.jsp"><i class="fa fa-home"></i> 组卷系统</a></li>
             		</ul>
             	 <iframe frameborder="0" style="margin-top:0px; height: 631px;"
           			  width="1215" id="mainFrame" name="mainFrame" src="${ctx }/welcome.jsp">
