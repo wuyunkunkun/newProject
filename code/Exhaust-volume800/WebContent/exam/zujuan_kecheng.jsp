@@ -25,7 +25,7 @@
         	<section class="vbox">
           		<section class="scrollable padder">
             		<div class="m-b-md">
-              			<h3 class="m-b-none"><a href="${ctx }/question/preview">组卷系统</a></h3>
+              			<h3 class="m-b-none"><a href="${ctx }/exam/zujuan_kecheng.jsp">组卷系统</a></h3>
               			<small>Welcome back, ${teacher.name }</small>
             		</div>
             		<section class="panel panel-default">

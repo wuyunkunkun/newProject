@@ -189,6 +189,7 @@ public class TeacherController {
 	}
 	
 	
+	
 	//更改验证码
 	@RequestMapping("generatecheckcode")
 	public void generateCheckCode(HttpServletRequest request, HttpServletResponse response){
