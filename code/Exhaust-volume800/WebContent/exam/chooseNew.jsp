@@ -7,13 +7,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link rel="stylesheet" href="${ctx }/css/app.v2.css" type="text/css" />
+<link rel="stylesheet" href="${ctx }/css/zujuan_kecheng.css" type="text/css" />
+<link rel="stylesheet" href="${ctx }/js/calendar/bootstrap_calendar.css" type="text/css" cache="false" />
+<link href="css/zujuan_kecheng.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 
 	
 	var chapterhh;
 	var numberhh;
 	function countNumber(first,second){
-
 		var value = 0;
 		var count = 0;
 		for(var i = 1; i <= second; i++){
@@ -29,7 +34,22 @@
 		
 	}
 	
-	
+	function countNumbers(number,chapterNumber){
+		var count = 0;
+		chapterNumber = parseInt(chapterNumber);
+		
+		for(var i = 1; i <= chapterNumber; i++){
+			var clcl = "input" + i + number;
+			var temp = parseInt(document.getElementsByName(clcl)[0].value);
+			if(isNaN(temp)){
+				temp = 0;
+			}
+			count = parseInt(count) + temp;
+			
+		}
+		
+		document.getElementsByName("counts" + number)[0].value = count;
+	}
 	
 	
 	
@@ -113,7 +133,8 @@ function createDiv(name,chapter,number){
 		}
 		document.getElementsByName("everyScore" + chapter + number)[0].value = count;
 		changeScore(chapter);
-		
+		changeScores(8,number);
+		changeSum(10);
 		hideDiv("dididi");
 		hideDiv("div"+ chapter + number);
 		
@@ -131,6 +152,16 @@ function createDiv(name,chapter,number){
 		
 	}
 	
+	
+	function changeScores(chapterNumber,number){
+		var count = 0;
+		for(var i = 1; i <= parseInt(chapterNumber); i++){
+			count = parseInt(count) + parseInt(document.getElementsByName("everyScore" + i + number)[0].value);
+		}
+
+		document.getElementsByName("scores" + number)[0].value = count;
+	}
+	
 	function changeEveryScore(chapter,number){
 		var questionScore = document.getElementsByName("questionScore" + number)[0].value;
 		var count = document.getElementsByName("input" + chapter + number)[0].value;
@@ -140,12 +171,29 @@ function createDiv(name,chapter,number){
 		
 	}
 	
+	function changeSum(number){
+		var count = 0;
+		var score = 0;
+		for(var i = 1; i <= parseInt(number); i++){
+			count = parseInt(count) + parseInt(document.getElementsByName("counts" + i)[0].value);
+
+			score = parseInt(score) + parseInt(document.getElementsByName("scores" + i)[0].value);
+		}
+
+
+		document.getElementsByName("sumCount")[0].value = count;
+		document.getElementsByName("sumScore")[0].value = score;
+		
+	}
 	
 	
 function change(chapter,number){
 		
 		countNumber(chapter,10);
+		countNumbers(number,8);
 		changeEveryScore(chapter,number);
+		changeScores(8,number);
+		changeSum(8);
 		deleteNode(chapter,number);
 		
 	}
@@ -183,8 +231,21 @@ function changeQuestionScore(number){
 		//List<String> chapter = new ArrayList<String>();
 		
 	%>
-
+	
+	<jsp:include page="../aside.jsp"/>
+	
+	
 	<table>
+	
+		<tr>
+			<td>
+				预期分数
+			</td>
+			<td>
+				<input type = "text"  name = "anticipate" value = "75"/>
+			</td>
+		</tr>
+	
 		<tr>
 			<th>	</th>
 			<th>难度等级</th>
@@ -201,9 +262,10 @@ function changeQuestionScore(number){
 			<th>总数</th>
 			<th>总分</th>
 		</tr>
-
-			
-			
+		
+		
+		
+		
 			<c:forEach var = "chapter" items = "${chapterList}">
 				<tr>
 				
@@ -224,9 +286,9 @@ function changeQuestionScore(number){
 					
 					<c:forEach var = "number" begin = "1" end = "10">
 						<td>
-							<c:set var="classNum" value="input${chapter}${number}"/>
+							<c:set var="classNum" value="input${chapter.id}${number}"/>
 							<input type = "text" value = "0" name = "${classNum }"  onchange = "change(${chapter.id},${number})"/>
-							<button onclick = "showDivhh(${chapter},${number})" >alter</button>	
+							<button onclick = "showDivhh(${chapter.id},${number})" >alter</button>	
 							<input type = "text" value = "0" style = "display:none;" name = "everyScore${chapter.id}${number}"/>
 						</td>
 					</c:forEach>
@@ -245,28 +307,36 @@ function changeQuestionScore(number){
 				
 		</c:forEach>
 		<tr>
-			<td>合计</td>
+			<td>合计个数</td>
 			<td></td>
-			<td><input type = "text"/></td>
-			<td><input type = "text"/></td>
-			<td><input type = "text"/></td>
-			<td><input type = "text"/></td>
-			<td><input type = "text"/></td>
-			<td><input type = "text"/></td>
-			<td><input type = "text"/></td>
-			<td><input type = "text"/></td>
-			<td><input type = "text"/></td>
-			<td><input type = "text"/></td>
-			<td><input type = "text"/></td>
-			<td><input type = "text"/></td>
+			
+			<c:forEach var = "i" begin = "1" end = "10">
+				<td><input type = "text" value = "0" name = "counts${i}"/></td>
+			</c:forEach>	
+			<td>
+				<input type = "text" name = "sumCount" value = "0"/>
+			</td>
+		</tr>
+		<tr>
+			<td>合计分数</td>
+			<td></td>
+			
+			<c:forEach var = "i" begin = "1" end = "10">
+				<td><input type = "text" value = "0" name = "scores${i}" /></td>
+			</c:forEach>
+			<td>
+				<input type = "text" name = "sumScore" value = "0"/>
+			</td>
 		</tr>
 
 			
 	</table>
+	
+	<button>生成试卷</button>
+	
 	<div id = "dididi">
-	
-	
-	
+
+
 	</div>
 </body>
 </html>
