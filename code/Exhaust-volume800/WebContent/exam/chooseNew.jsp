@@ -274,7 +274,7 @@ function changeQuestionScore(number){
 					</td>
 					
 					<td>
-						<select>
+						<select name="level">
 							<option value = "记忆">记忆</option>
 							<option value = "理解">理解</option>
 							<option value = "简单应用">简单应用</option>

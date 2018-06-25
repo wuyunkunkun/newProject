@@ -424,6 +424,55 @@ public class ExamController {
 		examService.generatePaper(teacher,list,list1,averageScore);
 		return "redirect:/exam/listExam";
 	}
+	@RequestMapping(value = "createExamNew", method = RequestMethod.POST)
+	public String createExamNew(HttpServletRequest request,HttpSession session) {
+		Teacher teacher=(Teacher)session.getAttribute("teacher");
+		List chapter=(List) session.getAttribute("chapterList");
+		List score= new ArrayList();
+		for(int i=0;i<10;i++) {
+			String qscore = request.getParameter("changeQuestionScore("+i+")");
+			if(qscore.equals(null) || qscore==""){
+				score.add(0);
+			}else{
+				Integer temp = Integer.parseInt(qscore);
+				score.add(temp);
+			}
+		}
+		int n=chapter.size();
+		int[] l=new int[n];
+		int[][] a=new int[10][n];
+		for(int i=0;i<a.length;i++) {
+			for(int j=0;j<a[i].length;j++) {
+				String num=request.getParameter("input"+j+i);
+				a[i][j]=Integer.parseInt(num);
+				String lev=request.getParameter("level");
+				if(lev=="记忆") {
+					l[j]=1;
+				}else if(lev=="理解") {
+					l[j]=2;
+				}else if(lev=="简单应用") {
+					l[j]=3;
+				}else {
+					l[j]=4;
+				}
+			}
+		}
+		int id=0;
+		List<Integer> list = new ArrayList<Integer>();
+		for(int i=0;i<a.length;i++) {
+			for(int j=0;j<a[i].length;j++) {
+				while(a[i][j]!=0) {
+					id = this.examService.exam(i, j, l[j],list);
+					list.add(id);
+					a[i][j]--;
+				}
+				
+			}
+		}
+		Double averageScore = Double.parseDouble(request.getParameter("anticipate"));
+		examService.generatePaper(teacher,list,score,averageScore);
+		return "redirect:/exam/listExam";
+	}
 	@RequestMapping(value = "regulation")
 	public String regulation(HttpServletRequest request,HttpSession session){
 		System.out.println("enter ExamController's regulation");
