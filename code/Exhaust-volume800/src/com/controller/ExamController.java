@@ -429,8 +429,8 @@ public class ExamController {
 		Teacher teacher=(Teacher)session.getAttribute("teacher");
 		List chapter=(List) session.getAttribute("chapterList");
 		List score= new ArrayList();
-		for(int i=0;i<10;i++) {
-			String qscore = request.getParameter("changeQuestionScore("+i+")");
+		for(int i=1;i<11;i++) {
+			String qscore = request.getParameter("questionScore"+i);
 			if(qscore.equals(null) || qscore==""){
 				score.add(0);
 			}else{
@@ -439,10 +439,10 @@ public class ExamController {
 			}
 		}
 		int n=chapter.size();
-		int[] l=new int[n];
-		int[][] a=new int[10][n];
-		for(int i=0;i<a.length;i++) {
-			for(int j=0;j<a[i].length;j++) {
+		int[] l=new int[n+1];
+		int[][] a=new int[11][n+1];
+		for(int i=1;i<a.length;i++) {
+			for(int j=1;j<a[i].length;j++) {
 				String num=request.getParameter("input"+j+i);
 				a[i][j]=Integer.parseInt(num);
 				String lev=request.getParameter("level");
@@ -459,8 +459,8 @@ public class ExamController {
 		}
 		int id=0;
 		List<Integer> list = new ArrayList<Integer>();
-		for(int i=0;i<a.length;i++) {
-			for(int j=0;j<a[i].length;j++) {
+		for(int i=1;i<a.length;i++) {
+			for(int j=1;j<a[i].length;j++) {
 				while(a[i][j]!=0) {
 					id = this.examService.exam(i, j, l[j],list);
 					list.add(id);
