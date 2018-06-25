@@ -474,7 +474,7 @@ input
  					</div>  
             		
             		<section class="panel panel-default">
-            		 <%-- <form action="${ctx }/exam/createExam" method="post" onsubmit="return submits();" id="myform" name="myform"> --%>
+            		 <form action="${ctx }/exam/createExamNew" method="post" onsubmit="return submits();" id="myform" name="myform"> 
                     <table class="insert-tab" width="100%">
        					
        					<tr>
