@@ -227,6 +227,204 @@ window.onload=function(){
 	  }
 	}
 </script>
+
+
+
+<script type="text/javascript">
+
+	
+	var chapterhh;
+	var numberhh;
+	function countNumber(first,second){
+		var value = 0;
+		var count = 0;
+		for(var i = 1; i <= second; i++){
+			var clcl = "input" + first + i;
+			var temp = parseInt(document.getElementsByName(clcl)[0].value);
+			if(isNaN(temp)){
+				temp = 0;
+			}
+			count = parseInt(count) + temp;
+		}
+		
+		document.getElementsByName("count" + first)[0].value = count;
+		
+	}
+	
+	function countNumbers(number,chapterNumber){
+		var count = 0;
+		chapterNumber = parseInt(chapterNumber);
+		
+		for(var i = 1; i <= chapterNumber; i++){
+			var clcl = "input" + i + number;
+			var temp = parseInt(document.getElementsByName(clcl)[0].value);
+			if(isNaN(temp)){
+				temp = 0;
+			}
+			count = parseInt(count) + temp;
+			
+		}
+		
+		document.getElementsByName("counts" + number)[0].value = count;
+	}
+	
+	
+	
+	
+	
+	
+	function showDiv(id){
+		document.getElementById(id).style.display = "block";
+	}
+	function hideDiv(id){
+		document.getElementById(id).style.display = "none";
+	}
+	
+	
+function createDiv(name,chapter,number){
+		alert("fdjkjfk");
+		var div = document.getElementById("dididi");
+		div1 = document.createElement("div");
+		div1.id = name;
+		var questionType;
+		if(number == "1"){
+			questionType = "选择题";
+			
+		}else if(number == "2"){
+			questionType = "简答";
+		}
+		var num = document.getElementsByName("input" + chapter + number)[0].value;
+		for(var i = 1; i <= num; i++){
+			var p = document.createElement("p");
+			p.innerHTML = questionType + i + "的分值是:"
+			var input = document.createElement("input");
+			var questionScore = document.getElementsByName("questionScore" + number)[0].value;
+			input.value = questionScore;
+			input.name = "divInput" + chapter + number;
+			p.appendChild(input);
+			div1.appendChild(p);
+		}
+		var button = document.createElement("input");
+		button.setAttribute("type","button");
+		button.setAttribute("value","确定");
+		button.onclick = function(){
+			hideDivhh(chapter,number);
+		}
+		div1.appendChild(button);
+		div.appendChild(div1);
+	}
+	
+	
+	function showDivhh(chapter,number){
+		chapterhh = chapter;
+		numberhh = number;
+		var name = "div" + chapterhh + numberhh;
+		
+		var div1 = document.getElementById(name);
+		if(div1 == null){
+			createDiv(name,chapter,number);
+		}
+
+		showDiv("dididi");
+		showDiv(name);
+	}
+	
+	function deleteNode(chapter,number){
+		var node = document.getElementById("div" + chapter + number);
+		if(node != null){
+			node.parentNode.removeChild(node);
+		}
+		
+	}
+	
+	
+	function hideDivhh(chapter,number){
+		
+		var nodes = document.getElementsByName("divInput" + chapter + number);
+		var count = 0;
+		for(var i = 0; i < nodes.length; i++){
+			if(isNaN(nodes[i].value)){
+				nodes[i].value = 0;
+			}
+			count = parseInt(count) + parseInt(nodes[i].value);
+		}
+		document.getElementsByName("everyScore" + chapter + number)[0].value = count;
+		changeScore(chapter);
+		changeScores(8,number);
+		changeSum(10);
+		hideDiv("dididi");
+		hideDiv("div"+ chapter + number);
+		
+		
+		
+	}
+	function changeScore(chapter){
+		
+		var count = 0;
+		for(var i = 1; i <= 10; i++){
+			count = parseInt(count) + parseInt(document.getElementsByName("everyScore"+chapter+i)[0].value);
+			
+		}
+		document.getElementsByName("score"+ chapter)[0].value = count;
+		
+	}
+	
+	
+	function changeScores(chapterNumber,number){
+		var count = 0;
+		for(var i = 1; i <= parseInt(chapterNumber); i++){
+			count = parseInt(count) + parseInt(document.getElementsByName("everyScore" + i + number)[0].value);
+		}
+
+		document.getElementsByName("scores" + number)[0].value = count;
+	}
+	
+	function changeEveryScore(chapter,number){
+		var questionScore = document.getElementsByName("questionScore" + number)[0].value;
+		var count = document.getElementsByName("input" + chapter + number)[0].value;
+		var score = parseInt(count) * parseInt(questionScore);
+		document.getElementsByName("everyScore" + chapter + number)[0].value = score;
+		changeScore(chapter);
+		
+	}
+	
+	function changeSum(number){
+		var count = 0;
+		var score = 0;
+		for(var i = 1; i <= parseInt(number); i++){
+			count = parseInt(count) + parseInt(document.getElementsByName("counts" + i)[0].value);
+
+			score = parseInt(score) + parseInt(document.getElementsByName("scores" + i)[0].value);
+		}
+
+
+		document.getElementsByName("sumCount")[0].value = count;
+		document.getElementsByName("sumScore")[0].value = score;
+		
+	}
+	
+	
+function change(chapter,number){
+		
+		countNumber(chapter,10);
+		countNumbers(number,8);
+		changeEveryScore(chapter,number);
+		changeScores(8,number);
+		changeSum(8);
+		deleteNode(chapter,number);
+		
+	}
+
+function changeQuestionScore(number){
+	
+	for(var i = 1; i <= 9; i++){
+		changeEveryScore(i,number);
+	}
+	
+}
+
+
+</script>
 <style> 
 #ch_sub{
 	clear:both;
@@ -244,6 +442,19 @@ window.onload=function(){
 }
 table 
   {   border-collapse:   separate;   border-spacing:   7px; background-color:#E6E6FA  } 
+  
+input
+{ width:60px}
+
+#dididi { 
+    	display:none;
+    	position:absolute;
+    	right:800px;
+    	top:400px;   		
+		background-color:#ff3300;
+		width:200px;
+ }
+
 </style> 
 </head>
 <body>
@@ -263,113 +474,114 @@ table
  					</div>  
             		
             		<section class="panel panel-default">
-            		 <form action="${ctx }/exam/createExam" method="post" onsubmit="return submits();" id="myform" name="myform">
+            		 <%-- <form action="${ctx }/exam/createExam" method="post" onsubmit="return submits();" id="myform" name="myform"> --%>
                     <table class="insert-tab" width="100%">
-                    <tr>
-                    	<td><input type="hidden" id="splits" name="splits" value=""/></td>
-                    </tr>
-                     <tr>
-                       <td class="fonts">教师期望的平均分：</td><td>分值：<input type="text" name="averageScore" value="50"/></td>
-                     </tr>
-                    
-                     <tr>
-                       <td class="fonts"><input type="checkbox"  class="checkboxs" name="checkboxs" id = "num1"/>单项选择：</td><td>个数：<input type="text" name="num1" value="" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue1" value="" onblur ="num()"/>分</td><td>总分：<input width="5px" style="border:0px
-                       " type="text" id="sum1"/><br/></td>
-                     </tr><tr>
-                        <td class="fonts"><input type="checkbox" class="checkboxs" name="checkboxs" id = "num2"/>多项选择: </td><td>个数：<input type="text" name="num2" value="" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue2" value="" onblur ="num()"/>分</td><td>总分：<input style="border:0px
-                       " type="text" id="sum2"/><br/></td>
-                     </tr> 
-                     <tr>
-                     	<td>
-                     	
-	<div class="load8" name="loading" id="load8s">
-  			<div class="load8-container container1">
-    			<div class="circle1"></div>
-    			<div class="circle2"></div>
-    			<div class="circle3"></div>
-    			<div class="circle4"></div>
-  			</div>
-  			<div class="load8-container container2">
-    			<div class="circle1"></div>
-    			<div class="circle2"></div>
-    			<div class="circle3"></div>
-    			<div class="circle4"></div>
-  			</div>
-  			<div class="load8-container container3">
-    			<div class="circle1"></div>
-    			<div class="circle2"></div>
-    			<div class="circle3"></div>
-    			<div class="circle4"></div>
-  			</div>
-		</div>
+       					
+       					<tr>
+			<td>
+				预期分数
+			</td>
+			<td>
+				<input type = "text"  name = "anticipate" value = "75"/>
+			</td>
+		</tr>
+	
+		<tr>
+			<th>	</th>
+			<th>难度等级</th>
+			<th>单项选择 分值:<input type = "text" value = "2" name = "questionScore1" onchange = "changeQuestionScore(1)"></th>
+			<th>多项选择 分值:<input type = "text" value = "1" name = "questionScore2" onchange = "changeQuestionScore(2)"></th>
+			<th>填空 分值:<input type = "text" value = "1" name = "questionScore3" onchange = "changeQuestionScore(3)"></th>
+			<th>判断 分值:<input type = "text" value = "1" name = "questionScore4" onchange = "changeQuestionScore(4)"></th>
+			<th>解释概念 分值:<input type = "text" value = "1" name = "questionScore5" onchange = "changeQuestionScore(5)"></th>
+			<th>简答 分值:<input type = "text" value = "1" name = "questionScore6" onchange = "changeQuestionScore(6)"></th>
+			<th>论述 分值:<input type = "text" value = "1" name = "questionScore7" onchange = "changeQuestionScore(7)"></th>
+			<th>计算 分值:<input type = "text" value = "1" name = "questionScore8" onchange = "changeQuestionScore(8)"></th>
+			<th>证明 分值:<input type = "text" value = "1" name = "questionScore9" onchange = "changeQuestionScore(9)"></th>
+			<th>其他 分值:<input type = "text" value = "1" name = "questionScore10" onchange = "changeQuestionScore(10)"></th>
+			<th>总数</th>
+			<th>总分</th>
+		</tr>
 		
-
-                     	</td>
-
-                     </tr>
-                     <tr>
-                       <td class="fonts"><input type="checkbox" class="checkboxs" name="checkboxs" id = "num3"/>填空: </td><td>个数：<input type="text" value="" name="num3" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue3" value="" onblur ="num()"/>分</td><td>总分：<input style="border:0px
-                       " type="text"  id="sum3"/><br/></td>
-                       </tr><tr>
-                       <td class="fonts"><input type="checkbox" class="checkboxs" name="checkboxs" id = "num4"/>判断: </td><td>个数：<input type="text" name="num4" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue4" onblur ="num()"/>分</td><td>总分：<input style="border:0px
-                       " type="text"  id="sum4"/><br/></td>
-                     </tr>      
-                      
-                     <tr>
-                       <td class="fonts"><input type="checkbox" class="checkboxs" name="checkboxs" id = "num5"/>解释概念: </td><td>个数：<input type="text" name="num5" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue5" onblur ="num()"/>分</td><td>总分：<input style="border:0px
-                       " type="text"  id="sum5"/><br/></td>
-                       </tr><tr>
-                       <td class="fonts"><input type="checkbox" class="checkboxs" name="checkboxs" id = "num6"/>简答：</td><td>个数：<input type="text" name="num6" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue6" onblur ="num()"/>分</td><td>总分：<input style="border:0px
-                       " type="text"  id="sum6"/><br/></td>
-                     </tr>
-                 	 
-                     <tr>
-                       <td class="fonts"><input type="checkbox" class="checkboxs" name="checkboxs" id = "num7"/>论述:</td><td>个数：<input type="text" name="num7" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue7" onblur ="num()"/>分</td><td>总分：<input style="border:0px
-                       " type="text"  id="sum7"/><br/></td>
-                       </tr><tr>
-                        <td class="fonts"><input type="checkbox" class="checkboxs" name="checkboxs" id = "num8"/>计算:</td><td>个数：<input type="text" name="num8" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue8" onblur ="num()"/>分</td><td>总分：<input style="border:0px
-                       " type="text"  id="sum8"/><br/></td>
-                     </tr>
-                     
-                     <tr>
-                       <td class="fonts"><input type="checkbox" class="checkboxs"  name="checkboxs" id = "num9"/>证明：</td><td>个数：<input type="text" name="num9" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue9" onblur ="num()"/>分</td><td>总分：<input style="border:0px
-                       " type="text"  id="sum9"/><br/></td>
-                       </tr><tr>
-                       <td class="fonts"><input type="checkbox" class="checkboxs" name="checkboxs" id = "num10"/>其他:</td><td>个数：<input type="text" name="num10" onblur ="num()"/></td><td>分值：<input type="text" name="pointValue10" onblur ="num()"/>分</td><td>总分：<input style="border:0px
-                       " type="text"  id="sum10"/><br/></td>
-                     </tr>
-                     </table>
-                     <table class="insert-tab" width="100%">
-                     <tr>
-                     <td>
-                      <div class="m-b-md">
-     						<h4 class="m-b-none">章节</h3>      
- 					  </div> 
- 					  </td>
- 					  </tr>
- 					  <tr>
- 					  	<td><input type="hidden" id="chapters" name="chapters" value=""/></td>
- 					  </tr>
- 					 
- 					  	<c:set var="i" value="${0 }"/>
- 					  	<c:forEach items="${chapterList }" var="chapter">
- 					  		<c:if test="${i==0 }">
- 					  			<tr>
- 					  		</c:if>
- 					  		<c:set var="i" value="${i+1 }"/>
- 					  	<td class="fonts">
- 					  			${chapter.name }:
- 					  	</td>
- 					  	<td class="fonts"><input type="text" name="chapter" value=""/>分
- 					  	</td>
- 					  		<c:if test="${i==3 }">
- 					  			</tr>
- 					  			<c:set var="i" value="${0 }"/>
- 					  		</c:if>
- 					    </c:forEach>
+		
+		
+		
+			<c:forEach var = "chapter" items = "${chapterList}">
+				<tr>
+				
+					<td>
+						${chapter.name}
+					</td>
+					
+					<td>
+						<select>
+							<option value = "记忆">记忆</option>
+							<option value = "理解">理解</option>
+							<option value = "简单应用">简单应用</option>
+							<option value = "综合应用">综合应用</option>
+							<option value = "混合" selected = "selected">混合</option>
+						</select>
+					</td>
+					
+					
+					<c:forEach var = "number" begin = "1" end = "10">
+						<td>
+							<c:set var="classNum" value="input${chapter.id}${number}"/>
+							<input type = "text" value = "0" name = "${classNum }"  onchange = "change(${chapter.id},${number})"/>
+							<button onclick = "showDivhh(${chapter.id},${number})" >alter</button>	
+							<input type = "text" value = "0" style = "display:none;" name = "everyScore${chapter.id}${number}"/>
+						</td>
+					</c:forEach>
+									
+					<td>
+						<input type = "text" value = "0" name = "count${chapter.id}"/>
+						
+					</td>
+					<td>
+						<input type = "text" value = "0" name = "score${chapter.id}"> 
+					</td>
+				<td>
+				
+				
+				</tr>
+				
+		</c:forEach>
+		<tr>
+			<td>合计个数</td>
+			<td></td>
+			
+			<c:forEach var = "i" begin = "1" end = "10">
+				<td><input type = "text" value = "0" name = "counts${i}"/></td>
+			</c:forEach>	
+			<td>
+				<input type = "text" name = "sumCount" value = "0"/>
+			</td>
+		</tr>
+		<tr>
+			<td>合计分数</td>
+			<td></td>
+			
+			<c:forEach var = "i" begin = "1" end = "10">
+				<td><input type = "text" value = "0" name = "scores${i}" /></td>
+			</c:forEach>
+			<td>
+				<input type = "text" name = "sumScore" value = "0"/>
+			</td>
+		</tr>
+       					
+       					
+       					
+       					
+       					
                      
                     </table>
                     <div  id="ch_sub" align="center"><input id="ch_put" type="submit" value="生成试卷" name="submit" />
+                     
+                    
+				<div id = "dididi">
+			
+			
+				</div>
                      
                 </form>
                 <input type="hidden" id="panduan" value="${panduan }"/></div>

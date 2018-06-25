@@ -234,7 +234,7 @@ function changeQuestionScore(number){
 	
 	<jsp:include page="../aside.jsp"/>
 	
-	
+	<session>
 	<table>
 	
 		<tr>
@@ -338,5 +338,7 @@ function changeQuestionScore(number){
 
 
 	</div>
+	
+	</session>
 </body>
 </html>
