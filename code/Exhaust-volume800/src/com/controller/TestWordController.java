@@ -65,10 +65,10 @@ public class TestWordController {
 	    		
 	    	}
 	    	
-	    	System.out.println("map2��Ϊ0��ֵ�ǣ�"+map2.get(0));
-	    	System.out.println("map2��Ϊ1��ֵ�ǣ�"+map2.get(2));
-	    	System.out.println("map2��Ϊ2��ֵ�ǣ�"+map2.get(2));
-	    	System.out.println("map2��Ϊ3��ֵ�ǣ�"+map2.get(3));
+	    	System.out.println("map2键为0的值是："+map2.get(0));
+	    	System.out.println("map2键为1的值是："+map2.get(1));
+	    	System.out.println("map2键为2的值是："+map2.get(2));
+	    	System.out.println("map2键为3的值是："+map2.get(3));
 	    	int sum=0;	    	
 	    	List listpointvalue = this.testService.getScore(map2,exam);
 
@@ -479,7 +479,7 @@ public class TestWordController {
 		 			}
 		 		}else if(sort.getType().getId() == 8){
 		 			int size = listeight.size();
-		 			System.out.println("size�Ĵ�С�ǣ�"+size);
+		 			System.out.println("size的大小是："+size);
 		 			int sequence = sort.getSequence();
 		 			Question q = null;
 		 			if(size>=sequence){
