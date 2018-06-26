@@ -47,7 +47,11 @@ function submits(){
 	for(var j=0;j<chapters.length;j++){
 		csum+=parseInt(chapters[j].value);
 	}
-	
+	var sumScore = document.getElementsByName("sumScore")[0].value;
+	if(sumScore != 100){
+		alert("总分不等于100");
+		return false;
+	}
 	if(csum!=100){
 		alert("试卷各章节总分不等于100");
 		return false;
@@ -282,7 +286,6 @@ window.onload=function(){
 	
 	
 function createDiv(name,chapter,number){
-		alert("fdjkjfk");
 		var div = document.getElementById("dididi");
 		div1 = document.createElement("div");
 		div1.id = name;
@@ -291,7 +294,23 @@ function createDiv(name,chapter,number){
 			questionType = "选择题";
 			
 		}else if(number == "2"){
+			questionType = "多项选择";
+		}else if(number == "3"){
+			questionType = "填空";
+		}else if(number == "4"){
+			questionType = "判断";
+		}else if(number == "5"){
+			questionType = "解释概念";
+		}else if(number == "6"){
 			questionType = "简答";
+		}else if(number == "7"){
+			questionType = "论述";
+		}else if(number == "8"){
+			questionType = "计算";
+		}else if(number == "9"){
+			questionType = "证明";
+		}else{
+			questionType = "其他";
 		}
 		var num = document.getElementsByName("input" + chapter + number)[0].value;
 		for(var i = 1; i <= num; i++){
@@ -449,9 +468,9 @@ input
 #dididi { 
     	display:none;
     	position:absolute;
-    	right:800px;
-    	top:400px;   		
-		background-color:#ff3300;
+    	right:center;
+    	top:90px;   		
+		background-color:#F0F8FF;
 		width:200px;
  }
 
@@ -478,27 +497,26 @@ input
                     <table class="insert-tab" width="100%">
        					
        					<tr>
-			<td>
-				预期分数
-			</td>
-			<td>
-				<input type = "text"  name = "anticipate" value = "75"/>
-			</td>
+       	<tr>
+			<td>预期分数</td>
+			<td><input type = "text" name = "anticipate" value = "0"/></td>
 		</tr>
-	
+			
+		</tr>
+		
 		<tr>
 			<th>	</th>
 			<th>难度等级</th>
-			<th>单项选择 分值:<input type = "text" value = "2" name = "questionScore1" onchange = "changeQuestionScore(1)"></th>
-			<th>多项选择 分值:<input type = "text" value = "1" name = "questionScore2" onchange = "changeQuestionScore(2)"></th>
-			<th>填空 分值:<input type = "text" value = "1" name = "questionScore3" onchange = "changeQuestionScore(3)"></th>
-			<th>判断 分值:<input type = "text" value = "1" name = "questionScore4" onchange = "changeQuestionScore(4)"></th>
-			<th>解释概念 分值:<input type = "text" value = "1" name = "questionScore5" onchange = "changeQuestionScore(5)"></th>
-			<th>简答 分值:<input type = "text" value = "1" name = "questionScore6" onchange = "changeQuestionScore(6)"></th>
-			<th>论述 分值:<input type = "text" value = "1" name = "questionScore7" onchange = "changeQuestionScore(7)"></th>
-			<th>计算 分值:<input type = "text" value = "1" name = "questionScore8" onchange = "changeQuestionScore(8)"></th>
-			<th>证明 分值:<input type = "text" value = "1" name = "questionScore9" onchange = "changeQuestionScore(9)"></th>
-			<th>其他 分值:<input type = "text" value = "1" name = "questionScore10" onchange = "changeQuestionScore(10)"></th>
+			<th>单项选择 分值:<input type = "text" value = "0" name = "questionScore1" onchange = "changeQuestionScore(1)"></th>
+			<th>多项选择 分值:<input type = "text" value = "0" name = "questionScore2" onchange = "changeQuestionScore(2)"></th>
+			<th>填空 分值:<input type = "text" value = "0" name = "questionScore3" onchange = "changeQuestionScore(3)"></th>
+			<th>判断 分值:<input type = "text" value = "0" name = "questionScore4" onchange = "changeQuestionScore(4)"></th>
+			<th>解释概念 分值:<input type = "text" value = "0" name = "questionScore5" onchange = "changeQuestionScore(5)"></th>
+			<th>简答 分值:<input type = "text" value = "0" name = "questionScore6" onchange = "changeQuestionScore(6)"></th>
+			<th>论述 分值:<input type = "text" value = "0" name = "questionScore7" onchange = "changeQuestionScore(7)"></th>
+			<th>计算 分值:<input type = "text" value = "0" name = "questionScore8" onchange = "changeQuestionScore(8)"></th>
+			<th>证明 分值:<input type = "text" value = "0" name = "questionScore9" onchange = "changeQuestionScore(9)"></th>
+			<th>其他 分值:<input type = "text" value = "0" name = "questionScore10" onchange = "changeQuestionScore(10)"></th>
 			<th>总数</th>
 			<th>总分</th>
 		</tr>
@@ -527,8 +545,8 @@ input
 					<c:forEach var = "number" begin = "1" end = "10">
 						<td>
 							<c:set var="classNum" value="input${chapter.id}${number}"/>
-							<input type = "text" value = "0" name = "${classNum }"  onchange = "change(${chapter.id},${number})"/>
-							<button onclick = "showDivhh(${chapter.id},${number})" >alter</button>	
+							<input type = "text" value = "0" name = "${classNum }"  onchange = "change(${chapter.id},${number})" style = "width:30px" />
+							<button type = "button" onclick = "showDivhh(${chapter.id},${number})" style="width:40px">alter</button>	
 							<input type = "text" value = "0" style = "display:none;" name = "everyScore${chapter.id}${number}"/>
 						</td>
 					</c:forEach>
