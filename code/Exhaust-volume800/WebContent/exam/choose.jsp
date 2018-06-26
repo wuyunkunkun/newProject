@@ -16,6 +16,7 @@
 <script type="text/javascript">
 function submits(){
 	//
+	
 	var buttons = document.getElementsByName("checkboxs");
 	var s="";
 	for (var j = 0; j < buttons.length; j++) {
@@ -23,10 +24,11 @@ function submits(){
 			s+=(j+1)+",";
 		}
 	}
+
 	s = s.substring(0, s.length - 1);
 	var splits=document.getElementById("splits");
 	splits.value=s;
-	
+
 	var chapter = document.getElementsByName("chapter");
 	var t="";
 	for (var j = 0; j < chapter.length; j++) {
@@ -35,10 +37,11 @@ function submits(){
 		}
 		t+=chapter[j].value+",";	
 	}
+
 	t = t.substring(0,t.length-1);
 	var chapters=document.getElementById("chapters");
 	chapters.value=t;
-	
+
 	//总分
 	//需要改
 	var sum=0;
@@ -47,7 +50,9 @@ function submits(){
 	for(var j=0;j<chapters.length;j++){
 		csum+=parseInt(chapters[j].value);
 	}
+
 	var sumScore = document.getElementsByName("sumScore")[0].value;
+
 	if(sumScore != 100){
 		alert("总分不等于100");
 		return false;
@@ -404,6 +409,7 @@ function createDiv(name,chapter,number){
 		var score = parseInt(count) * parseInt(questionScore);
 		document.getElementsByName("everyScore" + chapter + number)[0].value = score;
 		changeScore(chapter);
+		changeScores(chapter,number);
 		
 	}
 	
@@ -470,7 +476,7 @@ input
     	position:absolute;
     	right:center;
     	top:90px;   		
-		background-color:#F0F8FF;
+		background-color:#7EC0EE;
 		width:200px;
  }
 
