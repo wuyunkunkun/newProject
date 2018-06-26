@@ -22,10 +22,10 @@
 
 
 项目运行图片
-[Image text](https://github.com/wuyunkunkun/superSchool/blob/master/doc/images/fifth.JPG)
-[Image text](https://github.com/wuyunkunkun/superSchool/blob/master/doc/images/first.JPG)
-[Image text](https://github.com/wuyunkunkun/superSchool/blob/master/doc/images/second.JPG)
-[Image text](https://github.com/wuyunkunkun/superSchool/blob/master/doc/images/third.JPG)
-[Image text](https://github.com/wuyunkunkun/superSchool/blob/master/doc/images/forth.JPG)
-[Image text](https://github.com/wuyunkunkun/superSchool/blob/master/doc/images/fifth.JPG)
-[Image text](https://github.com/wuyunkunkun/superSchool/blob/master/doc/images/sixth.JPG)
+![Image text](https://github.com/wuyunkunkun/superSchool/blob/master/doc/images/fifth.JPG)
+![Image text](https://github.com/wuyunkunkun/superSchool/blob/master/doc/images/first.JPG)
+![Image text](https://github.com/wuyunkunkun/superSchool/blob/master/doc/images/second.JPG)
+![Image text](https://github.com/wuyunkunkun/superSchool/blob/master/doc/images/third.JPG)
+![Image text](https://github.com/wuyunkunkun/superSchool/blob/master/doc/images/forth.JPG)
+![Image text](https://github.com/wuyunkunkun/superSchool/blob/master/doc/images/fifth.JPG)
+![Image text](https://github.com/wuyunkunkun/superSchool/blob/master/doc/images/sixth.JPG)
