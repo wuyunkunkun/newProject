@@ -36,7 +36,6 @@
      	<div class="course">
      	<c:if test="${cs.coursePic!=null && cs.coursePic!=''}">
 			<a href="${ctx }/choose/course?id=${cs.id}" style="background-image:url(${ctx }/upload/${cs.coursePic} )">
-				${cs.name}
 			</a>
 		</c:if>
 		<c:if test="${cs.coursePic==null || cs.coursePic==''}">

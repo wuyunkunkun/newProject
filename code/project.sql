@@ -1,16 +1,24 @@
 /*
-MySQL Data Transfer
-Source Host: localhost
-Source Database: exhaust-volume
-Target Host: localhost
-Target Database: exhaust-volume
-Date: 2017/3/6 16:17:06
+Navicat MySQL Data Transfer
+
+Source Server         : zzzhp
+Source Server Version : 50701
+Source Host           : localhost:3306
+Source Database       : project
+
+Target Server Type    : MYSQL
+Target Server Version : 50701
+File Encoding         : 65001
+
+Date: 2018-06-26 15:35:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
 -- ----------------------------
--- Table structure for answer
+-- Table structure for `answer`
 -- ----------------------------
+DROP TABLE IF EXISTS `answer`;
 CREATE TABLE `answer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `solution` text,
@@ -18,225 +26,7 @@ CREATE TABLE `answer` (
 ) ENGINE=InnoDB AUTO_INCREMENT=307 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for chapter
--- ----------------------------
-CREATE TABLE `chapter` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) DEFAULT NULL,
-  `chapterOrder` int(11) DEFAULT NULL,
-  `c_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for course
--- ----------------------------
-CREATE TABLE `course` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) DEFAULT NULL,
-  `courseTime` int(11) DEFAULT NULL,
-  `coursePic` varchar(50) DEFAULT NULL,
-  `jieshao` text,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for delete_question
--- ----------------------------
-CREATE TABLE `delete_question` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `ques_id` int(11) DEFAULT NULL,
-  `content` text COLLATE utf8_bin,
-  `type_id` int(11) DEFAULT NULL,
-  `level_id` int(11) DEFAULT NULL,
-  `chapter_id` int(11) DEFAULT NULL,
-  `A` text COLLATE utf8_bin,
-  `B` text COLLATE utf8_bin,
-  `C` text COLLATE utf8_bin,
-  `D` text COLLATE utf8_bin,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- ----------------------------
--- Table structure for exam
--- ----------------------------
-CREATE TABLE `exam` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `e_time` varchar(50) DEFAULT NULL,
-  `t_id` int(11) DEFAULT NULL,
-  `title` varchar(50) DEFAULT NULL,
-  `desired` double DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=91 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for logs
--- ----------------------------
-CREATE TABLE `logs` (
-  `USER_ID` varchar(20) NOT NULL,
-  `DATED` date NOT NULL,
-  `LOGGER` varchar(50) NOT NULL,
-  `LEVEL` varchar(10) NOT NULL,
-  `MESSAGE` varchar(1000) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for menu
--- ----------------------------
-CREATE TABLE `menu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) DEFAULT NULL,
-  `parent_id` int(11) DEFAULT NULL,
-  `url` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for operation
--- ----------------------------
-CREATE TABLE `operation` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for power
--- ----------------------------
-CREATE TABLE `power` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) DEFAULT NULL,
-  `m_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for question
--- ----------------------------
-CREATE TABLE `question` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `content` text,
-  `chapter_id` int(11) DEFAULT NULL,
-  `type_id` int(11) DEFAULT NULL,
-  `level_id` int(11) DEFAULT NULL,
-  `repeats` int(11) DEFAULT NULL,
-  `flag` int(11) DEFAULT NULL,
-  `A` text,
-  `B` text,
-  `C` text,
-  `D` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=307 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for questionlevel
--- ----------------------------
-CREATE TABLE `questionlevel` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for questiontype
--- ----------------------------
-CREATE TABLE `questiontype` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for recorder
--- ----------------------------
-CREATE TABLE `recorder` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `t_id` int(11) DEFAULT NULL,
-  `question_id` int(11) DEFAULT NULL,
-  `description` text,
-  `o_id` int(11) DEFAULT NULL,
-  `time` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=352 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for regulation
--- ----------------------------
-CREATE TABLE `regulation` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `yearrepeat` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for role
--- ----------------------------
-CREATE TABLE `role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for rolepoweralt
--- ----------------------------
-CREATE TABLE `rolepoweralt` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `r_id` int(11) DEFAULT NULL,
-  `p_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for sort
--- ----------------------------
-CREATE TABLE `sort` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `sequence` int(11) DEFAULT NULL,
-  `e_id` int(11) DEFAULT NULL,
-  `q_id` int(11) DEFAULT NULL,
-  `t_id` int(11) DEFAULT NULL,
-  `pointvalue` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1112 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for teacher
--- ----------------------------
-CREATE TABLE `teacher` (
-  `id` int(11) NOT NULL,
-  `name` varchar(20) DEFAULT NULL,
-  `email` varchar(30) DEFAULT NULL,
-  `hiredate` date DEFAULT NULL,
-  `phone` varchar(20) DEFAULT NULL,
-  `address` varchar(30) DEFAULT NULL,
-  `photo` varchar(50) DEFAULT NULL,
-  `password` varchar(60) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for teachercoursealt
--- ----------------------------
-CREATE TABLE `teachercoursealt` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `t_id` int(11) DEFAULT NULL,
-  `c_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=147 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for teacherrolealt
--- ----------------------------
-CREATE TABLE `teacherrolealt` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `r_id` int(11) DEFAULT NULL,
-  `t_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records 
+-- Records of answer
 -- ----------------------------
 INSERT INTO `answer` VALUES ('2', 'B ');
 INSERT INTO `answer` VALUES ('3', 'D');
@@ -543,6 +333,22 @@ INSERT INTO `answer` VALUES ('303', '#includeiostream using namespace std; class
 INSERT INTO `answer` VALUES ('304', '#include iostream #include\r\nstring using namespace std; class Student { protected:\r\nint id; string name; int score;\r\npublic: Student(int ,string ,\r\nint); virtual void display(); }; Student::Student(int i, string n, int cr)\r\n{ id = i;\r\nStudent::display() { //using namespace\r\nstd; cout  id  \":\r\n\"  name  endl; cout  score  endl; } class Graduate:public Student { protected:\r\nint salary; public: Graduate(int i, string n, int cr, int\r\nsa) :Student(i, n,\r\ncr),salary(sa){} void display();\r\n}; void Graduate::display() { //using namespace std; cout  id  \": \"\r\nname  endl;cout\r\n scoreendl; cout\r\nsalary  endl; }int\r\nmain() {Student stu(1,\r\n\"John\", 99);\r\nstu.display(); Graduate gra(2,\r\n\"JOHNLIU\", 100, 5000);\r\ngra.display();return 0; }');
 INSERT INTO `answer` VALUES ('305', '#includeiostream.hint main(){int\r\na[20]={55,66,77,88,99,54,64,74,84,94,56,66,76,86,96,60,70,80,90,85};int b,c,d,e,f;b=c=d=e=f=0;for(int i=0;i20;i++){if(a[i]=90) b++;\r\nelse if(a[i]90a[i]=80)\r\n\r\nc++;\r\nelse if(a[i]80a[i]=70) d++;\r\nelse if(a[i]70a[i]=60)e++;\r\nelse f++; }\r\n\"f=\"return 0; }');
 INSERT INTO `answer` VALUES ('306', 'a');
+
+-- ----------------------------
+-- Table structure for `chapter`
+-- ----------------------------
+DROP TABLE IF EXISTS `chapter`;
+CREATE TABLE `chapter` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) DEFAULT NULL,
+  `chapterOrder` int(11) DEFAULT NULL,
+  `c_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of chapter
+-- ----------------------------
 INSERT INTO `chapter` VALUES ('1', 'c++概述', '1', '10');
 INSERT INTO `chapter` VALUES ('2', '认识标示符', '2', '10');
 INSERT INTO `chapter` VALUES ('3', '函数的学习', '3', '10');
@@ -550,13 +356,60 @@ INSERT INTO `chapter` VALUES ('4', '循环的学习', '4', '10');
 INSERT INTO `chapter` VALUES ('5', '面向对象', '5', '10');
 INSERT INTO `chapter` VALUES ('6', '友元', '6', '10');
 INSERT INTO `chapter` VALUES ('7', '虚函数', '7', '10');
-INSERT INTO `chapter` VALUES ('8', '计算机组成one', '1', '10');
-INSERT INTO `course` VALUES ('10', 'c++', '33', 'course.jpg', '每个人都有他的脾气，每个人都有他的压力与无奈，尘世中没有哪一方净土能让人不受到伤害。职场上的徘徊不前，被人暗算，心力交瘁；感情上的千回百转，始终遇不见对的人，面对年老父母的催促，烦躁又无奈，被冠以不孝的罪名。在这个城市年复一年却付不起一套房子的首付，永远处在缺钱借钱的状态中，想要的生活总是在前方，总是差一段距离。');
-INSERT INTO `course` VALUES ('12', 'java', '34', 'course.jpg', '许多过往，错过了、擦肩了、流泪了、欢笑了，到最后还剩下些什么？站在都市的一隅，感受那些渐行渐远，当沧桑倦怠了最初的单纯，当岁月荒芜了似乎成熟的心田，文字是否仍可以承受心之重？许多过往，错过了、擦肩了、流泪了、欢笑了，到最后还剩下些什么？\r\n许多过往，错过了、擦肩了、流泪了、欢笑了，到最后还剩下些什么？站在都市的一隅，感受那些渐行渐远，当沧桑倦怠了最初的单纯，当岁月荒芜了似乎成熟的心田，文字是否仍可以承受心之重？许多过往，错过了、擦肩了、流泪了、欢笑了，到最后还剩下些什么？\r\n');
-INSERT INTO `course` VALUES ('44', '操作系统', '22', '44b8d0e1-fbe8-48d4-93df-7f913472fcb4.jpg', '古藤老树昏鸦，断肠人在天涯。韶光荏苒，记不起年少的轻狂，不再想当年的慷慨激昂。一路奔波流浪，一路磕磕绊绊，落叶归根回到最温暖的故乡，回到那段年少最自由的时光。青石板道上，百花绽放，翩翩蛱蝶落叶成欢。把岁月流走的微笑埋进古老的河畔，在明媚的阳光下，让点点记忆灿烂盛放。站在都市的一隅，感受那些渐行渐远，当沧桑倦怠了最初的单纯，当岁月荒芜了似乎成熟的心田，文字是否仍可以承受心之重？许多过往，错过了、擦肩了、流泪了、欢笑了，到最后还剩下些什么？');
-INSERT INTO `course` VALUES ('46', 'PHPCMS', '22', 'course.jpg', '生活如酒，或芳香，或浓烈，因为诚实，它变得醇厚；生活如歌，或高昂，或低沉，因为守信，它变得悦耳； 生活如画，或明丽，或素雅，因为诚信，它变得美丽。生活如酒，或芳香，或浓烈，因为诚实，它变得醇厚；生活如歌，或高昂，或低沉，因为守信，它变得悦耳； 生活如画，或明丽，或素雅，因为诚信，它变得美丽。');
-INSERT INTO `course` VALUES ('47', '测试1', '12', 'course.jpg', '懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。当沧桑倦怠了最初的单纯，当岁月荒芜了似乎成熟的心田，文字是否仍可以承受心之重？许多过往，错过了、擦肩了、流泪了、欢笑了，到最后还剩下些什么？当沧桑倦怠了最初的单纯，当岁月荒芜了似乎成熟的心田，文字是否仍可以承受心之重？许多过往，错过了、擦肩了、流泪了、欢笑了，到最后还剩下些什么？');
-INSERT INTO `course` VALUES ('48', '测试2', '23', '86aeef33-0e6f-40af-8dea-7b88da8af2c2.jpg', '懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。你的问题主要在于读书不多而想得太多。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。你的问题主要在于读书不多而想得太多。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。你的问题主要在于读书不多而想得太多。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。你的问题主要在于读书不多而想得太多。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。你的问题主要在于读书不多而想得太多。\r\n当沧桑倦怠了最初的单纯，当岁月荒芜了似乎成熟的心田，文字是否仍可以承受心之重？许多过往，错过了、擦肩了、流泪了、欢笑了，到最后还剩下些什么？当沧桑倦怠了最初的单纯，当岁月荒芜了似乎成熟的心田，文字是否仍可以承受心之重？许多过往，错过了、擦肩了、流泪了、欢笑了，到最后还剩下些什么？当沧桑倦怠了最初的单纯，当岁月荒芜了似乎成熟的心田，文字是否仍可以承受心之重？许多过往，错过了、擦肩了、流泪了、欢笑了，到最后还剩下些什么？当沧桑倦怠了最初的单纯，当岁月荒芜了似乎成熟的心田，文字是否仍可以承受心之重？许多过往，错过了、擦肩了、流泪了、欢笑了，到最后还剩下些什么？');
+INSERT INTO `chapter` VALUES ('9', '函数与极限', '1', '11');
+INSERT INTO `chapter` VALUES ('10', '导数与积分', '2', '11');
+INSERT INTO `chapter` VALUES ('11', '微分中值定理与导数的应用', '3', '11');
+INSERT INTO `chapter` VALUES ('12', '不定积分', '4', '11');
+INSERT INTO `chapter` VALUES ('13', '定积分', '5', '11');
+INSERT INTO `chapter` VALUES ('14', '定积分的应用', '6', '11');
+INSERT INTO `chapter` VALUES ('15', '微分方程', '7', '11');
+INSERT INTO `chapter` VALUES ('8', '计算机组成one', '8', '10');
+
+-- ----------------------------
+-- Table structure for `course`
+-- ----------------------------
+DROP TABLE IF EXISTS `course`;
+CREATE TABLE `course` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) DEFAULT NULL,
+  `courseTime` int(11) DEFAULT NULL,
+  `coursePic` varchar(50) DEFAULT NULL,
+  `jieshao` text,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of course
+-- ----------------------------
+INSERT INTO `course` VALUES ('10', 'c++', '33', 'c++.jpg', '每个人都有他的脾气，每个人都有他的压力与无奈，尘世中没有哪一方净土能让人不受到伤害。职场上的徘徊不前，被人暗算，心力交瘁；感情上的千回百转，始终遇不见对的人，面对年老父母的催促，烦躁又无奈，被冠以不孝的罪名。在这个城市年复一年却付不起一套房子的首付，永远处在缺钱借钱的状态中，想要的生活总是在前方，总是差一段距离。');
+INSERT INTO `course` VALUES ('12', 'java', '34', 'java.jpg', '许多过往，错过了、擦肩了、流泪了、欢笑了，到最后还剩下些什么？站在都市的一隅，感受那些渐行渐远，当沧桑倦怠了最初的单纯，当岁月荒芜了似乎成熟的心田，文字是否仍可以承受心之重？许多过往，错过了、擦肩了、流泪了、欢笑了，到最后还剩下些什么？\r\n许多过往，错过了、擦肩了、流泪了、欢笑了，到最后还剩下些什么？站在都市的一隅，感受那些渐行渐远，当沧桑倦怠了最初的单纯，当岁月荒芜了似乎成熟的心田，文字是否仍可以承受心之重？许多过往，错过了、擦肩了、流泪了、欢笑了，到最后还剩下些什么？\r\n');
+INSERT INTO `course` VALUES ('44', '操作系统', '22', 'os.jpg', '古藤老树昏鸦，断肠人在天涯。韶光荏苒，记不起年少的轻狂，不再想当年的慷慨激昂。一路奔波流浪，一路磕磕绊绊，落叶归根回到最温暖的故乡，回到那段年少最自由的时光。青石板道上，百花绽放，翩翩蛱蝶落叶成欢。把岁月流走的微笑埋进古老的河畔，在明媚的阳光下，让点点记忆灿烂盛放。站在都市的一隅，感受那些渐行渐远，当沧桑倦怠了最初的单纯，当岁月荒芜了似乎成熟的心田，文字是否仍可以承受心之重？许多过往，错过了、擦肩了、流泪了、欢笑了，到最后还剩下些什么？');
+INSERT INTO `course` VALUES ('46', 'PHPCMS', '22', 'phpcms.jpg', '生活如酒，或芳香，或浓烈，因为诚实，它变得醇厚；生活如歌，或高昂，或低沉，因为守信，它变得悦耳； 生活如画，或明丽，或素雅，因为诚信，它变得美丽。生活如酒，或芳香，或浓烈，因为诚实，它变得醇厚；生活如歌，或高昂，或低沉，因为守信，它变得悦耳； 生活如画，或明丽，或素雅，因为诚信，它变得美丽。');
+INSERT INTO `course` VALUES ('47', '测试1', '12', 'test.jpg', '懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。当沧桑倦怠了最初的单纯，当岁月荒芜了似乎成熟的心田，文字是否仍可以承受心之重？许多过往，错过了、擦肩了、流泪了、欢笑了，到最后还剩下些什么？当沧桑倦怠了最初的单纯，当岁月荒芜了似乎成熟的心田，文字是否仍可以承受心之重？许多过往，错过了、擦肩了、流泪了、欢笑了，到最后还剩下些什么？');
+INSERT INTO `course` VALUES ('48', '测试2', '23', 'test.jpg', '懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。你的问题主要在于读书不多而想得太多。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。你的问题主要在于读书不多而想得太多。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。你的问题主要在于读书不多而想得太多。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。你的问题主要在于读书不多而想得太多。\r\n懒惰也是天生的，勤奋需自己努力，一放松就懒了。你的问题主要在于读书不多而想得太多。\r\n当沧桑倦怠了最初的单纯，当岁月荒芜了似乎成熟的心田，文字是否仍可以承受心之重？许多过往，错过了、擦肩了、流泪了、欢笑了，到最后还剩下些什么？当沧桑倦怠了最初的单纯，当岁月荒芜了似乎成熟的心田，文字是否仍可以承受心之重？许多过往，错过了、擦肩了、流泪了、欢笑了，到最后还剩下些什么？当沧桑倦怠了最初的单纯，当岁月荒芜了似乎成熟的心田，文字是否仍可以承受心之重？许多过往，错过了、擦肩了、流泪了、欢笑了，到最后还剩下些什么？当沧桑倦怠了最初的单纯，当岁月荒芜了似乎成熟的心田，文字是否仍可以承受心之重？许多过往，错过了、擦肩了、流泪了、欢笑了，到最后还剩下些什么？');
+INSERT INTO `course` VALUES ('11', '高等数学', '33', 'math.jpg', '高等数学');
+
+-- ----------------------------
+-- Table structure for `delete_question`
+-- ----------------------------
+DROP TABLE IF EXISTS `delete_question`;
+CREATE TABLE `delete_question` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ques_id` int(11) DEFAULT NULL,
+  `content` text COLLATE utf8_bin,
+  `type_id` int(11) DEFAULT NULL,
+  `level_id` int(11) DEFAULT NULL,
+  `chapter_id` int(11) DEFAULT NULL,
+  `A` text COLLATE utf8_bin,
+  `B` text COLLATE utf8_bin,
+  `C` text COLLATE utf8_bin,
+  `D` text COLLATE utf8_bin,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of delete_question
+-- ----------------------------
 INSERT INTO `delete_question` VALUES ('1', '2', 0xE7ACACE4BA8CE98193632B2B, '1', '3', '1', 0x30, 0x30, 0x30, 0x30);
 INSERT INTO `delete_question` VALUES ('2', '3', 0xE7ACACE4B889E98193632B2B, '1', '2', '1', 0x30, 0x30, 0x30, 0x30);
 INSERT INTO `delete_question` VALUES ('3', '4', 0xE7ACACE59B9BE98193632B2B, '1', '4', '1', 0x30, 0x30, 0x30, 0x30);
@@ -569,17 +422,59 @@ INSERT INTO `delete_question` VALUES ('9', '306', 0xE98089E68BA9E9A298, '1', '1'
 INSERT INTO `delete_question` VALUES ('10', '307', 0xE98089E68BA9E9A298, '1', '1', '1', 0x412E61, 0x422E62, 0x432E64, 0x442E64);
 INSERT INTO `delete_question` VALUES ('11', '306', 0xE98089E68BA9E9A29831, '1', '1', '1', 0x412E61, 0x422E62, 0x432E63, 0x442E64);
 INSERT INTO `delete_question` VALUES ('12', '307', 0x63787A76, '1', '1', '1', 0x412E61612020, 0x422E732020, 0x432E73732020, 0x442E73732020);
-INSERT INTO `exam` VALUES ('80', '2017-03-02 10:37:31', '123456', '试卷2017-03-02 10:37:31', '76');
-INSERT INTO `exam` VALUES ('79', '2017-03-02 10:28:02', '123456', '自动组卷\n							', '50');
-INSERT INTO `exam` VALUES ('82', '2017-03-02 20:32:55', '123456', '试卷2017-03-02 20:32:55', '0');
-INSERT INTO `exam` VALUES ('83', '2017-03-02 20:32:58', '123456', '试卷2017-03-02 20:32:58', '0');
-INSERT INTO `exam` VALUES ('84', '2017-03-02 20:39:11', '123456', '试卷2017-03-02 20:39:11', '0');
-INSERT INTO `exam` VALUES ('85', '2017-03-02 20:48:14', '123456', '试卷2017-03-02 20:48:14', '0');
-INSERT INTO `exam` VALUES ('86', '2017-03-02 20:53:32', '123456', '试卷2017-03-02 20:53:32', '0');
-INSERT INTO `exam` VALUES ('87', '2017-03-02 21:36:32', '123456', '试卷2017-03-02 21:36:32', '0');
-INSERT INTO `exam` VALUES ('88', '2017-03-02 21:38:11', '123456', '试卷2017-03-02 21:38:11', '0');
-INSERT INTO `exam` VALUES ('89', '2017-03-02 21:46:35', '123456', '试卷2017-03-02 21:46:35', '0');
-INSERT INTO `exam` VALUES ('90', '2017-03-02 21:50:51', '123456', '试卷2017-03-02 21:50:51', '0');
+
+-- ----------------------------
+-- Table structure for `exam`
+-- ----------------------------
+DROP TABLE IF EXISTS `exam`;
+CREATE TABLE `exam` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `e_time` varchar(50) DEFAULT NULL,
+  `t_id` int(11) DEFAULT NULL,
+  `title` varchar(50) DEFAULT NULL,
+  `desired` double DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=108 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of exam
+-- ----------------------------
+INSERT INTO `exam` VALUES ('107', '2018-06-25 11:35:00', '123456', '试卷2018-06-25 11:35:00', '75');
+INSERT INTO `exam` VALUES ('106', '2018-06-25 11:32:34', '123456', '试卷2018-06-25 11:32:34', '75');
+INSERT INTO `exam` VALUES ('105', '2018-06-21 14:20:00', '123456', '试卷2018-06-21 14:20:00', '50');
+INSERT INTO `exam` VALUES ('104', '2018-06-13 21:17:24', '123456', '试卷2018-06-13 21:17:24', '50');
+
+-- ----------------------------
+-- Table structure for `logs`
+-- ----------------------------
+DROP TABLE IF EXISTS `logs`;
+CREATE TABLE `logs` (
+  `USER_ID` varchar(20) NOT NULL,
+  `DATED` date NOT NULL,
+  `LOGGER` varchar(50) NOT NULL,
+  `LEVEL` varchar(10) NOT NULL,
+  `MESSAGE` varchar(1000) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of logs
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `menu`
+-- ----------------------------
+DROP TABLE IF EXISTS `menu`;
+CREATE TABLE `menu` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) DEFAULT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  `url` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of menu
+-- ----------------------------
 INSERT INTO `menu` VALUES ('1', '教师管理', null, null);
 INSERT INTO `menu` VALUES ('2', '教师入职', '1', 'Teachermanage/toAdd');
 INSERT INTO `menu` VALUES ('3', '教师离职', '1', 'Teachermanage/list');
@@ -603,9 +498,38 @@ INSERT INTO `menu` VALUES ('20', '组卷', null, '');
 INSERT INTO `menu` VALUES ('21', '自动组卷', '20', 'exam/zujuan_kecheng.jsp');
 INSERT INTO `menu` VALUES ('22', '手动组卷', '20', 'exam/zujuan_kecheng_hand.jsp');
 INSERT INTO `menu` VALUES ('23', '我的试卷', '20', 'exam/listExam');
+
+-- ----------------------------
+-- Table structure for `operation`
+-- ----------------------------
+DROP TABLE IF EXISTS `operation`;
+CREATE TABLE `operation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of operation
+-- ----------------------------
 INSERT INTO `operation` VALUES ('1', '增加');
 INSERT INTO `operation` VALUES ('2', '修改');
 INSERT INTO `operation` VALUES ('3', '删除');
+
+-- ----------------------------
+-- Table structure for `power`
+-- ----------------------------
+DROP TABLE IF EXISTS `power`;
+CREATE TABLE `power` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) DEFAULT NULL,
+  `m_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of power
+-- ----------------------------
 INSERT INTO `power` VALUES ('1', '教师管理', '1');
 INSERT INTO `power` VALUES ('2', '教师入职', '2');
 INSERT INTO `power` VALUES ('3', '教师离职', '3');
@@ -629,15 +553,38 @@ INSERT INTO `power` VALUES ('20', '组卷', '20');
 INSERT INTO `power` VALUES ('21', '自动组卷', '21');
 INSERT INTO `power` VALUES ('22', '手动组卷', '22');
 INSERT INTO `power` VALUES ('23', '我的试卷', '23');
-INSERT INTO `question` VALUES ('2', '编写C++程序一般需经过的几个步骤依次是（）', '1', '1', '1', '2', '0', 'A.编辑、调试、编译、连接', 'B.编辑、编译、连接、运行 ', 'C.编译、调试、编辑、连接 ', 'D.编译、编辑、连接、运行');
-INSERT INTO `question` VALUES ('3', '决定C++语言中函数的返回值类型的是（)', '1', '1', '2', '2', '0', 'A.return语句中的表达式类型', 'B.调用该函数时系统随机产生的类型 ', 'C.调用该函数时的主调用函数类型 ', 'D.在定义该函数时所指定的数据类型');
-INSERT INTO `question` VALUES ('4', '下面叙述不正确的是（）', '1', '1', '3', '2', '0', 'A.派生类一般都用公有派生', 'B.对基类成员的访问必须是无二义性的', 'C.赋值兼容规则也适用于多重继承的组合', 'D.基类的公有成员在派生类中仍然是公有的');
-INSERT INTO `question` VALUES ('5', '所谓数据封装就是将一组数据和与这组数据有关操作组装在一起，形成一个实体，这实体 也就是（）', '1', '1', '4', '2', '0', 'A.类', 'B.对象', 'C.函数体', 'D.数据块 ');
+
+-- ----------------------------
+-- Table structure for `question`
+-- ----------------------------
+DROP TABLE IF EXISTS `question`;
+CREATE TABLE `question` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` text,
+  `chapter_id` int(11) DEFAULT NULL,
+  `type_id` int(11) DEFAULT NULL,
+  `level_id` int(11) DEFAULT NULL,
+  `repeats` int(11) DEFAULT NULL,
+  `flag` int(11) DEFAULT NULL,
+  `A` text,
+  `B` text,
+  `C` text,
+  `D` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=307 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of question
+-- ----------------------------
+INSERT INTO `question` VALUES ('2', '编写C++程序一般需经过的几个步骤依次是（）', '1', '1', '1', '0', '0', 'A.编辑、调试、编译、连接', 'B.编辑、编译、连接、运行 ', 'C.编译、调试、编辑、连接 ', 'D.编译、编辑、连接、运行');
+INSERT INTO `question` VALUES ('3', '决定C++语言中函数的返回值类型的是（)', '1', '1', '2', '0', '0', 'A.return语句中的表达式类型', 'B.调用该函数时系统随机产生的类型 ', 'C.调用该函数时的主调用函数类型 ', 'D.在定义该函数时所指定的数据类型');
+INSERT INTO `question` VALUES ('4', '下面叙述不正确的是（）', '1', '1', '3', '0', '0', 'A.派生类一般都用公有派生', 'B.对基类成员的访问必须是无二义性的', 'C.赋值兼容规则也适用于多重继承的组合', 'D.基类的公有成员在派生类中仍然是公有的');
+INSERT INTO `question` VALUES ('5', '所谓数据封装就是将一组数据和与这组数据有关操作组装在一起，形成一个实体，这实体 也就是（）', '1', '1', '4', '1', '0', 'A.类', 'B.对象', 'C.函数体', 'D.数据块 ');
 INSERT INTO `question` VALUES ('6', '在公有派生类的成员函数不能直接访问基类中继承来的某个成员，则该成员一定是基类中 的（）', '1', '1', '1', '0', '0', 'A.私有成员', 'B.公有成员', 'C.保护成员', 'D.保护成员或私有成员');
 INSERT INTO `question` VALUES ('7', '对基类和派生类的关系描述中，错误的是（）', '1', '1', '2', '0', '0', 'A.派生类是基类的具体化', 'B.基类继承了派生类的属性', 'C.派生类是基类定义的延续', 'D.派生类是基类的特殊化');
 INSERT INTO `question` VALUES ('8', '关于this指针使用说法正确的是（)', '1', '1', '3', '0', '0', 'A.保证每个对象拥有自己的数据成员，但共享处理这些数据的代码', 'B.保证基类私有成员在子类中可以被访问。', 'C.保证基类保护成员在子类中可以被访问。', 'D.保证基类公有成员在子类中可以被访问。');
 INSERT INTO `question` VALUES ('9', '所谓多态性是指 （）', '1', '1', '3', '0', '0', 'A.不同的对象调用不同名称的函数 ', 'B.不同的对象调用相同名称的函数', 'C.一个对象调用不同名称的函数', 'D.一个对象调用不同名称的对象');
-INSERT INTO `question` VALUES ('10', '一个函数功能不太复杂，但要求被频繁调用，则应把它定义为 （）', '1', '1', '4', '0', '0', 'A.内联函数', 'B.重载函数', 'C.递归函数', 'D.嵌套函数');
+INSERT INTO `question` VALUES ('10', '一个函数功能不太复杂，但要求被频繁调用，则应把它定义为 （）', '1', '1', '4', '1', '0', 'A.内联函数', 'B.重载函数', 'C.递归函数', 'D.嵌套函数');
 INSERT INTO `question` VALUES ('11', '下面函数模板定义中不正确的是（）', '2', '1', '1', '0', '0', 'A.A', 'B.B', 'C.C', 'D.D');
 INSERT INTO `question` VALUES ('12', '假设ClassY:publicX，即类Y是类X的派生类，则说明一个Y类的对象时和删除Y类对象时 ，调用构造函数和析构函数的次序分别为（）', '2', '1', '2', '0', '0', 'A.X,Y,X', 'B.X,Y；X,Y', 'C.Y,X；X,Y', 'D.Y,X；Y,X');
 INSERT INTO `question` VALUES ('13', '适宜采用inline定义函数情况是（）', '2', '1', '3', '0', '0', 'A.函数体含有循环语句', 'B.函数体含有递归语句', 'C.函数代码少、频繁调用', 'D.函数代码多、不常调用');
@@ -663,13 +610,13 @@ INSERT INTO `question` VALUES ('32', '如果从原有类定义新类可以实现
 INSERT INTO `question` VALUES ('33', '下面有关类说法不正确的是（）', '1', '1', '1', '0', '0', 'A.一个类可以有多个构造函数', 'B.一个类只有一个析构函数', 'C.析构函数需要指定参数', 'D.在一个类中可以说明具有类类型的数据成员');
 INSERT INTO `question` VALUES ('34', '在函数定义中的形参属于（） ', '1', '1', '2', '0', '0', 'A.全局变量 ', 'B.局部变量', 'C.静态变量', 'D.寄存器变量');
 INSERT INTO `question` VALUES ('35', '下列有关重载函数的说法中正确的是（）', '1', '1', '3', '0', '0', 'A.重载函数必须具有不同的返回值类型', 'B.重载函数参数个数必须相同', 'C.重载函数必须有不同的形参列表 ', 'D.重载函数名可以不同 ');
-INSERT INTO `question` VALUES ('36', 'this指针存在的目的是（）', '1', '1', '4', '0', '0', 'A.保证基类私有成员在子类中可以被访问 ', 'B.保证基类保护成员在子类中可以被访问', 'C.保证每个对象拥有自己的数据成员，但共享处理这些数据成员的代码', 'D.保证基类公有成员在子类中可以被访问');
+INSERT INTO `question` VALUES ('36', 'this指针存在的目的是（）', '1', '1', '4', '2', '0', 'A.保证基类私有成员在子类中可以被访问 ', 'B.保证基类保护成员在子类中可以被访问', 'C.保证每个对象拥有自己的数据成员，但共享处理这些数据成员的代码', 'D.保证基类公有成员在子类中可以被访问');
 INSERT INTO `question` VALUES ('37', '关于new运算符的下列描述中，错误的是（） ', '1', '1', '1', '0', '0', 'A.它可以用来动态创建对象和对象数组', 'B.使用它创建的对象或对象数组可以使用运算符delete删除', 'C.使用它创建对象时要调用构造函数', 'D.使用它创建对象数组时必须指定初始值 ');
 INSERT INTO `question` VALUES ('38', '已知：p是一个指向类A数据成员m的指针，A1是类A的一个对象。如果要给m赋值为5，正确 的是（）', '1', '1', '2', '0', '0', 'A.A1.p=5;', 'B.A1-&gt;p=5;', 'C.A1.*p=5;', 'D.*A1.p=5;');
 INSERT INTO `question` VALUES ('39', '以下基类中的成员函数表示纯虚函数的是（）', '1', '1', '2', '0', '0', 'A.virtual void tt()=0', 'B.void tt(int)=0', 'C.virtual void tt(int)', 'D.virtual void tt(int){}');
 INSERT INTO `question` VALUES ('40', 'C++类体系中，不能被派生类继承的有（）', '1', '1', '3', '0', '0', 'A.常成员函数 ', 'B.构造函数 ', 'C.虚函数', 'D.静态成员函数');
-INSERT INTO `question` VALUES ('41', '静态成员函数不能说明为（）', '1', '1', '4', '0', '0', 'A.整型函数', 'B.浮点函数', 'C.虚函数', 'D.字符型函数');
-INSERT INTO `question` VALUES ('42', '设有定义int i;double j＝5;，则10+i+j值的数据类型是（）', '1', '1', '4', '0', '0', 'A.int', 'B.double', 'C.float', 'D.不确定');
+INSERT INTO `question` VALUES ('41', '静态成员函数不能说明为（）', '1', '1', '4', '2', '0', 'A.整型函数', 'B.浮点函数', 'C.虚函数', 'D.字符型函数');
+INSERT INTO `question` VALUES ('42', '设有定义int i;double j＝5;，则10+i+j值的数据类型是（）', '1', '1', '4', '2', '0', 'A.int', 'B.double', 'C.float', 'D.不确定');
 INSERT INTO `question` VALUES ('43', '要禁止修改指针p本身，又要禁止修改p所指向的数据，这样的指针应定义为（）', '2', '1', '1', '0', '0', 'A.const char *p=“ABCD”；', 'B.char *const p=“ABCD”；', 'C.char const *p=“ABCD”；', 'D.const char *\r\nconst p=“ABCD”；');
 INSERT INTO `question` VALUES ('44', '类的构造函数被自动调用执行的情况是在定义该类的（）', '2', '1', '2', '0', '0', 'A.成员函数时', 'B.数据成员时', 'C.对象时', 'D.友元函数时');
 INSERT INTO `question` VALUES ('45', '已知类A是类B的友元，类B是类C的友元，则（）', '2', '1', '3', '0', '0', 'A.类A一定是类C++的友元 ', 'B.类C一定是类A的友元', 'C.类C的成员函数可以访问类B的对象的任何成员', 'D.类A的成员函数可以访问类B的对象的任何成员');
@@ -691,11 +638,11 @@ INSERT INTO `question` VALUES ('60', '对于int *pa［5］;的描述，正确的
 INSERT INTO `question` VALUES ('61', '以下基类中的成员函数表示纯虚函数的是（）', '1', '1', '1', '0', '0', 'A.virtual void tt()=0', 'B.void tt(int)=0', 'C.virtual void tt(int)', 'D.virtual void\r\ntt(int){}');
 INSERT INTO `question` VALUES ('62', '当一个类的某个函数被说明为virtual时，该函数在该类的所有派生类中（） ', '1', '1', '2', '0', '0', 'A.都是虚函数', 'B.只有被重新说明时才是虚函数', 'C.只有被重新说明为virtual时才是虚函数', 'D.都不是虚函数');
 INSERT INTO `question` VALUES ('63', '要禁止修改指针p本身，又要禁止修改p所指向的数据，这样的指针应定义为（） ', '1', '1', '3', '0', '0', 'A.const char *p=“ABCD”；', 'B.char *const p=“ABCD”；', 'C.char const *p=“ABCD”；', 'D.const char * const p=“ABCD”；');
-INSERT INTO `question` VALUES ('64', '函数调用func((exp1,exp2),(exp3,exp4,exp5))中所含实参的个数为（）', '1', '1', '4', '0', '0', 'A.1', 'B.2', 'C.4', 'D.5');
+INSERT INTO `question` VALUES ('64', '函数调用func((exp1,exp2),(exp3,exp4,exp5))中所含实参的个数为（）', '1', '1', '4', '1', '0', 'A.1', 'B.2', 'C.4', 'D.5');
 INSERT INTO `question` VALUES ('65', '设有函数模板 template &lt;class Q&gt; Q\r\nSum(Q x,Q y) {return (x)+(y);} 则下列语句中对该函数模板错误的使用是（）', '1', '1', '1', '0', '0', 'A.Sum(10,2);', 'B.Sum(5.0,6.7)；', 'C.Sum(15.2f,16.0f);', 'D.Sum(“AB”,”CD”);');
 INSERT INTO `question` VALUES ('66', '类B是类A的公有派生类，类A和类B中都定义了虚函数func(),p是一个指向类A对象的指针 ，则p-&gt;A::func()将（）', '1', '1', '2', '0', '0', 'A.调用类A中的函数func()', 'B.调用类B中的函数func()', 'C.根据p所指的对象类型而确定调用类A中或类B中的函数func()', 'D.既调用类A中函数，也调用类B中的函数');
 INSERT INTO `question` VALUES ('67', '在面向对象的程序设计中，首先在问题域中识别出若干个 （） ', '1', '1', '3', '0', '0', 'A.函数', 'B.类', 'C.文件 ', 'D.过程');
-INSERT INTO `question` VALUES ('68', '已知f1和f2是同一类的两个成员函数，但f1不能直接调用f2，这说明（） ', '1', '1', '4', '0', '0', 'A.f1和f2都是静态函数', 'B.f1不是静态函数，f2是静态函数', 'C.f1是静态函数，f2不是静态函数', 'D.f1和f2都不是静态函数');
+INSERT INTO `question` VALUES ('68', '已知f1和f2是同一类的两个成员函数，但f1不能直接调用f2，这说明（） ', '1', '1', '4', '1', '0', 'A.f1和f2都是静态函数', 'B.f1不是静态函数，f2是静态函数', 'C.f1是静态函数，f2不是静态函数', 'D.f1和f2都不是静态函数');
 INSERT INTO `question` VALUES ('69', '下列有关模板和继承的叙述正确的是 （） ', '1', '1', '1', '0', '0', 'A.模板和继承都可以派生出一个类系', 'B.从类系的成员看，模板类系的成员比继承类系的成员较为稳定', 'C.从动态性能看， 继承类系比模板类系具有更多的动态特性', 'D.相同类模板的不同实例一般没有联系，而派生类各种类之间有兄弟父子等关系');
 INSERT INTO `question` VALUES ('70', '有关C++编译指令，以下叙述正确的是（） ', '1', '1', '2', '0', '0', 'A.C++每行可以写多条编译指令', 'B.#include指令中的文件名可含有路径信息', 'C.C++的编译指令可以以#或//开始', 'D.C++中不管＃if后的常量表达式是否为真，该部分都需要编译');
 INSERT INTO `question` VALUES ('71', '在C++中不返回任何类型的函数应该说明为（）', '1', '1', '2', '0', '0', 'A.int', 'B.char', 'C.void', 'D.double');
@@ -708,8 +655,8 @@ INSERT INTO `question` VALUES ('77', '假定一个类的构造函数为A(int aa,
 INSERT INTO `question` VALUES ('78', '下列运算符中，在C++语言中不能重载的是（）', '1', '1', '1', '0', '0', 'A.*', 'B.&gt;=', 'C.：：', 'D./');
 INSERT INTO `question` VALUES ('79', 'C++语言建立类族是通过（）', '1', '1', '2', '0', '0', 'A.类的嵌套', 'B.类的继承', 'C.虚函数', 'D.抽象类');
 INSERT INTO `question` VALUES ('80', '在C++语言中，数据封装要解决的问题是（）', '1', '1', '3', '0', '0', 'A.数据的规范化', 'B.便于数据转换', 'C.避免数据丢失', 'D.防止不同模块之间数据的非法访问');
-INSERT INTO `question` VALUES ('81', '静态成员函数没有（）', '1', '1', '4', '0', '0', 'A.返回值', 'B.this指针', 'C.指针参数 ', 'D.返回类型 ');
-INSERT INTO `question` VALUES ('82', '在类的定义中，用于为对象分配内存空间，对类的数据成员进行初始化并执行其他内部管 理操作的函数是（）', '1', '1', '4', '0', '0', 'A.友元函数', 'B.虚函数', 'C.构造函数', 'D.析构函数 ');
+INSERT INTO `question` VALUES ('81', '静态成员函数没有（）', '1', '1', '4', '2', '0', 'A.返回值', 'B.this指针', 'C.指针参数 ', 'D.返回类型 ');
+INSERT INTO `question` VALUES ('82', '在类的定义中，用于为对象分配内存空间，对类的数据成员进行初始化并执行其他内部管 理操作的函数是（）', '1', '1', '4', '1', '0', 'A.友元函数', 'B.虚函数', 'C.构造函数', 'D.析构函数 ');
 INSERT INTO `question` VALUES ('83', '所有在函数中定义的变量，都是（）', '3', '1', '1', '0', '0', 'A.全局变量 ', 'B.局部变量', 'C.静态变量', 'D.寄存器变量');
 INSERT INTO `question` VALUES ('84', '假定AB为一个类，则执行“AB a(2), b［3］,*p［4］;”语句时调用该类构造函数的次数 为（）', '3', '1', '2', '0', '0', 'A.3', 'B.4', 'C.5', 'D.9');
 INSERT INTO `question` VALUES ('85', '如果表达式++a中的“++”是作为成员函数重载的运算符，若采用运算符函数调用格式，则 可表示为（）', '3', '1', '3', '0', '0', 'A.a.operator++(1)', 'B.operator++(a)', 'C.operator++(a,1)', 'D.a.operator++()');
@@ -724,12 +671,12 @@ INSERT INTO `question` VALUES ('93', '在派生类中定义虚函数时，可以
 INSERT INTO `question` VALUES ('94', '实现两个相同类型数加法的函数模板的声明是（）', '1', '1', '2', '0', '0', 'A.add(T x,T\r\ny)', 'B.T add(x,y)', 'C.T add(T x,y)', 'D.T add(T x,T y)');
 INSERT INTO `question` VALUES ('95', '下列不是描述类的成员函数的是（）', '1', '1', '3', '0', '0', 'A.构造函数', 'B.析构函数', 'C.友元函数', 'D.拷贝构造函数');
 INSERT INTO `question` VALUES ('96', '继承机制的作用是（）', '1', '1', '3', '0', '0', 'A.信息隐藏 ', 'B.数据封装', 'C.定义新类', 'D.数据抽象');
-INSERT INTO `question` VALUES ('97', '已知：p是一个指向类A数据成员m的指针，A1是类A的一个对象。如果要给m赋值为5，正确 的是（）', '1', '1', '4', '0', '0', 'A.A1.p=5;', 'B.A1-&gt;p=5;', 'C.A1.*p=5;', 'D.*A1.p=5;');
+INSERT INTO `question` VALUES ('97', '已知：p是一个指向类A数据成员m的指针，A1是类A的一个对象。如果要给m赋值为5，正确 的是（）', '1', '1', '4', '2', '0', 'A.A1.p=5;', 'B.A1-&gt;p=5;', 'C.A1.*p=5;', 'D.*A1.p=5;');
 INSERT INTO `question` VALUES ('98', '如果采用动态多态性，要调用虚函数的是（）', '1', '1', '4', '0', '0', 'A.基类对象指针 ', 'B.对象名', 'C.基类对象 ', 'D.派生类名');
 INSERT INTO `question` VALUES ('99', '若有以下定义，则说法错误的是（） int a=100,*p=&amp;a;', '2', '1', '1', '0', '0', 'A.声明变量p，是一个指针变量 ', 'B.变量p经初始化，获得变量a的地址', 'C.变量p只可以指向一个整型变量 \r\n', 'D.变量p的值为100');
 INSERT INTO `question` VALUES ('100', 'C++语言建立类族是通过（）', '2', '1', '4', '0', '0', 'A.类的嵌套 ', 'B.类的继承', 'C.虚函数', 'D.抽象类');
-INSERT INTO `question` VALUES ('101', 'C++的流库预定义了4个流，它们是cin、cout、clog和___。', '1', '3', '1', '2', '0', null, null, null, null);
-INSERT INTO `question` VALUES ('102', '每个对象都是所属类的一个___。', '1', '3', '1', '2', '0', null, null, null, null);
+INSERT INTO `question` VALUES ('101', 'C++的流库预定义了4个流，它们是cin、cout、clog和___。', '1', '3', '1', '0', '0', null, null, null, null);
+INSERT INTO `question` VALUES ('102', '每个对象都是所属类的一个___。', '1', '3', '1', '0', '0', null, null, null, null);
 INSERT INTO `question` VALUES ('103', '在已经定义了整型指针ip后，为了得到一个包括10个整数的数组并由ip所指向，应使用语 句___。', '1', '3', '2', '0', '0', null, null, null, null);
 INSERT INTO `question` VALUES ('104', '函数模板中紧随template之后尖括号内的类型参数都要冠以保留字___。 ', '1', '3', '3', '0', '0', null, null, null, null);
 INSERT INTO `question` VALUES ('105', '定义类的动态对象数组时，系统只能够自动调用该类的___构造函数对其进行初始化。 ', '1', '3', '3', '0', '0', null, null, null, null);
@@ -855,8 +802,8 @@ INSERT INTO `question` VALUES ('224', '不合法的数组定义是_____ ', '1', 
 INSERT INTO `question` VALUES ('225', '下列关于数组初始化的说法正确的是___________。', '1', '2', '2', '0', '0', 'A.若对数组a定义：\"static int\r\nx[10];\"，则数组元素值均为0', 'B.\"int x[10]={1,2,3,4,5,6,7,8,9};\"表示x[9]元素值为9', 'C.对于\"int x[10];\"它的元素初值是不确定的', 'D.\"int x[10]={1,2,3,4,5};\"是不合法的，因为数组长度为10，而初始值仅有5个');
 INSERT INTO `question` VALUES ('226', '能把字符串:\"Hello!\"赋给数组b的语句是________。', '1', '2', '3', '0', '0', 'A.char b[10];strcpy(b,\"Hello!\");', 'B.char b[10]={\'H\',\'e\',\'l\',\'l\',\'o\',\'!\'};', 'C.char b[10]=\"Hello!\";', 'D.char b[10];b=\"Hello!\";');
 INSERT INTO `question` VALUES ('227', '下述对C语言字符数组的描术正确的是________', '1', '2', '4', '0', '0', 'A.不可以用关系运算符对字符数组中的字符串进行比较', 'B.字符数组可以存放字符串', 'C.字符数组中的字符串可以整体输入、输出', 'D.可以在赋值语句中通过赋值运算符\"=\"对字符数组整体赋值');
-INSERT INTO `question` VALUES ('228', '使用关键字class定义的类中默认的访问权限是私有(private)的。', '1', '4', '1', '2', '0', null, null, null, null);
-INSERT INTO `question` VALUES ('229', '作用域运算符(::)只能用来限定成员函数所属的类.', '1', '4', '2', '2', '0', null, null, null, null);
+INSERT INTO `question` VALUES ('228', '使用关键字class定义的类中默认的访问权限是私有(private)的。', '1', '4', '1', '0', '0', null, null, null, null);
+INSERT INTO `question` VALUES ('229', '作用域运算符(::)只能用来限定成员函数所属的类.', '1', '4', '2', '0', '0', null, null, null, null);
 INSERT INTO `question` VALUES ('230', '构造函数和析构函数都不能重载.', '1', '4', '3', '0', '0', null, null, null, null);
 INSERT INTO `question` VALUES ('231', '析构函数是一种函数体为空的成员函数.', '1', '4', '4', '0', '0', null, null, null, null);
 INSERT INTO `question` VALUES ('232', '说明或定义对象时,类名前面不需要加class关键字.', '1', '4', '1', '0', '0', null, null, null, null);
@@ -934,10 +881,38 @@ INSERT INTO `question` VALUES ('303', '建立一个对象数组，内放5个学�
 INSERT INTO `question` VALUES ('304', '定义一个学生类Student做基类，再派生一个Graduate类，学生类有学号、姓名、 和分数，研究生增加工资，它们有同名的函数display(),利用虚函数，编程分别输出学生和研究生的数据，具体数据自拟。', '3', '8', '1', '0', '0', null, null, null, null);
 INSERT INTO `question` VALUES ('305', '输入20个学生成绩(设为int型)，统计各分数段的人数，分数段为90及90以上、 80到89分、70到79分、60到69分、60分以下。', '3', '8', '1', '0', '0', null, null, null, null);
 INSERT INTO `question` VALUES ('306', '㎎㎏㎜㎝㎞㎡', '1', '1', '1', '0', '0', 'A.a', 'B.b', 'C.c', 'D.d');
+
+-- ----------------------------
+-- Table structure for `questionlevel`
+-- ----------------------------
+DROP TABLE IF EXISTS `questionlevel`;
+CREATE TABLE `questionlevel` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of questionlevel
+-- ----------------------------
 INSERT INTO `questionlevel` VALUES ('1', '记忆');
 INSERT INTO `questionlevel` VALUES ('2', '理解');
 INSERT INTO `questionlevel` VALUES ('3', '简单应用');
 INSERT INTO `questionlevel` VALUES ('4', '综合应用');
+
+-- ----------------------------
+-- Table structure for `questiontype`
+-- ----------------------------
+DROP TABLE IF EXISTS `questiontype`;
+CREATE TABLE `questiontype` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of questiontype
+-- ----------------------------
 INSERT INTO `questiontype` VALUES ('1', '单项选择');
 INSERT INTO `questiontype` VALUES ('2', '多项选择');
 INSERT INTO `questiontype` VALUES ('3', '填空');
@@ -948,6 +923,24 @@ INSERT INTO `questiontype` VALUES ('7', '论述');
 INSERT INTO `questiontype` VALUES ('8', '计算');
 INSERT INTO `questiontype` VALUES ('9', '证明');
 INSERT INTO `questiontype` VALUES ('10', '其他');
+
+-- ----------------------------
+-- Table structure for `recorder`
+-- ----------------------------
+DROP TABLE IF EXISTS `recorder`;
+CREATE TABLE `recorder` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `t_id` int(11) DEFAULT NULL,
+  `question_id` int(11) DEFAULT NULL,
+  `description` text,
+  `o_id` int(11) DEFAULT NULL,
+  `time` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=352 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of recorder
+-- ----------------------------
 INSERT INTO `recorder` VALUES ('345', '123456', '306', '1', '1', '2016-12-28');
 INSERT INTO `recorder` VALUES ('346', '123456', '306', '12', '3', '2016-12-28');
 INSERT INTO `recorder` VALUES ('347', '123456', '307', 'sds', '1', '2017-02-28');
@@ -955,9 +948,52 @@ INSERT INTO `recorder` VALUES ('348', '123456', '307', 'zx', '2', '2017-02-28');
 INSERT INTO `recorder` VALUES ('349', '123456', '307', 'c', '2', '2017-02-28');
 INSERT INTO `recorder` VALUES ('350', '123456', '307', '', '3', '2017-02-28');
 INSERT INTO `recorder` VALUES ('351', '123456', '306', 'a', '1', '2017-03-02');
+
+-- ----------------------------
+-- Table structure for `regulation`
+-- ----------------------------
+DROP TABLE IF EXISTS `regulation`;
+CREATE TABLE `regulation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `yearrepeat` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of regulation
+-- ----------------------------
 INSERT INTO `regulation` VALUES ('1', '2');
+
+-- ----------------------------
+-- Table structure for `role`
+-- ----------------------------
+DROP TABLE IF EXISTS `role`;
+CREATE TABLE `role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of role
+-- ----------------------------
 INSERT INTO `role` VALUES ('1', '教务');
 INSERT INTO `role` VALUES ('2', '教师');
+
+-- ----------------------------
+-- Table structure for `rolepoweralt`
+-- ----------------------------
+DROP TABLE IF EXISTS `rolepoweralt`;
+CREATE TABLE `rolepoweralt` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `r_id` int(11) DEFAULT NULL,
+  `p_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of rolepoweralt
+-- ----------------------------
 INSERT INTO `rolepoweralt` VALUES ('1', '1', '1');
 INSERT INTO `rolepoweralt` VALUES ('2', '1', '2');
 INSERT INTO `rolepoweralt` VALUES ('3', '1', '3');
@@ -981,86 +1017,86 @@ INSERT INTO `rolepoweralt` VALUES ('20', '2', '20');
 INSERT INTO `rolepoweralt` VALUES ('21', '2', '21');
 INSERT INTO `rolepoweralt` VALUES ('22', '2', '22');
 INSERT INTO `rolepoweralt` VALUES ('23', '2', '23');
-INSERT INTO `sort` VALUES ('1067', '1', '79', '299', '8', '10');
-INSERT INTO `sort` VALUES ('1076', '6', '80', '38', '1', '2');
-INSERT INTO `sort` VALUES ('1066', '5', '79', '150', '3', '4');
-INSERT INTO `sort` VALUES ('1065', '4', '79', '124', '3', '4');
-INSERT INTO `sort` VALUES ('1064', '3', '79', '154', '3', '4');
-INSERT INTO `sort` VALUES ('1063', '2', '79', '115', '3', '4');
-INSERT INTO `sort` VALUES ('1062', '1', '79', '142', '3', '4');
-INSERT INTO `sort` VALUES ('1061', '10', '79', '218', '2', '2');
-INSERT INTO `sort` VALUES ('1060', '9', '79', '217', '2', '2');
-INSERT INTO `sort` VALUES ('1059', '8', '79', '214', '2', '2');
-INSERT INTO `sort` VALUES ('1058', '7', '79', '213', '2', '2');
-INSERT INTO `sort` VALUES ('1057', '6', '79', '210', '2', '2');
-INSERT INTO `sort` VALUES ('1056', '5', '79', '209', '2', '2');
-INSERT INTO `sort` VALUES ('1055', '4', '79', '206', '2', '2');
-INSERT INTO `sort` VALUES ('1054', '3', '79', '205', '2', '2');
-INSERT INTO `sort` VALUES ('1053', '2', '79', '202', '2', '2');
-INSERT INTO `sort` VALUES ('1052', '1', '79', '201', '2', '2');
-INSERT INTO `sort` VALUES ('1051', '20', '79', '67', '1', '2');
-INSERT INTO `sort` VALUES ('1050', '19', '79', '3', '1', '2');
-INSERT INTO `sort` VALUES ('1049', '18', '79', '59', '1', '2');
-INSERT INTO `sort` VALUES ('1048', '17', '79', '58', '1', '2');
-INSERT INTO `sort` VALUES ('1047', '16', '79', '13', '1', '2');
-INSERT INTO `sort` VALUES ('1046', '15', '79', '12', '1', '2');
-INSERT INTO `sort` VALUES ('1045', '14', '79', '40', '1', '2');
-INSERT INTO `sort` VALUES ('1044', '13', '79', '7', '1', '2');
-INSERT INTO `sort` VALUES ('1043', '12', '79', '26', '1', '2');
-INSERT INTO `sort` VALUES ('1042', '11', '79', '54', '1', '2');
-INSERT INTO `sort` VALUES ('1041', '10', '79', '22', '1', '2');
-INSERT INTO `sort` VALUES ('1040', '9', '79', '16', '1', '2');
-INSERT INTO `sort` VALUES ('1039', '8', '79', '72', '1', '2');
-INSERT INTO `sort` VALUES ('1038', '7', '79', '34', '1', '2');
-INSERT INTO `sort` VALUES ('1037', '6', '79', '75', '1', '2');
-INSERT INTO `sort` VALUES ('1036', '5', '79', '29', '1', '2');
-INSERT INTO `sort` VALUES ('1035', '4', '79', '45', '1', '2');
-INSERT INTO `sort` VALUES ('1034', '3', '79', '21', '1', '2');
-INSERT INTO `sort` VALUES ('1033', '1', '79', '4', '1', '2');
-INSERT INTO `sort` VALUES ('1070', '2', '79', '71', '1', '0');
-INSERT INTO `sort` VALUES ('1075', '5', '80', '61', '1', '2');
-INSERT INTO `sort` VALUES ('1074', '4', '80', '37', '1', '2');
-INSERT INTO `sort` VALUES ('1073', '3', '80', '33', '1', '2');
-INSERT INTO `sort` VALUES ('1072', '2', '80', '6', '1', '2');
-INSERT INTO `sort` VALUES ('1071', '1', '80', '2', '1', '2');
-INSERT INTO `sort` VALUES ('1068', '2', '79', '304', '8', '10');
-INSERT INTO `sort` VALUES ('1077', '7', '80', '39', '1', '2');
-INSERT INTO `sort` VALUES ('1078', '8', '80', '62', '1', '2');
-INSERT INTO `sort` VALUES ('1079', '9', '80', '66', '1', '2');
-INSERT INTO `sort` VALUES ('1080', '10', '80', '70', '1', '2');
-INSERT INTO `sort` VALUES ('1081', '1', '80', '200', '2', '5');
-INSERT INTO `sort` VALUES ('1082', '2', '80', '212', '2', '5');
-INSERT INTO `sort` VALUES ('1083', '3', '80', '224', '2', '5');
-INSERT INTO `sort` VALUES ('1084', '4', '80', '222', '2', '5');
-INSERT INTO `sort` VALUES ('1085', '1', '80', '101', '3', '5');
-INSERT INTO `sort` VALUES ('1086', '2', '80', '102', '3', '5');
-INSERT INTO `sort` VALUES ('1087', '3', '80', '107', '3', '5');
-INSERT INTO `sort` VALUES ('1088', '4', '80', '133', '3', '5');
-INSERT INTO `sort` VALUES ('1089', '1', '80', '302', '8', '40');
-INSERT INTO `sort` VALUES ('1090', '1', '83', '2', '1', '0');
-INSERT INTO `sort` VALUES ('1091', '1', '86', '101', '3', '0');
-INSERT INTO `sort` VALUES ('1092', '2', '86', '102', '3', '0');
-INSERT INTO `sort` VALUES ('1095', '1', '87', '2', '1', '0');
-INSERT INTO `sort` VALUES ('1096', '1', '88', '3', '1', '0');
-INSERT INTO `sort` VALUES ('1097', '2', '88', '4', '1', '0');
-INSERT INTO `sort` VALUES ('1098', '3', '88', '3', '1', '0');
-INSERT INTO `sort` VALUES ('1099', '4', '88', '4', '1', '0');
-INSERT INTO `sort` VALUES ('1102', '1', '90', '2', '1', '0');
-INSERT INTO `sort` VALUES ('1103', '2', '90', '3', '1', '0');
-INSERT INTO `sort` VALUES ('1104', '3', '90', '4', '1', '0');
-INSERT INTO `sort` VALUES ('1105', '4', '90', '5', '1', '0');
-INSERT INTO `sort` VALUES ('1106', '1', '90', '102', '3', '0');
-INSERT INTO `sort` VALUES ('1107', '2', '90', '101', '3', '0');
-INSERT INTO `sort` VALUES ('1108', '1', '90', '228', '4', '0');
-INSERT INTO `sort` VALUES ('1109', '2', '90', '229', '4', '0');
-INSERT INTO `sort` VALUES ('1110', '3', '90', '228', '4', '0');
-INSERT INTO `sort` VALUES ('1111', '4', '90', '229', '4', '0');
-INSERT INTO `teacher` VALUES ('123456', 'wangyao', '', '2017-02-28', '', '', '9810ff71-2c17-4f65-b3b9-f83973f9d325.jpg', '25d55ad283aa400af464c76d713c07ad');
+
+-- ----------------------------
+-- Table structure for `sort`
+-- ----------------------------
+DROP TABLE IF EXISTS `sort`;
+CREATE TABLE `sort` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sequence` int(11) DEFAULT NULL,
+  `e_id` int(11) DEFAULT NULL,
+  `q_id` int(11) DEFAULT NULL,
+  `t_id` int(11) DEFAULT NULL,
+  `pointvalue` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1169 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sort
+-- ----------------------------
+INSERT INTO `sort` VALUES ('1168', '5', '107', '42', '1', '20');
+INSERT INTO `sort` VALUES ('1167', '4', '107', '81', '1', '20');
+INSERT INTO `sort` VALUES ('1166', '3', '107', '36', '1', '20');
+INSERT INTO `sort` VALUES ('1165', '2', '107', '41', '1', '20');
+INSERT INTO `sort` VALUES ('1164', '1', '107', '97', '1', '20');
+INSERT INTO `sort` VALUES ('1163', '5', '106', '82', '1', '20');
+INSERT INTO `sort` VALUES ('1162', '4', '106', '64', '1', '20');
+INSERT INTO `sort` VALUES ('1161', '3', '106', '5', '1', '20');
+INSERT INTO `sort` VALUES ('1160', '2', '106', '10', '1', '20');
+INSERT INTO `sort` VALUES ('1159', '1', '106', '68', '1', '20');
+INSERT INTO `sort` VALUES ('1158', '5', '105', '95', '1', '20');
+INSERT INTO `sort` VALUES ('1157', '4', '105', '63', '1', '20');
+INSERT INTO `sort` VALUES ('1156', '3', '105', '66', '1', '20');
+INSERT INTO `sort` VALUES ('1155', '2', '105', '8', '1', '20');
+INSERT INTO `sort` VALUES ('1154', '1', '105', '3', '1', '20');
+INSERT INTO `sort` VALUES ('1153', '5', '104', '33', '1', '20');
+INSERT INTO `sort` VALUES ('1152', '4', '104', '67', '1', '20');
+INSERT INTO `sort` VALUES ('1151', '2', '104', '62', '1', '20');
+INSERT INTO `sort` VALUES ('1150', '3', '104', '72', '1', '20');
+INSERT INTO `sort` VALUES ('1149', '1', '104', '34', '1', '20');
+
+-- ----------------------------
+-- Table structure for `teacher`
+-- ----------------------------
+DROP TABLE IF EXISTS `teacher`;
+CREATE TABLE `teacher` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  `email` varchar(30) DEFAULT NULL,
+  `hiredate` date DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `address` varchar(30) DEFAULT NULL,
+  `photo` varchar(50) DEFAULT NULL,
+  `password` varchar(60) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of teacher
+-- ----------------------------
+INSERT INTO `teacher` VALUES ('123456', null, null, null, null, null, null, 'e10adc3949ba59abbe56e057f20f883e');
 INSERT INTO `teacher` VALUES ('1234561', 'wanggu', null, null, null, null, null, 'fcea920f7412b5da7be0cf42b8c93759');
 INSERT INTO `teacher` VALUES ('1234562', 'wangyao', '', '2016-12-28', '', '', null, 'fcea920f7412b5da7be0cf42b8c93759');
 INSERT INTO `teacher` VALUES ('1234563', 'muxiangyu', null, null, null, null, null, 'fcea920f7412b5da7be0cf42b8c93759');
 INSERT INTO `teacher` VALUES ('1234564', 'liying', null, null, null, null, null, 'fcea920f7412b5da7be0cf42b8c93759');
-INSERT INTO `teacher` VALUES ('1234565', 'haojianfen', null, null, null, null, null, 'fcea920f7412b5da7be0cf42b8c93759');
+INSERT INTO `teacher` VALUES ('1234565', 'haojianfen', null, null, null, null, null, 'e10adc3949ba59abbe56e057f20f883e');
+INSERT INTO `teacher` VALUES ('1234566', 'shuige', null, null, null, null, null, 'e10adc3949ba59abbe56e057f20f883e');
+
+-- ----------------------------
+-- Table structure for `teachercoursealt`
+-- ----------------------------
+DROP TABLE IF EXISTS `teachercoursealt`;
+CREATE TABLE `teachercoursealt` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `t_id` int(11) DEFAULT NULL,
+  `c_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=148 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of teachercoursealt
+-- ----------------------------
 INSERT INTO `teachercoursealt` VALUES ('129', '1234565', '10');
 INSERT INTO `teachercoursealt` VALUES ('128', '1234564', '10');
 INSERT INTO `teachercoursealt` VALUES ('127', '1234562', '10');
@@ -1081,6 +1117,22 @@ INSERT INTO `teachercoursealt` VALUES ('141', '1234562', '48');
 INSERT INTO `teachercoursealt` VALUES ('142', '1234563', '48');
 INSERT INTO `teachercoursealt` VALUES ('143', '1234564', '48');
 INSERT INTO `teachercoursealt` VALUES ('144', '1234565', '48');
+INSERT INTO `teachercoursealt` VALUES ('147', '123456', '11');
+
+-- ----------------------------
+-- Table structure for `teacherrolealt`
+-- ----------------------------
+DROP TABLE IF EXISTS `teacherrolealt`;
+CREATE TABLE `teacherrolealt` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `r_id` int(11) DEFAULT NULL,
+  `t_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of teacherrolealt
+-- ----------------------------
 INSERT INTO `teacherrolealt` VALUES ('1', '1', '123456');
 INSERT INTO `teacherrolealt` VALUES ('2', '2', '123456');
 INSERT INTO `teacherrolealt` VALUES ('4', '1', '1234561');
