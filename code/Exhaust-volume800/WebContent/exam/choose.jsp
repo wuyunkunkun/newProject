@@ -15,41 +15,6 @@
 <link href="css/zujuan_kecheng.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 function submits(){
-	//
-	
-	var buttons = document.getElementsByName("checkboxs");
-	var s="";
-	for (var j = 0; j < buttons.length; j++) {
-		if (buttons[j].checked == true) {
-			s+=(j+1)+",";
-		}
-	}
-
-	s = s.substring(0, s.length - 1);
-	var splits=document.getElementById("splits");
-	splits.value=s;
-
-	var chapter = document.getElementsByName("chapter");
-	var t="";
-	for (var j = 0; j < chapter.length; j++) {
-		if(chapter[j].value==''){
-			chapter[j].value=0;
-		}
-		t+=chapter[j].value+",";	
-	}
-
-	t = t.substring(0,t.length-1);
-	var chapters=document.getElementById("chapters");
-	chapters.value=t;
-
-	//总分
-	//需要改
-	var sum=0;
-	var csum=0;
-	var chapters=document.getElementsByName("chapter");
-	for(var j=0;j<chapters.length;j++){
-		csum+=parseInt(chapters[j].value);
-	}
 
 	var sumScore = document.getElementsByName("sumScore")[0].value;
 
@@ -57,28 +22,7 @@ function submits(){
 		alert("总分不等于100");
 		return false;
 	}
-	if(csum!=100){
-		alert("试卷各章节总分不等于100");
-		return false;
-	}
-	for(var i=1;i<11;i++){
-		sum+=parseInt(document.getElementById("sum"+i).value);
-	}
-	if(sum!=100){
-		alert("试卷各题型总分不等于100");
-		return false;
-	}
-	var checkboxs=document.getElementsByName("checkboxs");
-	a:
-	for(var m=1;m<11;m++){
-		var t=document.getElementById("sum"+m).value;
-		if(t!=0){
-				if(checkboxs[m-1].checked==false){
-					alert("请选中要出题的章节");
-					return false;
-			}
-		}
-	}
+	
 	var load88 = document.getElementById("load88");
 	load88.style.display = "block";
 	var load8s = document.getElementById("load8s");
@@ -410,6 +354,7 @@ function createDiv(name,chapter,number){
 		document.getElementsByName("everyScore" + chapter + number)[0].value = score;
 		changeScore(chapter);
 		changeScores(chapter,number);
+		changeSum(8);
 		
 	}
 	
