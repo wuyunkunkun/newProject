@@ -1,6 +1,8 @@
 ﻿# superSchool
 项目需求说明书
 
+项目GitHub地址：https://github.com/wuyunkunkun/superSchool  
+
 
 核心成员介绍  
 name：武云坤  
