@@ -6,22 +6,27 @@
 name：武云坤  
 career：MANAGER  
 GitHub-address:https://github.com/wuyunkunkun  
+E-mail:931858513@qq.com  
   
 name：陈世艺  
 career：CTO  
-GitHub-address:https://github.com/chenshiy1  
+GitHub-address:https://github.com/chenshiy1  \
+E-mail:3355366175@qq.com
   
 name：黄浦  
 career：DBA-GAD  
 GitHub-address:https://github.com/zzzhp  
+E-mail:hp957660233@foxmail.com  
   
 name：王朝辉  
 career：CCO  
 GitHub-address:https://github.com/2015015188wzh  
+E-mail:2247392595@qq.com  
   
 name：唐喆  
 career：SCD  
 GitHub-address:https://github.com/2015015173  
+
   
   
   
